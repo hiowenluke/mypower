@@ -9,7 +9,7 @@
   "author": "hi.owen.luke@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "kdo": "^1.5.8",
+    "kdo": "^1.6.1",
     "moment": "^2.24.0",
     "mysql2": "^1.6.5",
     "sequelize": "5.9.4",
