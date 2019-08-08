@@ -2,8 +2,8 @@
 const nodber = require('../');
 
 /** @name nodber.lib.isRecordExists */
-const fn = async (tablename, whereStr = '1=1') => {
-	const result = await nodber.count(`select count(*) as count from ${tablename} where ${whereStr}`);
+const fn = async (tableName, whereStr = '1=1') => {
+	const result = await nodber.count(`select count(*) as count from ${tableName} where ${whereStr}`);
 	return !!result;
 };
 

@@ -2,8 +2,8 @@
 const nodber = require('../');
 
 /** @name nodber.lib.getTableFieldNames */
-const fn = async (tablename) => {
-	const sql = nodber.sqls('getTableFieldNames', tablename);
+const fn = async (tableName) => {
+	const sql = nodber.sqls('getTableFieldNames', tableName);
 	const result = await nodber.exec(sql);
 	if (!result || !result[0]) return;
 

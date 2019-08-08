@@ -2,8 +2,8 @@
 const nodber = require('../');
 
 /** @name nodber.lib.isEmptyTable */
-const fn = async (tablename) => {
-	return !await nodber.lib.isRecordExists(tablename);
+const fn = async (tableName) => {
+	return !await nodber.lib.isRecordExists(tableName);
 };
 
 module.exports = fn;

@@ -2,21 +2,21 @@
 const nodber = require('../');
 
 /** @name nodber.lib.getMaxRecord */
-const fn = async (tablename, fieldname, whereStr = '1=1') => {
+const fn = async (tableName, fieldName, whereStr = '1=1') => {
 
-	fieldname = fieldname || await nodber.lib.getPrimaryKey(tablename);
+	fieldName = fieldName || await nodber.lib.getPrimaryKey(tableName);
 
 	// If there is no primary key, try using id as the primary key
-	if (!fieldname) {
-		if (await nodber.lib.isTableFieldExists(tablename, 'id')) {
-			fieldname = 'id';
+	if (!fieldName) {
+		if (await nodber.lib.isTableFieldExists(tableName, 'id')) {
+			fieldName = 'id';
 		}
 		else {
-			throw new Error(`Require a fieldname or specify a primary key for tablename`);
+			throw new Error(`Require a fieldname or specify a primary key for tableName`);
 		}
 	}
 
-	const result = await nodber.exec(`select * from ${tablename} where ${whereStr} and ${fieldname} = (select max(${fieldname}) from ${tablename} where ${whereStr})`);
+	const result = await nodber.exec(`select * from ${tableName} where ${whereStr} and ${fieldName} = (select max(${fieldName}) from ${tableName} where ${whereStr})`);
 	return !result ? null : nodber.lib.lowerCaseFieldNames(result[0]);
 };
 
