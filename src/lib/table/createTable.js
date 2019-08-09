@@ -52,11 +52,9 @@ const fn = async (tableName, fields) => {
 	const sql = global.nodber.sqls('createTable', tableName, {fields: fieldsStr, options});
 	await global.nodber.exec(sql);
 
-	await global.nodber.lib.wait();
-
-	const result = await global.nodber.isSuccessful();
-	console.log(result);
-	return result;
+	// Use getWarningCount() instead of isSuccessful(), 'cause the count is 1, not 0.
+	const count = await global.nodber.getWarningCount();
+	return count === 1;
 };
 
 module.exports = fn;
