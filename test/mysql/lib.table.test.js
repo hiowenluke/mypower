@@ -41,9 +41,46 @@ describe('MySQL - lib.table', () => {
 		expect(!!result.find(item => item['Tables_in_' + databaseName] === tableName)).to.be.true;
 	});
 
+	it(`.descTable()`, async () => {
+		const result = await nodber.descTable(tableName);
+		expect(result[0].Field === 'id').to.be.true;
+	});
+
+	it(`.isEmptyTable() // false`, async () => {
+		await nodber.exec(`insert into users (id, username) values(1, 'haha')`);
+		const result = await nodber.isEmptyTable(tableName);
+		expect(result === false).to.be.true;
+	});
+
+	it(`.truncateTable() and .isEmptyTable() // true`, async () => {
+		await nodber.truncateTable(tableName);
+		const result = await nodber.isEmptyTable(tableName);
+		expect(result === true).to.be.true;
+	});
+
 	it(`.dropTable() // true`, async () => {
 		const result = await nodber.dropTable(tableName);
 		expect(result === true).to.be.true;
+	});
+
+	it(`.getTableNameFromSql() // for select `, async () => {
+		const result = nodber.getTableNameFromSql(`select * from users`);
+		expect(result === 'users').to.be.true;
+	});
+
+	it(`.getTableNameFromSql() // for insert `, async () => {
+		const result = nodber.getTableNameFromSql(`insert into users (id, username) values(1, 'haha')`);
+		expect(result === 'users').to.be.true;
+	});
+
+	it(`.getTableNameFromSql() // for update `, async () => {
+		const result = nodber.getTableNameFromSql(`update users set username = 'owen' where id = 1`);
+		expect(result === 'users').to.be.true;
+	});
+
+	it(`.getTableNameFromSql() // for delete `, async () => {
+		const result = nodber.getTableNameFromSql(`delete from users where 1 = 0`);
+		expect(result === 'users').to.be.true;
 	});
 
 });
