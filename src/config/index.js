@@ -8,7 +8,11 @@ const me = {
 	host: '127.0.0.1',
 	port: 3306,
 
-	init(cfg) {
+	init(...args) {
+		this.set(...args);
+	},
+
+	set(cfg) {
 		Object.assign(this, cfg);
 	},
 
