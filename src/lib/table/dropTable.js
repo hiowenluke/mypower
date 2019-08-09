@@ -1,8 +1,8 @@
 
+const nodber = require('../../');
+
 /** @name nodber.dropTable */
 const fn = async (tableName) => {
-	const nodber = global.nodber;
-
 	if (!(await nodber.isTableExists(tableName))) {
 		return false;
 	}

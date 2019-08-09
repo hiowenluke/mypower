@@ -1,4 +1,6 @@
 
+const nodber = require('../../');
+
 const getFieldDefinitions = (fields) => {
 	const def = [];
 	const primaryKeys = [];
@@ -41,8 +43,6 @@ const getFieldDefinitions = (fields) => {
 
 /** @name nodber.createTable */
 const fn = async (tableName, fields) => {
-	const nodber = global.nodber;
-
 	if (await nodber.isTableExists(tableName)) {
 		return false;
 	}

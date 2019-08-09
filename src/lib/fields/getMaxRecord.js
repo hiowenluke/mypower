@@ -3,7 +3,6 @@ const nodber = require('../../');
 
 /** @name nodber.getMaxRecord */
 const fn = async (tableName, fieldName, whereStr = '1=1') => {
-
 	fieldName = fieldName || await nodber.getPrimaryKey(tableName);
 
 	// If there is no primary key, try using id as the primary key

@@ -1,10 +1,11 @@
 
 const sequery = require('sequelize-raw-query');
+const nodber = require('../../');
 
 const reInitNodber = (databaseName) => {
-	const config = global.nodber.config.get();
+	const config = nodber.config.get();
 	config.database = databaseName;
-	global.nodber.config.init(config);
+	nodber.config.init(config);
 };
 
 const reInitSequery = (databaseName) => {
@@ -19,7 +20,7 @@ const fn = async (databaseName) => {
 	reInitNodber();
 	reInitSequery();
 
-	await global.nodber.proxy(databaseName);
+	await nodber.proxy(databaseName);
 };
 
 module.exports = fn;
