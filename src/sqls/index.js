@@ -45,10 +45,16 @@ const fn = (purpose, tablename) => {
 	let sql = nodber.sqls[dialect][purpose];
 	if (!sql) return '';
 
-	sql = sql.replace(/{tablename}/ig, tablename);
+	const {databaseName, tableName} = getNamesFromArgs(sql, args);
 
-	if (dialect === 'mysql') {
-		sql = sql.replace(/{database}/ig, config.database)
+	if (databaseName) {
+		sql = sql.replace(/{databasename}/ig, databaseName);
+	}
+
+	if (tableName) {
+		sql = sql.replace(/{tablename}/ig, tableName);
+	}
+
 	}
 
 	return sql;
