@@ -3,7 +3,7 @@
 const def = {
 	mssql: {
 		dialect: 'mssql',
-		database: 'nodber',
+		database: 'master',
 		username: 'sa',
 		password: 'playboy',
 		host: '192.168.197.80',
@@ -12,7 +12,7 @@ const def = {
 
 	mysql: {
 		dialect: 'mysql',
-		database: 'nodber',
+		database: 'sys',
 		username: 'root',
 		password: 'playboy',
 		host: '127.0.0.1',
