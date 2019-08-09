@@ -41,9 +41,9 @@ describe('MySQL - lib.table', () => {
 		expect(!!result.find(item => item['Tables_in_' + databaseName] === tableName)).to.be.true;
 	});
 
-	// it(`.dropTable() // true`, async () => {
-	// 	const result = await nodber.dropTable(tableName);
-	// 	expect(result === true).to.be.true;
-	// });
+	it(`.dropTable() // true`, async () => {
+		const result = await nodber.dropTable(tableName);
+		expect(result === true).to.be.true;
+	});
 
 });
