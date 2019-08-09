@@ -10,6 +10,10 @@ const me = {
 
 	init(cfg) {
 		Object.assign(this, cfg);
+	},
+
+	get() {
+		return this;
 	}
 };
 
