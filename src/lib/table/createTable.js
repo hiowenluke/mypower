@@ -41,19 +41,20 @@ const getFieldDefinitions = (fields) => {
 
 /** @name nodber.createTable */
 const fn = async (tableName, fields) => {
+	const nodber = global.nodber;
 
-	if (await global.nodber.isTableExists(tableName)) {
+	if (await nodber.isTableExists(tableName)) {
 		return false;
 	}
 
 	const fieldsStr = getFieldDefinitions(fields).join(', ');
 	const options = 'engine=innodb default charset=utf8';
 
-	const sql = global.nodber.sqls('createTable', tableName, {fields: fieldsStr, options});
-	await global.nodber.exec(sql);
+	const sql = nodber.sqls('createTable', tableName, {fields: fieldsStr, options});
+	await nodber.exec(sql);
 
 	// Use getWarningCount() instead of isSuccessful(), 'cause the count is 1, not 0.
-	const count = await global.nodber.getWarningCount();
+	const count = await nodber.getWarningCount();
 	return count === 1;
 };
 
