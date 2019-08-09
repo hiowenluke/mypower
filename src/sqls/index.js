@@ -1,6 +1,9 @@
 
-const nodber = require('../');
+const _ = require('lodash');
 const config = require('../config');
+
+let sqls;
+let dialect;
 
 const getRawSql = (purpose) => {
 	if (!sqls) {
@@ -39,10 +42,12 @@ const getNamesFromArgs = (sql, args) => {
 	return {databaseName, tableName};
 };
 
+// nodber.sqls('xxx', databaseName, tableName, {xxx})
 /** @name nodber.sqls */
-const fn = (purpose, tablename) => {
-	const dialect = config.dialect;
-	let sql = nodber.sqls[dialect][purpose];
+const fn = (purpose, ...args) => {
+	dialect = config.dialect;
+
+	let sql = getRawSql(purpose);
 	if (!sql) return '';
 
 	const {databaseName, tableName} = getNamesFromArgs(sql, args);
