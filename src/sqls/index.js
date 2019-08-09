@@ -55,6 +55,12 @@ const fn = (purpose, tablename) => {
 		sql = sql.replace(/{tablename}/ig, tableName);
 	}
 
+	const options = args[0];
+	if (_.isPlainObject(options)) {
+		Object.keys(options).forEach(key => {
+			const reg = new RegExp('{' + key + '}', 'ig');
+			sql = sql.replace(reg, options[key]);
+		});
 	}
 
 	return sql;
