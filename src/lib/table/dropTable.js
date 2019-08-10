@@ -7,8 +7,8 @@ const fn = async (tableName) => {
 		return false;
 	}
 
-	await nodber.proxy(tableName);
-	return await nodber.isSuccessful();
+	const result = await nodber.proxy(tableName);
+	return result.warningStatus === 0;
 };
 
 module.exports = fn;

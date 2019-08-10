@@ -20,7 +20,8 @@ const fn = async (databaseName) => {
 	reInitNodber();
 	reInitSequery();
 
-	await nodber.proxy(databaseName);
+	const result = await nodber.proxy(databaseName);
+	return result.warningStatus === 0;
 };
 
 module.exports = fn;

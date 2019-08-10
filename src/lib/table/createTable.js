@@ -51,11 +51,9 @@ const fn = async (tableName, fields) => {
 	const options = 'engine=innodb default charset=utf8';
 
 	const sql = nodber.sqls('createTable', tableName, {fields: fieldsStr, options});
-	await nodber.exec(sql);
+	const result = await nodber.exec(sql);
 
-	// Use getWarningCount() instead of isSuccessful(), 'cause the count is 1, not 0.
-	const count = await nodber.getWarningCount();
-	return count === 1;
+	return result.warningStatus === 1;
 };
 
 module.exports = fn;

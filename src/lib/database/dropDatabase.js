@@ -7,8 +7,8 @@ const fn = async (databaseName) => {
 		return false;
 	}
 
-	await nodber.proxy(databaseName);
-	return await nodber.isSuccessful();
+	const result = await nodber.proxy(databaseName);
+	return result.warningStatus === 0;
 };
 
 module.exports = fn;
