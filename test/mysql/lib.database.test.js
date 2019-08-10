@@ -11,12 +11,12 @@ describe('MySQL - lib.database', () => {
 		await nodber.dropDatabase(databaseName);
 	});
 
-	it(`.createDatabase() // true`, async () => {
+	it(`.createDatabase()`, async () => {
 		const result = await nodber.createDatabase(databaseName);
 		expect(result === true).to.be.true;
 	});
 
-	it(`.isDatabaseExists() // true`, async () => {
+	it(`.isDatabaseExists()`, async () => {
 		const result = await nodber.isDatabaseExists(databaseName);
 		expect(result === true).to.be.true;
 	});
@@ -31,14 +31,23 @@ describe('MySQL - lib.database', () => {
 		expect(!!result.find(item => item.Database === databaseName)).to.be.true;
 	});
 
-	it(`.useDatabase() and .getSelectedDatabase() // true`, async () => {
+	it(`.useDatabase() and .getSelectedDatabase()`, async () => {
 		await nodber.useDatabase('sys');
 		await nodber.useDatabase(databaseName);
 		const result = await nodber.getSelectedDatabase();
 		expect(result === databaseName).to.be.true;
 	});
 
-	it(`.dropDatabase() // true`, async () => {
+	it(`.renameDatabase()`, async () => {
+		const a = databaseName;
+		const b = databaseName + '_123';
+		await nodber.renameDatabase(a, b);
+		const result = await nodber.renameDatabase(b, a);
+		expect(result === true).to.be.true;
+	});
+
+
+	it(`.dropDatabase()`, async () => {
 		const result = await nodber.dropDatabase(databaseName);
 		expect(result === true).to.be.true;
 	});

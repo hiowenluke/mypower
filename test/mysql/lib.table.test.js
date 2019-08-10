@@ -15,7 +15,7 @@ describe('MySQL - lib.table', () => {
 		await nodber.dropTable(tableName);
 	});
 
-	it(`.createTable() // true`, async () => {
+	it(`.createTable()`, async () => {
 		const fields = [
 			{name: 'id', type: 'autoId'},
 			{name: 'username', type: 'string', length: 100, notNull: false, isPrimaryKey: true},
@@ -26,7 +26,7 @@ describe('MySQL - lib.table', () => {
 		expect(result === true).to.be.true;
 	});
 
-	it(`.isTableExists() // true`, async () => {
+	it(`.isTableExists()`, async () => {
 		const result = await nodber.isTableExists(tableName);
 		expect(result === true).to.be.true;
 	});
@@ -58,7 +58,23 @@ describe('MySQL - lib.table', () => {
 		expect(result === true).to.be.true;
 	});
 
-	it(`.dropTable() // true`, async () => {
+	it(`.renameTable()`, async () => {
+		const a = tableName;
+		const b = tableName + '_123';
+		await nodber.renameTable(a, b);
+		const result = await nodber.renameTable(b, a);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.moveTable()`, async () => {
+		const from = databaseName;
+		const to = 'sys';
+		await nodber.moveTable(from, to, tableName);
+		const result = await nodber.moveTable(to, from, tableName);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.dropTable()`, async () => {
 		const result = await nodber.dropTable(tableName);
 		expect(result === true).to.be.true;
 	});
