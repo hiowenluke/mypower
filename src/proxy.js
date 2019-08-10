@@ -12,7 +12,7 @@ const fn = async (...args) => {
 	let pathToCaller;
 
 	const lastParam = args[args.length - 1];
-	if (lastParam && lastParam.substr(0, 1) === '/') {
+	if (typeof lastParam === 'string' && lastParam.substr(0, 1) === '/') {
 		pathToCaller = lastParam;
 		args.pop();
 	}
