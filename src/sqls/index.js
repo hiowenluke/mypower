@@ -20,6 +20,10 @@ const getNamesFromArgs = (sql, args) => {
 	const isNeedDatabaseName = /{database}/i.test(sql);
 	const isNeedTableName = /{table}/i.test(sql);
 
+	if (typeof args[0] === 'object') {
+		const options = args[0];
+		databaseName = options.database;
+		tableName = options.table;
 	}
 	else {
 		if (isNeedDatabaseName) {
