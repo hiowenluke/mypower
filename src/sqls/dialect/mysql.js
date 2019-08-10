@@ -8,10 +8,10 @@ const me = {
 	// Database (schema)
 	// -------------------------------------------
 
-	isDatabaseExists: `select schema_name as databasename from information_schema.schemata where schema_name = '{database}'`,
-	createDatabase: `create database {database} character set gbk`,
-	dropDatabase: `drop database {database}`,
-	useDatabase: `use {database}`,
+	isDatabaseExists: `select schema_name as databasename from information_schema.schemata where schema_name = '{databaseName}'`,
+	createDatabase: `create database {databaseName} character set gbk`,
+	dropDatabase: `drop database {databaseName}`,
+	useDatabase: `use {databaseName}`,
 	showDatabases: `show databases`,
 	getSelectedDatabase: `select database() as databasename`,
 
@@ -20,20 +20,23 @@ const me = {
 	// Table
 	// -------------------------------------------
 
-	isTableExists: `select table_name as tablename from information_schema.tables where table_name ='{table}' and table_schema = '{database}'`,
-	createTable: `create table {table} ({fields}) {options}`,
-	dropTable: `drop table {table}`,
-	truncateTable: `truncate table {table}`, // clear table quickly, faster than delete from table
-	descTable: `desc {table}`,
+	isTableExists: `select table_name as tablename from information_schema.tables where table_name ='{tableName}' and table_schema = '{databaseName}'`,
+	createTable: `create table {tableName} ({fields}) {options}`,
+	dropTable: `drop table {tableName}`,
+	truncateTable: `truncate table {tableName}`, // clear table quickly, faster than delete from table
+	descTable: `desc {tableName}`,
 	showTables: `show tables`,
+	isEmptyTable: `select * from {tableName} limit 0, 1`,
+	renameTable: `rename table {old_tableName} to {new_tableName}`,
+	moveTable: `rename table {old_databaseName}.{tableName} to {new_databaseName}.{tableName}`,
 
 	// -------------------------------------------
 	// Fields
 	// -------------------------------------------
 
 	// Because there may be multiple primary keys, sort by ordinal_position
-	getPrimaryKeys: `select column_name as primarykey from information_schema.key_column_usage where table_name= '{table}' and constraint_schema= '{database}' and constraint_name='primary' order by ordinal_position`,
-	getFieldNames: `select column_name as fieldname from information_schema.columns where table_name = '{table}' and table_schema = '{database}'`,
+	getPrimaryKeys: `select column_name as primarykey from information_schema.key_column_usage where table_name= '{tableName}' and constraint_schema= '{databaseName}' and constraint_name='primary' order by ordinal_position`,
+	getFieldNames: `select column_name as fieldname from information_schema.columns where table_name = '{tableName}' and table_schema = '{databaseName}'`,
 
 
 	// -------------------------------------------

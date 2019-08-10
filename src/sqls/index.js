@@ -17,8 +17,8 @@ const getNamesFromArgs = (sql, args) => {
 	let databaseName;
 	let tableName;
 
-	const isNeedDatabaseName = /{database}/i.test(sql);
-	const isNeedTableName = /{table}/i.test(sql);
+	const isNeedDatabaseName = /{databaseName}/i.test(sql);
+	const isNeedTableName = /{tableName}/i.test(sql);
 
 	if (typeof args[0] === 'object') {
 		const options = args[0];
@@ -63,11 +63,11 @@ const fn = (purpose, ...args) => {
 	const {databaseName, tableName} = getNamesFromArgs(sql, args);
 
 	if (databaseName) {
-		sql = sql.replace(/{database}/ig, databaseName);
+		sql = sql.replace(/{databaseName}/ig, databaseName);
 	}
 
 	if (tableName) {
-		sql = sql.replace(/{table}/ig, tableName);
+		sql = sql.replace(/{tableName}/ig, tableName);
 	}
 
 	const options = args[0];
