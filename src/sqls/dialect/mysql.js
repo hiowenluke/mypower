@@ -14,6 +14,7 @@ const me = {
 	useDatabase: `use {databaseName}`,
 	showDatabases: `show databases`,
 	getSelectedDatabase: `select database() as databasename`,
+	renameDatabase: `rename database {old_databaseName} to {new_databaseName}`,
 
 
 	// -------------------------------------------
@@ -28,7 +29,8 @@ const me = {
 	showTables: `show tables`,
 	isEmptyTable: `select * from {tableName} limit 0, 1`,
 	renameTable: `rename table {old_tableName} to {new_tableName}`,
-	moveTable: `rename table {old_databaseName}.{tableName} to {new_databaseName}.{tableName}`,
+	moveTable: `rename table {from_databaseName}.{tableName} to {to_databaseName}.{tableName}`,
+
 
 	// -------------------------------------------
 	// Fields
@@ -43,6 +45,8 @@ const me = {
 	// System
 	// -------------------------------------------
 	getWarningCount: `select @@warning_count as count`,
+	getVersion: `select version()`,
+	getSystemVariables: `show variables {variableName}`,
 
 };
 
