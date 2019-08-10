@@ -17,32 +17,38 @@ const getNamesFromArgs = (sql, args) => {
 	let databaseName;
 	let tableName;
 
-	const isNeedDatabaseName = /{databasename}/i.test(sql);
-	const isNeedTableName = /{tablename}/i.test(sql);
+	const isNeedDatabaseName = /{database}/i.test(sql);
+	const isNeedTableName = /{table}/i.test(sql);
 
-	if (isNeedDatabaseName) {
-		databaseName = args.shift(); // The first argument always is database name
-
-		if (isNeedTableName) {
-			tableName = args.shift();
-		}
-		else {
-			// do nothing
-		}
 	}
 	else {
-		if (isNeedTableName) {
-			tableName = args.shift(); // The first argument always is table name
+		if (isNeedDatabaseName) {
+			databaseName = args.shift(); // The first argument always is databaseName name
+
+			if (isNeedTableName) {
+				tableName = args.shift();
+			}
+			else {
+				// do nothing
+			}
 		}
 		else {
-			// do nothing
+			if (isNeedTableName) {
+				tableName = args.shift(); // The first argument always is tableName name
+			}
+			else {
+				// do nothing
+			}
 		}
 	}
 
 	return {databaseName, tableName};
 };
 
-// nodber.sqls('xxx', databaseName, tableName, {xxx})
+// Three forms:
+// 		nodber.sqls('createTable', database, table, {xxx})
+// 		nodber.sqls('createTable', {database: 'test', table: 'users', xxx: 'xxx'})
+
 /** @name nodber.sqls */
 const fn = (purpose, ...args) => {
 	dialect = config.dialect;
@@ -53,11 +59,11 @@ const fn = (purpose, ...args) => {
 	const {databaseName, tableName} = getNamesFromArgs(sql, args);
 
 	if (databaseName) {
-		sql = sql.replace(/{databasename}/ig, databaseName);
+		sql = sql.replace(/{database}/ig, databaseName);
 	}
 
 	if (tableName) {
-		sql = sql.replace(/{tablename}/ig, tableName);
+		sql = sql.replace(/{table}/ig, tableName);
 	}
 
 	const options = args[0];
