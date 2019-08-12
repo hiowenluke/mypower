@@ -3,11 +3,15 @@ const nodber = require('../../');
 const caller = require('caller');
 
 /** @name nodber.lib.createDoFn */
-const fn = () => {
+const fn = (fieldName, isFromResultRoot) => {
 	const pathToCaller = caller();
 
 	return async (...args) => {
-		return await nodber.proxy(...args, pathToCaller);
+		let result = await nodber.proxy(...args, pathToCaller);
+		if (fieldName) {
+			result = isFromResultRoot ? result[fieldName] : result[0][fieldName];
+		}
+		return result;
 	};
 };
 
