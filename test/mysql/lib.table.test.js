@@ -21,7 +21,7 @@ describe('MySQL - lib/table', () => {
 		expect(result === false).to.be.true;
 	});
 
-	it(`.showTables() // find the tablename in result array`, async () => {
+	it(`.showTables() // find the tableName in result array`, async () => {
 		const result = await nodber.showTables(tableName);
 		expect(!!result.find(item => item['Tables_in_' + databaseName] === tableName)).to.be.true;
 	});
