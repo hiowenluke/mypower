@@ -2,10 +2,4 @@
 const nodber = require('../../');
 
 /** @name nodber.getWarningCount */
-const fn = async () => {
-	const result = await nodber.proxy();
-	// console.log('WarningCount', result[0].count);
-	return result[0].count;
-};
-
-module.exports = fn;
+module.exports = require('../createDoFn')('warningCount');
