@@ -3,7 +3,7 @@ const nodber = require('../../src');
 const expect = require('chai').expect;
 const config = require('../__config/default');
 
-describe('MySQL - lib.table', () => {
+describe('MySQL - lib/table', () => {
 	const databaseName = 'test_db_123';
 	const tableName = 'users';
 

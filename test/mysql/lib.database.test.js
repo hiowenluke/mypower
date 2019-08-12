@@ -3,7 +3,7 @@ const nodber = require('../../src');
 const expect = require('chai').expect;
 const config = require('../__config/default');
 
-describe('MySQL - lib.database', () => {
+describe('MySQL - lib/database', () => {
 	const databaseName = 'test_db_123';
 
 	it('init nodber', async () => {
@@ -37,15 +37,6 @@ describe('MySQL - lib.database', () => {
 		const result = await nodber.getSelectedDatabase();
 		expect(result === databaseName).to.be.true;
 	});
-
-	it(`.renameDatabase()`, async () => {
-		const a = databaseName;
-		const b = databaseName + '_123';
-		await nodber.renameDatabase(a, b);
-		const result = await nodber.renameDatabase(b, a);
-		expect(result === true).to.be.true;
-	});
-
 
 	it(`.dropDatabase()`, async () => {
 		const result = await nodber.dropDatabase(databaseName);
