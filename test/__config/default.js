@@ -17,13 +17,17 @@ const def = {
 		password: 'playboy',
 		host: '127.0.0.1',
 		port: 3306,
-	},
+	}
 };
 
 const me = {
 
 	// Disable sequelize log in test
 	logging: false,
+
+	testOptions: {
+		database: 'test_db_123',
+	},
 
 	use(type) {
 		const config = Object.assign({}, this, def[type]);

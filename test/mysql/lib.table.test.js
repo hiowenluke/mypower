@@ -1,10 +1,11 @@
 
 const nodber = require('../../src');
 const expect = require('chai').expect;
+const config = require('../__config/default');
 const tools = require('../__tools');
 
 describe('MySQL - lib/table', () => {
-	const databaseName = 'test_db_123';
+	const databaseName = config.testOptions.database;
 	const tableName = 'users';
 
 	tools.init(databaseName, tableName);

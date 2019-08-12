@@ -42,9 +42,16 @@ const me = {
 
 
 	// -------------------------------------------
+	// Records
+	// -------------------------------------------
+
+	count: `select count(*) as count from {tableName} where {whereStr}`,
+
+
+	// -------------------------------------------
 	// System
 	// -------------------------------------------
-	getWarningCount: `select @@warning_count as count`,
+	getWarningCount: `select @@warning_count as warningCount`,
 	getVersion: `select version() as version`,
 	getSystemVariables: `show variables {variableName}`,
 
