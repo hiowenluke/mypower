@@ -45,7 +45,7 @@ const me = {
 	// System
 	// -------------------------------------------
 	getWarningCount: `select @@warning_count as count`,
-	getVersion: `select version()`,
+	getVersion: `select version() as version`,
 	getSystemVariables: `show variables {variableName}`,
 
 };
