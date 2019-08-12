@@ -6,7 +6,7 @@ const config = require('../__config/default');
 describe('MySQL - lib/database', () => {
 	const databaseName = 'test_db_123';
 
-	it('init nodber', async () => {
+	it('init', async () => {
 		nodber.init(config.use('mysql'));
 		await nodber.dropDatabase(databaseName);
 	});

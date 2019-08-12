@@ -1,30 +1,14 @@
 
 const nodber = require('../../src');
 const expect = require('chai').expect;
-const config = require('../__config/default');
+const tools = require('../__tools');
 
 describe('MySQL - lib/table', () => {
 	const databaseName = 'test_db_123';
 	const tableName = 'users';
 
-	it('init nodber', async () => {
-		nodber.init(config.use('mysql'));
-
-		await nodber.createDatabase(databaseName);
-		await nodber.useDatabase(databaseName);
-		await nodber.dropTable(tableName);
-	});
-
-	it(`.createTable()`, async () => {
-		const fields = [
-			{name: 'id', type: 'autoId'},
-			{name: 'username', type: 'string', length: 100, notNull: false, isPrimaryKey: true},
-			{name: 'password', type: 'string', length: 100},
-		];
-
-		const result = await nodber.createTable(tableName, fields);
-		expect(result === true).to.be.true;
-	});
+	tools.init(databaseName, tableName);
+	tools.initTableUser();
 
 	it(`.isTableExists()`, async () => {
 		const result = await nodber.isTableExists(tableName);
