@@ -5,7 +5,7 @@ const config = require('../__config/default');
 
 describe('MySQL - lib/system', () => {
 
-	it('init', async () => {
+	it('// init', async () => {
 		nodber.init(config.use('mysql'));
 	});
 

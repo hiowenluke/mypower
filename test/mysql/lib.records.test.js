@@ -8,8 +8,19 @@ describe('MySQL - lib/records', () => {
 	const databaseName = config.testOptions.database;
 	const tableName = 'users';
 
-	tools.init(databaseName, tableName);
-	tools.initTableUser();
+	tools.initDatabase();
+	tools.createTableUser();
 
+	it(`.isRecordExists()`, async () => {
+		await nodber.exec(`insert into users (id, username) values(1, 'haha')`);
+
+		const result = await nodber.isRecordExists(tableName);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.recordsCount()`, async () => {
+		const result = await nodber.recordsCount(tableName);
+		expect(result === 1).to.be.true;
+	});
 
 });

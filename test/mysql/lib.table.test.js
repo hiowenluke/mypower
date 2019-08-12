@@ -8,8 +8,8 @@ describe('MySQL - lib/table', () => {
 	const databaseName = config.testOptions.database;
 	const tableName = 'users';
 
-	tools.init(databaseName, tableName);
-	tools.initTableUser();
+	tools.initDatabase();
+	tools.createTableUser();
 
 	it(`.isTableExists()`, async () => {
 		const result = await nodber.isTableExists(tableName);

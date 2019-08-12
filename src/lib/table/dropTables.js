@@ -3,6 +3,8 @@ const nodber = require('../../');
 
 /** @name nodber.dropTables */
 const fn = async (tableNames) => {
+	if (!tableNames) return;
+
 	if (typeof tableNames === 'string') {
 		tableNames = [tableNames];
 	}

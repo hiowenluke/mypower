@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cd test/mysql && mocha . --exit"
+    "test": "cd test/mysql && mocha . --exit",
+    "test-debug": "cd test/mysql && mocha --inspect-brk=9229 . --exit"
   },
   "author": "hi.owen.luke@gmail.com",
   "license": "MIT",
