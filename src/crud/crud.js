@@ -1,6 +1,6 @@
 
 const sequery = require('sequelize-raw-query');
-const nodber = require('./');
+const nodber = require('../');
 
 const fieldParams = {
 	genAll(fieldNames) {
@@ -36,22 +36,41 @@ const fieldParams = {
 };
 
 const commands = {
-	select: `select * from {tableName}`,
+	select: `select {fieldNames} from {tableName} where {whereStr}`,
+	delete: `delete from {tableName} where {whereStr}`,
 	insert: `insert into {tableName} ({nameParams}) values({valueParams})`,
-	update: `update {tableName} set {setParams}`,
-	delete: `delete from {tableName}`,
+	update: `update {tableName} set {setParams} where {whereStr}`,
 
-	async get(query) {
-		const {act, tablename} = query;
+	async get(act, ...args) {
+		let tableName, fieldNames, whereStr;
 
-		const fieldNames = await nodber.lib.getTableFieldNames(tablename);
-		const {nameParams, valueParams, setParams} = fieldParams.genAll(fieldNames);
+		// ({tableName, fieldNames, whereStr})
+		if (args.length === 1 && typeof args[0] === "object") {
+			({tableName, fieldNames, whereStr} = args[0]);
+		}
+		else {
+			// (tableName, fieldNames, whereStr)
+			tableName = args[0];
+
+		}
+
+		if (!fieldNames) {
+			fieldNames = "*";
+		}
+
+		if (!whereStr) {
+			whereStr = '1=1';
+		}
+
+		const originalFieldNames = await nodber.getFieldNames(tableName);
+		const {nameParams, valueParams, setParams} = fieldParams.genAll(originalFieldNames);
 
 		const sql = this[act]
-			.replace(/{tableName}/g, tablename)
-			.replace(/{nameParams}/g, nameParams)
-			.replace(/{valueParams}/g, valueParams)
-			.replace(/{setParams}/g, setParams)
+			.replace(/{fieldNames}/ig, fieldNames)
+			.replace(/{tableName}/ig, tableName)
+			.replace(/{nameParams}/ig, nameParams)
+			.replace(/{valueParams}/ig, valueParams)
+			.replace(/{setParams}/ig, setParams)
 		;
 
 		return sql;
@@ -71,23 +90,23 @@ const getWhereStr = (query, appendWhereStr) => {
 /** @name nodber.crud */
 const me = {
 	async select(...args) {
-		return await this.do(...args);
+		return await this.do('select', ...args);
 	},
 
 	async insert(...args) {
-		return await this.do(...args);
+		return await this.do('insert', ...args);
 	},
 
 	async update(...args) {
-		return await this.do(...args);
+		return await this.do('update', ...args);
 	},
 
 	async delete(...args) {
-		return await this.do(...args);
+		return await this.do('delete', ...args);
 	},
 
-	async do(query, appendWhereStr) {
-		const sql = await commands.get(query);
+	async do(act, ...args) {
+		const sql = await commands.get(act, ...args);
 		const whereStr = getWhereStr(query, appendWhereStr);
 		const result = await nodber.exec(sql + whereStr, {replacements: query.data});
 		return result;
