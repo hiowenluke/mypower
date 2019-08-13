@@ -37,6 +37,27 @@ const me = {
 		});
 	},
 
+	addUsers() {
+		it('// add users', async () => {
+			await nodber.exec(`
+				insert into users (id, username)
+				select 1 as id, 'owenLuke' as username
+				union
+				select 2, 'steveRogers'
+				union
+				select 3, 'anthonyStark'
+				union
+				select 4, 'thor'
+				union
+				select 5, 'hulk'
+				union
+				select 6, 'natasha'
+				union
+				select 7, 'thanos'
+			`);
+		});
+	},
+
 	breakLine() {
 		it(`----------------------------`, async () => {});
 	}

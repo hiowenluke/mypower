@@ -1,2 +1,2 @@
 
-module.exports = require('kdo')();
+module.exports.__proto__ = require('kdo')();

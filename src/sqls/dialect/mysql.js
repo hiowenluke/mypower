@@ -46,6 +46,8 @@ const me = {
 	// -------------------------------------------
 
 	count: `select count(*) as count from {tableName} where {whereStr}`,
+	getMaxId: `select max({idName}) as maxid from {tableName}`,
+	getMinId: `select min({idName}) as minid from {tableName}`,
 
 
 	// -------------------------------------------

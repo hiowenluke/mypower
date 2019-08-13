@@ -13,8 +13,9 @@ const fn = async (table, where) => {
 	}
 
 	let sql = lib.useSqlTemplate(sqlTemplate, {tableName: table, whereStr: where});
-	const result = await sequery.exec(sql);
+	await sequery.exec(sql);
 
+	const result = await nodber.isSuccessful();
 	return result;
 };
 

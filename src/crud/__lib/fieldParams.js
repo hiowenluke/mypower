@@ -1,4 +1,5 @@
 
+/** @name lib.fieldParams */
 const me = {
 	genAll(fieldNames) {
 		let arr = fieldNames;
@@ -9,6 +10,11 @@ const me = {
 		const setParams = this.genSetParams(arr);
 
 		return {nameParams, valueParams, setParams};
+	},
+
+	async genAllByTableName(tableName) {
+		const fieldNames = await nodber.getFieldNames(tableName);
+		return this.genAll(fieldNames);
 	},
 
 	genNameParams(fieldNames) {
