@@ -16,7 +16,7 @@
     "moment": "^2.24.0",
     "mysql2": "^1.6.5",
     "sequelize": "5.9.4",
-    "sequelize-raw-query": "^0.3.17",
+    "sequelize-raw-query": "^0.5.1",
     "tedious": "^6.2.0"
   },
   "devDependencies": {
