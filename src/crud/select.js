@@ -87,7 +87,6 @@ const getLimitClause = ({order, limit, offset}) => {
 
 	// ({table, order, limit, offset})
 	limitClause = sequery.getLimitClause({order, limit, offset});
-
 	return limitClause;
 };
 
