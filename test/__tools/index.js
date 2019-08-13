@@ -4,18 +4,22 @@ const expect = require('chai').expect;
 const config = require('../__config/default');
 
 const me = {
+	initNodber() {
+		it(`// init nodber`, async () => {
+			nodber.init(config.use('mysql'));
+		});
+	},
+
 	initDatabase() {
 		const databaseName = config.testOptions.database;
 
 		it(`// init database`, async () => {
-			nodber.init(config.use('mysql'));
-
 			await nodber.createDatabase(databaseName);
 			await nodber.useDatabase(databaseName);
 		});
 	},
 
-	createTableUser() {
+	createTableUsers() {
 		const tableName = 'users';
 
 		it(`// create table users`, async () => {
@@ -25,11 +29,16 @@ const me = {
 				{name: 'id', type: 'autoId'},
 				{name: 'username', type: 'string', length: 100, notNull: false, isPrimaryKey: true},
 				{name: 'password', type: 'string', length: 100},
+				{name: 'isaverangers', type: 'boolean'},
 			];
 
 			const result = await nodber.createTable(tableName, fields);
 			expect(result === true).to.be.true;
 		});
+	},
+
+	breakLine() {
+		it(`----------------------------`, async () => {});
 	}
 };
 

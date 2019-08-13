@@ -9,7 +9,8 @@ describe('MySQL - lib/table', () => {
 	const tableName = 'users';
 
 	tools.initDatabase();
-	tools.createTableUser();
+	tools.createTableUsers();
+	tools.breakLine();
 
 	it(`.isTableExists()`, async () => {
 		const result = await nodber.isTableExists(tableName);

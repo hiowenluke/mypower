@@ -1,13 +1,12 @@
 
 const nodber = require('../../src');
 const expect = require('chai').expect;
-const config = require('../__config/default');
+const tools = require('../__tools');
 
 describe('MySQL - lib/system', () => {
 
-	it('// init', async () => {
-		nodber.init(config.use('mysql'));
-	});
+	tools.initNodber();
+	tools.breakLine();
 
 	it(`.getSystemVariable()`, async () => {
 		const result = await nodber.getSystemVariable('version');

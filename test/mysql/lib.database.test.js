@@ -2,14 +2,18 @@
 const nodber = require('../../src');
 const expect = require('chai').expect;
 const config = require('../__config/default');
+const tools = require('../__tools');
 
 describe('MySQL - lib/database', () => {
 	const databaseName = config.testOptions.database;
 
+	tools.initNodber();
+
 	it('// init', async () => {
-		nodber.init(config.use('mysql'));
 		await nodber.dropDatabase(databaseName);
 	});
+
+	tools.breakLine();
 
 	it(`.createDatabase()`, async () => {
 		const result = await nodber.createDatabase(databaseName);
