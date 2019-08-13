@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const config = require('../__config/default');
 const tools = require('../__tools');
 
-describe('MySQL - main/crud', () => {
+describe('MySQL - crud/select', () => {
 	const table = 'users';
 
 	tools.initNodber();
