@@ -3,6 +3,8 @@ const nodber = require('kdo')();
 const sequery = require('sequelize-raw-query');
 
 Object.assign(nodber, nodber.crud);
+Object.assign(nodber, nodber.page);
+
 Object.assign(nodber, nodber.lib.database);
 Object.assign(nodber, nodber.lib.fields);
 Object.assign(nodber, nodber.lib.records);

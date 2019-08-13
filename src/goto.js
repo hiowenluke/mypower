@@ -14,8 +14,8 @@ const me = {
 	},
 
 	async _goto(query, sqlStr, op) {
-		query.pageno = 1;
-		query.pagesize = 1;
+		query.pageNumber = 1;
+		query.pageSize = 1;
 
 		sqlStr += ' ' + nodber.paging.getPagingStr(query);
 
