@@ -40,20 +40,20 @@ const me = {
 	addUsers() {
 		it('// add users', async () => {
 			await nodber.exec(`
-				insert into users (id, username)
-				select 1 as id, 'owenLuke' as username
+				insert into users (id, username, isaverangers)
+				select 1 as id, 'owenLuke' as username, 1 as isaverangers
 				union
-				select 2, 'steveRogers'
+				select 2, 'steveRogers', 1
 				union
-				select 3, 'anthonyStark'
+				select 3, 'anthonyStark', 1
 				union
-				select 4, 'thor'
+				select 4, 'thor', 1
 				union
-				select 5, 'hulk'
+				select 5, 'hulk', 1
 				union
-				select 6, 'natasha'
+				select 6, 'natasha', 1
 				union
-				select 7, 'thanos'
+				select 7, 'thanos', 0
 			`);
 		});
 	},

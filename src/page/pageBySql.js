@@ -1,23 +1,18 @@
 
 const kdo = require('kdo');
 const sequery = require('sequelize-raw-query');
+
 const nodber = require('../');
+const lib = require('./__lib');
 
 const paging = {
-	getPagingStr({order, pageNumber, pageSize, tableAs}) {
-		let offset, limit;
+	getLimitStr({order, limit, offset, pageNumber, pageSize, tableAs}) {
 
-		if (pageNumber) {
-			pageNumber = pageNumber - 0;
-			pageSize = pageSize ? pageSize - 0 : 10;
-
-			offset = (pageNumber - 1) * pageSize;
-			limit = pageSize;
+		if (!limit) {
+			({limit, offset} = lib.calcLimitByPageInfo(pageNumber, pageSize));
 		}
 
-		if (!limit && !offset) return "";
-
-		const limitStr = sequery.getLimitClause({order, offset, limit}, tableAs);
+		const limitStr = sequery.getLimitClause({order, limit, offset}, tableAs);
 		return limitStr;
 	},
 
@@ -35,13 +30,12 @@ const paging = {
 
 const flow = {
 	async fixOrder({sqlStr, order}) {
-		let primaryKey;
 
 		// If no sort field is specified, the primary key name of the primary table
 		// (for example, billid, goodsid) is used as the sorting basis (default positive order)
 		if (!order) {
 			const tableName = nodber.getTableNameFromSql(sqlStr);
-			primaryKey = await nodber.getPrimaryKey(tableName);
+			const primaryKey = await nodber.getPrimaryKey(tableName);
 
 			if (!primaryKey) {
 				throw new Error('Require order argument for paging');
@@ -52,9 +46,9 @@ const flow = {
 		}
 	},
 
-	async getRows({sqlStr, order, pageNumber, pageSize, data}) {
-		const pagingStr = paging.getPagingStr({order, pageNumber, pageSize});
-		const rows = await nodber.exec(sqlStr + pagingStr, data);
+	async getRows({sqlStr, order, pageNumber, pageSize, tableAs, data}) {
+		const limitStr = paging.getLimitStr({order, pageNumber, pageSize, tableAs});
+		const rows = await nodber.exec(sqlStr + limitStr, data);
 		this.setArgs({rows});
 	},
 
@@ -78,8 +72,8 @@ const flow = {
 };
 
 /** @name nodber.pageBySql */
-const fn = async (sqlStr, {order, pageNumber, pageSize}, data = {}) => {
-	const result = await kdo.do(flow, {sqlStr, order, pageNumber, pageSize, data});
+const fn = async (sqlStr, {order, limit, offset, pageNumber, pageSize, tableAs, data}) => {
+
 	// {
 	//		pageSize,
 	//		pageCount,
@@ -90,7 +84,7 @@ const fn = async (sqlStr, {order, pageNumber, pageSize}, data = {}) => {
 	//			{...},
 	//		]
 	// }
-	return result;
+	return await kdo.do(flow, {sqlStr, order, limit, offset, pageNumber, pageSize, tableAs, data});
 };
 
 module.exports = fn;

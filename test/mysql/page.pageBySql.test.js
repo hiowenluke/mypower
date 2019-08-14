@@ -23,6 +23,16 @@ describe('MySQL - page/pageBySql', () => {
 		expect(result.pageSize === 3 && result.count === 7).to.be.true;
 	});
 
+	it(`.pageBySql(sqlStr, {order, pageNumber, pageSize, data})`, async () => {
+		const sqlStr = 'select * from users where isaverangers = :isaverangers';
+		const order = 'id';
+		const pageNumber = 2;
+		const pageSize = 3;
+		const data = {isaverangers: 1};
+		const result = await nodber.pageBySql(sqlStr, {order, pageNumber, pageSize, data});
+		expect(result.pageSize === 3 && result.count === 6).to.be.true;
+	});
+
 	it(`.pageBySql(sqlStr, {pageNumber, pageSize})`, async () => {
 		const sqlStr = 'select * from users';
 		const pageNumber = 2;

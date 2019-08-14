@@ -5,24 +5,25 @@ const lib = require('./__Lib');
 const sqlTemplate = `select {fieldNames} from {tableName} where {whereStr}`;
 
 const parseArgs = (args) => {
-	let tableName, fieldNames, whereStr, isGroup, group, order, limit, offset;
+	let tableName, fieldNames, whereStr, isGroup, group, order, limit, offset, data, isGetSqlStrOnly;
 
-	// ({table, fields, where, isGroup, group, order, limit, offset})
+	// ({table, fields, where, isGroup, group, order, limit, offset, data, isGetSqlStrOnly})
 	if (typeof args[0] === 'object') {
 		const arg = args[0];
+
 		tableName = arg.table;
 		fieldNames = arg.fields;
 		whereStr = arg.where;
-		({isGroup, group, order, limit, offset} = arg);
-
 		({tableName, fieldNames, whereStr} = lib.fixArgs({tableName, fieldNames, whereStr}));
+
+		({isGroup, group, order, limit, offset, data, isGetSqlStrOnly} = arg);
 	}
 	else {
 		// (tableName, fieldNames, whereStr)
 		({tableName, fieldNames, whereStr} = lib.parseArgs(...args));
 	}
 
-	return {tableName, fieldNames, whereStr, isGroup, group, order, limit, offset};
+	return {tableName, fieldNames, whereStr, isGroup, group, order, limit, offset, data, isGetSqlStrOnly};
 };
 
 const getGroupClause = ({tableName, fieldNames, isGroup, group}) => {
@@ -92,11 +93,10 @@ const getLimitClause = ({order, limit, offset}) => {
 
 /** @name nodber.select */
 const fn = async (...args) => {
-	const {tableName, fieldNames, whereStr, isGroup, group, order, limit, offset} = parseArgs(args);
-	let groupClause, orderClause, limitClause;
-
+	const {tableName, fieldNames, whereStr, isGroup, group, order, limit, offset, data, isGetSqlStrOnly} = parseArgs(args);
 	let sql = lib.useSqlTemplate(sqlTemplate, {tableName, fieldNames, whereStr});
 
+	let groupClause, orderClause, limitClause;
 	groupClause = getGroupClause({tableName, fieldNames, isGroup, group});
 	orderClause = getOrderClause({order, limit, offset});
 	limitClause = getLimitClause({order, limit, offset});
@@ -105,8 +105,13 @@ const fn = async (...args) => {
 	orderClause && (sql += orderClause);
 	limitClause && (sql += limitClause);
 
-	const result = await sequery.exec(sql);
-	return result;
+	if (isGetSqlStrOnly) {
+		return sql;
+	}
+	else {
+		const result = await sequery.exec(sql, data);
+		return result;
+	}
 };
 
 module.exports = fn;

@@ -16,3 +16,4 @@ nodber.sequelizeOp = sequery.Sequelize.Op;
 
 global.nodber = nodber;
 module.exports.__proto__ = nodber;
+
