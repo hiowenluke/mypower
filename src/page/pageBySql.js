@@ -7,7 +7,6 @@ const lib = require('./__lib');
 
 const paging = {
 	getLimitStr({order, limit, offset, pageNumber, pageSize, tableAs}) {
-
 		if (!limit) {
 			({limit, offset} = lib.calcLimitByPageInfo(pageNumber, pageSize));
 		}
@@ -29,31 +28,33 @@ const paging = {
 };
 
 const flow = {
-	async fixOrder({sqlStr, order}) {
+	async fixOrder({sqlMain, order}) {
 
 		// If no sort field is specified, the primary key name of the primary table
 		// (for example, billid, goodsid) is used as the sorting basis (default positive order)
 		if (!order) {
-			const tableName = nodber.getTableNameFromSql(sqlStr);
-			const primaryKey = await nodber.getPrimaryKey(tableName);
-
-			if (!primaryKey) {
-				throw new Error('Require order argument for paging');
-			}
-
-			order = primaryKey;
+			const tableName = nodber.getTableNameFromSql(sqlMain);
+			order = await lib.getDefaultOrderFiled(tableName);
 			this.setArgs({order});
 		}
 	},
 
-	async getRows({sqlStr, order, pageNumber, pageSize, tableAs, data}) {
-		const limitStr = paging.getLimitStr({order, pageNumber, pageSize, tableAs});
-		const rows = await nodber.exec(sqlStr + limitStr, data);
+	async getRows({sqlMain, sqlClauses, order, pageNumber, pageSize, tableAs, data}) {
+		let limitStr = '';
+
+		if (!sqlClauses) {
+			limitStr = paging.getLimitStr({order, pageNumber, pageSize, tableAs});
+		}
+		else {
+			limitStr = sqlClauses;
+		}
+
+		const rows = await nodber.exec(sqlMain + limitStr, data);
 		this.setArgs({rows});
 	},
 
-	async getCount({sqlStr, data}) {
-		let sqlCount = `select count(*) as count from (${sqlStr}) m`;
+	async getCount({sqlMain, data}) {
+		let sqlCount = `select count(*) as count from (${sqlMain}) m`;
 
 		sqlCount = sqlCount.replace(/{([a-zA-Z0-9_]+)}/g, (match, capture) => {
 			return data[capture];
@@ -72,7 +73,8 @@ const flow = {
 };
 
 /** @name nodber.pageBySql */
-const fn = async (sqlStr, {order, limit, offset, pageNumber, pageSize, tableAs, data}) => {
+const fn = async ({sql, sqlMain, sqlClauses, order, limit, offset, pageNumber, pageSize, tableAs, data}) => {
+	if (!sqlMain) sqlMain = sql;
 
 	// {
 	//		pageSize,
@@ -84,7 +86,7 @@ const fn = async (sqlStr, {order, limit, offset, pageNumber, pageSize, tableAs, 
 	//			{...},
 	//		]
 	// }
-	return await kdo.do(flow, {sqlStr, order, limit, offset, pageNumber, pageSize, tableAs, data});
+	return await kdo.do(flow, {sqlMain, sqlClauses, order, limit, offset, pageNumber, pageSize, tableAs, data});
 };
 
 module.exports = fn;

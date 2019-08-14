@@ -14,30 +14,30 @@ describe('MySQL - page/pageBySql', () => {
 	// ----------------------------------------------
 	tools.breakLine();
 
-	it(`.pageBySql(sqlStr, {order, pageNumber, pageSize})`, async () => {
-		const sqlStr = 'select * from users';
+	it(`.pageBySql({sql, order, pageNumber, pageSize})`, async () => {
+		const sql = 'select * from users';
 		const order = 'id';
 		const pageNumber = 2;
 		const pageSize = 3;
-		const result = await nodber.pageBySql(sqlStr, {order, pageNumber, pageSize});
+		const result = await nodber.pageBySql({sql, order, pageNumber, pageSize});
 		expect(result.pageSize === 3 && result.count === 7).to.be.true;
 	});
 
-	it(`.pageBySql(sqlStr, {order, pageNumber, pageSize, data})`, async () => {
-		const sqlStr = 'select * from users where isaverangers = :isaverangers';
+	it(`.pageBySql({sql, order, pageNumber, pageSize, data})`, async () => {
+		const sql = 'select * from users where isaverangers = :isaverangers';
 		const order = 'id';
 		const pageNumber = 2;
 		const pageSize = 3;
 		const data = {isaverangers: 1};
-		const result = await nodber.pageBySql(sqlStr, {order, pageNumber, pageSize, data});
+		const result = await nodber.pageBySql({sql, order, pageNumber, pageSize, data});
 		expect(result.pageSize === 3 && result.count === 6).to.be.true;
 	});
 
-	it(`.pageBySql(sqlStr, {pageNumber, pageSize})`, async () => {
-		const sqlStr = 'select * from users';
+	it(`.pageBySql({sql, pageNumber, pageSize})`, async () => {
+		const sql = 'select * from users';
 		const pageNumber = 2;
 		const pageSize = 3;
-		const result = await nodber.pageBySql(sqlStr, {pageNumber, pageSize});
+		const result = await nodber.pageBySql({sql, pageNumber, pageSize});
 		expect(result.pageSize === 3 && result.count === 7).to.be.true;
 	});
 

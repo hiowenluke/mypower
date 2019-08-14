@@ -94,22 +94,23 @@ const getLimitClause = ({order, limit, offset}) => {
 /** @name nodber.select */
 const fn = async (...args) => {
 	const {tableName, fieldNames, whereStr, isGroup, group, order, limit, offset, data, isGetSqlStrOnly} = parseArgs(args);
-	let sql = lib.useSqlTemplate(sqlTemplate, {tableName, fieldNames, whereStr});
+	let sqlMain = lib.useSqlTemplate(sqlTemplate, {tableName, fieldNames, whereStr});
 
 	let groupClause, orderClause, limitClause;
 	groupClause = getGroupClause({tableName, fieldNames, isGroup, group});
 	orderClause = getOrderClause({order, limit, offset});
 	limitClause = getLimitClause({order, limit, offset});
 
-	groupClause && (sql += groupClause);
-	orderClause && (sql += orderClause);
-	limitClause && (sql += limitClause);
+	let sqlClauses = '';
+	groupClause && (sqlClauses += groupClause);
+	orderClause && (sqlClauses += orderClause);
+	limitClause && (sqlClauses += limitClause);
 
 	if (isGetSqlStrOnly) {
-		return sql;
+		return {sqlMain, sqlClauses};
 	}
 	else {
-		const result = await sequery.exec(sql, data);
+		const result = await sequery.exec(sqlMain + sqlClauses, data);
 		return result;
 	}
 };
