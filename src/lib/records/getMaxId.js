@@ -3,8 +3,7 @@ const nodber = require('../../');
 
 /** @name nodber.getMaxId */
 const fn = async (tableName, idName = 'id') => {
-	const result = await nodber.proxy(tableName, {idName});
-	return result[0].maxid;
+	return await nodber.getMaxFieldValue(tableName, idName);
 };
 
 module.exports = fn;

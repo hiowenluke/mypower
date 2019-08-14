@@ -9,7 +9,7 @@ const fn = async (tableName) => {
 	const sql = nodber.sqls('getPrimaryKeys', databaseName, tableName);
 
 	const result = await nodber.exec(sql);
-	return !result ? [] : result.map(o => o.primaryKey);
+	return !result ? [] : result.map(o => o.primarykey);
 };
 
 module.exports = fn;

@@ -46,9 +46,10 @@ const me = {
 	// -------------------------------------------
 
 	count: `select count(*) as count from {tableName} where {whereStr}`,
-	getMaxId: `select max({idName}) as maxid from {tableName}`,
-	getMinId: `select min({idName}) as minid from {tableName}`,
-
+	getMaxFieldValue: `select max({fieldName}) as maxval from {tableName} where {whereStr}`,
+	getMinFieldValue: `select min({fieldName}) as minval from {tableName} where {whereStr}`,
+	getMaxRecord: `select * from {tableName} where {whereStr} and {fieldName} = (select max({fieldName}) from {tableName} where {whereStr})`,
+	getMinRecord: `select * from {tableName} where {whereStr} and {fieldName} = (select min({fieldName}) from {tableName} where {whereStr})`,
 
 	// -------------------------------------------
 	// System

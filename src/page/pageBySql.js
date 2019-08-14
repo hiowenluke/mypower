@@ -35,12 +35,14 @@ const paging = {
 
 const flow = {
 	async fixOrder({sqlStr, order}) {
+		let primaryKey;
 
 		// If no sort field is specified, the primary key name of the primary table
 		// (for example, billid, goodsid) is used as the sorting basis (default positive order)
-		if (!order || !order.length) {
+		if (!order) {
 			const tableName = nodber.getTableNameFromSql(sqlStr);
-			const primaryKey = await nodber.getPrimaryKey(tableName);
+			primaryKey = await nodber.getPrimaryKey(tableName);
+
 			if (!primaryKey) {
 				throw new Error('Require order argument for paging');
 			}
