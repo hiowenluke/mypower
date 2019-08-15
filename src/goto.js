@@ -1,28 +1,35 @@
 
 const nodber = require('./');
+const utils = require('./__utils');
+
+const sqlTemplate = `select * from {tableName} where {idName} = (select idName from {tableName} where {idName} < {idValue} order by {idName} {direction} limit 1)`;
+
+const doIt = async (tableName, idName, idValue, direction) => {
+
+	// ('users', 1, 'desc')
+	if (typeof idName === 'number') {
+		direction = idValue;
+		idValue = idName;
+		idName = 'id';
+	}
+
+	const sql = utils.sqlTemplate(sqlTemplate, {tableName, idName, idValue, direction});
+	const result = await nodber.exec(sql);
+
+	return result[0];
+};
 
 /** @name nodber.goto */
 const me = {
-	async previous(query, sqlStr) {
-		// The previous record id is less than the current record, so it is "lt"
-		return await this._goto(query, sqlStr, '$lt');
+
+	/** @name nodber.previous */
+	async previous(...args) {
+		return await doIt(...args, 'desc');
 	},
 
-	async next(query, sqlStr) {
-		// The next record id is greater than the current record, so it is "gt"
-		return await this._goto(query, sqlStr, '$gt');
-	},
-
-	async _goto(query, sqlStr, op) {
-		query.pageNumber = 1;
-		query.pageSize = 1;
-
-		sqlStr += ' ' + nodber.paging.getPagingStr(query);
-
-		// If it is looking for the previous record, use reverse order
-		op === '$lt' && (sqlStr = sqlStr.replace(' OFFSET ', ' DESC OFFSET '));
-
-		return await nodber.exec(sqlStr, query.data);
+	/** @name nodber.next */
+	async next(...args) {
+		return await doIt(...args, 'next');
 	}
 };
 
