@@ -92,6 +92,7 @@ const getLimitClause = ({order, limit, offset}) => {
 	return limitClause;
 };
 
+// args = {table, fields, where, isGroup, group, order, limit, offset, data}
 /** @name nodber.select */
 const fn = async (...args) => {
 	const {tableName, fieldNames, whereStr, isGroup, group, order, limit, offset, data, isGetSqlStrOnly} = parseArgs(args);
