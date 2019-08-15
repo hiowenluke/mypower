@@ -1,5 +1,6 @@
 
 const sequery = require('sequelize-raw-query');
+const utils = require('../__utils');
 const lib = require('./__Lib');
 
 const sqlTemplate = `select {fieldNames} from {tableName} where {whereStr}`;
@@ -94,7 +95,7 @@ const getLimitClause = ({order, limit, offset}) => {
 /** @name nodber.select */
 const fn = async (...args) => {
 	const {tableName, fieldNames, whereStr, isGroup, group, order, limit, offset, data, isGetSqlStrOnly} = parseArgs(args);
-	let sqlMain = lib.useSqlTemplate(sqlTemplate, {tableName, fieldNames, whereStr});
+	let sqlMain = utils.sqlTemplate(sqlTemplate, {tableName, fieldNames, whereStr});
 
 	let groupClause, orderClause, limitClause;
 	groupClause = getGroupClause({tableName, fieldNames, isGroup, group});

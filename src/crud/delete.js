@@ -1,6 +1,6 @@
 
 const sequery = require('sequelize-raw-query');
-const lib = require('./__lib');
+const utils = require('../__utils');
 
 const sqlTemplate = `delete from {tableName} where {whereStr}`;
 
@@ -12,7 +12,7 @@ const fn = async (table, where) => {
 		where = sequery.getWhereConditions(where, table);
 	}
 
-	let sql = lib.useSqlTemplate(sqlTemplate, {tableName: table, whereStr: where});
+	let sql = utils.sqlTemplate(sqlTemplate, {tableName: table, whereStr: where});
 	await sequery.exec(sql);
 
 	const result = await nodber.isSuccessful();

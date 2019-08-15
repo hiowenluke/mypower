@@ -1,7 +1,8 @@
 
+const utils = require('../../__utils');
 const lib = require('./');
 
-/** @name nodber.updateAndInsert */
+/** @name lib.updateAndInsert */
 const fn = async (sqlTemplate, table, data) => {
 
 	if (!data || typeof data !== 'object') {
@@ -11,13 +12,7 @@ const fn = async (sqlTemplate, table, data) => {
 	const tableName = table;
 	const {nameParams, valueParams, setParams} = await lib.fieldParams.genAllByTableName(tableName);
 
-	let sql = sqlTemplate
-		.replace(/{tableName}/ig, tableName)
-		.replace(/{nameParams}/i, nameParams)
-		.replace(/{valueParams}/i, valueParams)
-		.replace(/{setParams}/i, setParams)
-	;
-
+	const sql = utils.sqlTemplate(sqlTemplate, {tableName, nameParams, valueParams, setParams});
 	const result = await nodber.exec(sql, {replacements: data});
 	return result;
 };
