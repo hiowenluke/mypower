@@ -1,6 +1,6 @@
 
 const sequery = require('sequelize-raw-query');
-const config = require('./config');
+const config = require('./__config');
 
 /** @name nodber.init */
 const fn = (cfg) => {
