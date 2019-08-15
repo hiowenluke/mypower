@@ -1,11 +1,12 @@
 
 const sequery = require('sequelize-raw-query');
 const nodber = require('../../');
+const config = require('../../__config');
 
 const reInitNodber = (databaseName) => {
-	const config = nodber.config.get();
-	config.database = databaseName;
-	nodber.config.init(config);
+	const data = config.get();
+	data.database = databaseName;
+	config.init(data);
 };
 
 const reInitSequery = (databaseName) => {
