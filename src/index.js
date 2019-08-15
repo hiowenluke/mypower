@@ -4,6 +4,7 @@ const sequery = require('sequelize-raw-query');
 
 Object.assign(nodber, nodber.crud);
 Object.assign(nodber, nodber.page);
+Object.assign(nodber, nodber.goto);
 
 Object.assign(nodber, nodber.base.database);
 Object.assign(nodber, nodber.base.fields);
