@@ -1,5 +1,5 @@
 
-/** @name nodber.lib.wait */
+/** @name utils.wait */
 const fn = (ms = 10) => {
 	return new Promise(resolve => {
 		setTimeout(() => {
