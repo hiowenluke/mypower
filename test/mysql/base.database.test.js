@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const config = require('../__config/default');
 const tools = require('../__tools');
 
-describe('MySQL - lib/database', () => {
+describe('MySQL - base/database', () => {
 	const databaseName = config.testOptions.database;
 
 	tools.initNodber();

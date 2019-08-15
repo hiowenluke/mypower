@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const nodber = require('../../src');
 const tools = require('../__tools');
 
-describe('MySQL - lib/fields', () => {
+describe('MySQL - base/fields', () => {
 	const table = 'users';
 
 	tools.initNodber();
