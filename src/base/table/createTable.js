@@ -24,8 +24,11 @@ const getFieldDefinitions = (fields) => {
 
 		else
 
-		if (type === 'string') {
-			def.push(`\`${name}\` varchar(${length}) ${notNull}`);
+		if (type === 'varchar' || type === 'text') {
+			if (!length) {
+				length = type === 'varchar' ? 255 : 65535;
+			}
+			def.push(`\`${name}\` ${type}(${length}) ${notNull}`);
 		}
 
 		else {

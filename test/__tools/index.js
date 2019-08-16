@@ -27,9 +27,10 @@ const me = {
 
 			const fields = [
 				{name: 'id', type: 'autoId'},
-				{name: 'username', type: 'string', length: 100, notNull: false, isPrimaryKey: true},
-				{name: 'password', type: 'string', length: 100},
+				{name: 'username', type: 'varchar', notNull: false, isPrimaryKey: true},
+				{name: 'password', type: 'varchar', length: 100},
 				{name: 'isaverangers', type: 'boolean'},
+				{name: 'memo', type: 'text'},
 			];
 
 			const result = await nodber.createTable(tableName, fields);
@@ -40,20 +41,20 @@ const me = {
 	addUsers() {
 		it('// add users', async () => {
 			await nodber.exec(`
-				insert into users (id, username, isaverangers)
-				select 1 as id, 'owenLuke' as username, 1 as isaverangers
+				insert into users (id, username, isaverangers, memo)
+				select 1 as id, 'owenLuke' as username, 1 as isaverangers, '' as memo
 				union
-				select 2, 'steveRogers', 1
+				select 2, 'steveRogers', 1, ''
 				union
-				select 3, 'anthonyStark', 1
+				select 3, 'anthonyStark', 1, ''
 				union
-				select 4, 'thor', 1
+				select 4, 'thor', 1, ''
 				union
-				select 5, 'hulk', 1
+				select 5, 'hulk', 1, ''
 				union
-				select 6, 'natasha', 1
+				select 6, 'natasha', 1, ''
 				union
-				select 7, 'thanos', 0
+				select 7, 'thanos', 0, ''
 			`);
 		});
 	},
