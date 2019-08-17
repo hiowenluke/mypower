@@ -178,4 +178,16 @@ describe('MySQL - crud/select', () => {
 		expect(result.length === 1 && result[0].username === 'natasha').to.be.true;
 	});
 
+	// ----------------------------------------------
+	tools.breakLine();
+
+	it(`.select(table, where) // where = {username: "美国队长"}`, async () => {
+		const data = {username: '美国队长'};
+		await nodber.insert(table, data);
+
+		const where = data;
+		const result = await nodber.select(table, where);
+		expect(result[0].username === "美国队长").to.be.true;
+	});
+
 });
