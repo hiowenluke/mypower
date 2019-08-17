@@ -3,9 +3,9 @@
 const fn = (sql, data) => {
 	if (!data) return sql;
 
-	Object.keys(data).forEach(key => {
-		const reg = new RegExp(':\\b' + key + '\\b', 'g');
-		sql = sql.replace(reg, '"' + data[key].replace('"', '\\"') + '"');
+	// Fetch params from sql, instead of Object.keys(data)
+	sql = sql.replace(/:(\S*?(?=[\s,)$]))/g, (match, capture) => {
+		return data[capture] ? '"' + data[capture].replace('"', '\\"') + '"' : null;
 	});
 
 	return sql;
