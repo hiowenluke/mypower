@@ -18,16 +18,17 @@ const getFieldDefinitions = (fields) => {
 		else
 
 		if (type === 'id') {
-			def.push(`\`${name}\` int unsigned not null`);
-			isPrimaryKey = true;
+			def.push(`\`${name}\` int unsigned ${notNull}`);
 		}
 
 		else
 
-		if (type === 'varchar' || type === 'text') {
+		if (type === 'char' || type === 'fixedText' ||  type === 'varchar' || type === 'shortText' || type === 'text') {
 			if (!length) {
-				length = type === 'varchar' ? 255 : 65535;
+				length = type === 'text' ? 65535 : 255;
 			}
+			if (type === 'fixedText') type = 'char';
+			if (type === 'shortText') type = 'varchar';
 			def.push(`\`${name}\` ${type}(${length}) ${notNull}`);
 		}
 
