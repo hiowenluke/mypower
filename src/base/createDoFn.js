@@ -8,8 +8,8 @@ const fn = (fieldName, isFromResultRoot) => {
 
 	return async (...args) => {
 		let result = await nodber.proxy(...args, pathToCaller);
-		if (fieldName) {
-			result = isFromResultRoot ? result[fieldName] : result[0][fieldName];
+		if (result && fieldName) {
+			result = isFromResultRoot ? result[fieldName] : result[0] ? result[0][fieldName] : null;
 		}
 		return result;
 	};
