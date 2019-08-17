@@ -14,6 +14,11 @@ describe('MySQL - base/fields', () => {
 	tools.addUsers();
 	tools.breakLine();
 
+	it(`.getAutoIdName(table)`, async () => {
+		const result = await nodber.getAutoIdName(table);
+		expect(result === 'id').to.be.true;
+	});
+
 	it(`.getFieldNames(table)`, async () => {
 		const result = await nodber.getFieldNames(table);
 		expect(result.length > 1 && result[0] === 'id').to.be.true;
