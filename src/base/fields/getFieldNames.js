@@ -7,8 +7,7 @@ const fn = async (tableName) => {
 	const sql = nodber.sqls('getFieldNames', databaseName, tableName);
 
 	const result = await nodber.exec(sql);
-	const fieldNames = result.map(obj => obj.fieldname);
-	return nodber.lowerCaseRecords(fieldNames);
+	return result.map(obj => obj.fieldname);
 };
 
 module.exports = fn;
