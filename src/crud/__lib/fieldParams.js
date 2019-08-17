@@ -3,7 +3,10 @@
 const me = {
 	genAll(fieldNames) {
 		let arr = fieldNames;
-		typeof arr === 'string' && (arr = arr.replace(/ /g, '').split(','));
+
+		if (typeof arr === 'string') {
+			arr = arr.replace(/ /g, '').split(',')
+		}
 
 		const nameParams = this.genNameParams(arr);
 		const valueParams = this.genValueParams(arr);
@@ -13,7 +16,7 @@ const me = {
 	},
 
 	async genAllByTableName(tableName) {
-		const fieldNames = await nodber.getFieldNames(tableName);
+		const fieldNames = await nodber.getFieldNamesWithoutAutoId(tableName);
 		return this.genAll(fieldNames);
 	},
 
