@@ -21,4 +21,16 @@ describe('MySQL - crud/insert', () => {
 		expect(typeof result === "number").to.be.true;
 	});
 
+	it(`.insert(table, data) // data = {username: '美国队长'}`, async () => {
+		const data = {username: '美国队长'};
+		const result = await nodber.insert(table, data);
+		expect(typeof result === "number").to.be.true;
+	});
+
+	it(`.insert(table, data) // data = {username: 'hi', memo: 'included " here'}`, async () => {
+		const data = {username: 'hi', memo: 'included " here'};
+		const result = await nodber.insert(table, data);
+		expect(typeof result === "number").to.be.true;
+	});
+
 });
