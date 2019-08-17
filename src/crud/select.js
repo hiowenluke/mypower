@@ -112,7 +112,13 @@ const fn = async (...args) => {
 		return {sqlMain, sqlClauses};
 	}
 	else {
-		const result = await sequery.exec(sqlMain + sqlClauses, data);
+		let sql = sqlMain + sqlClauses;
+
+		// Replace ":xxx" with data.xxx for unicode xxx,
+		// otherwise, sequelize will occur an error if the xxx included unicode character.
+		sql = utils.sqlReplacement(sql, data);
+
+		const result = await sequery.exec(sql);
 		return result;
 	}
 };
