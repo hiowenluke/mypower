@@ -18,7 +18,7 @@ const getFieldDefinitions = (fields) => {
 		else
 
 		if (type === 'id') {
-			def.push(`\`${name}\` int unsigned ${notNull}`);
+			def.push(`\`${name}\` int ${notNull}`);
 		}
 
 		else
@@ -33,7 +33,8 @@ const getFieldDefinitions = (fields) => {
 		}
 
 		else {
-			def.push(`\`${name}\` ${type} ${notNull}`);
+			const lengthStr = length ? `(${length})` : '';
+			def.push(`\`${name}\` ${type} ${lengthStr} ${notNull}`);
 		}
 
 		if (isPrimaryKey) {
