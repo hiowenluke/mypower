@@ -34,7 +34,7 @@ const getFieldDefinitions = (fields) => {
 
 		else {
 			const lengthStr = length ? `(${length})` : '';
-			def.push(`\`${name}\` ${type} ${lengthStr} ${notNull}`);
+			def.push(`\`${name}\` ${type}${lengthStr} ${notNull}`);
 		}
 
 		if (isPrimaryKey) {
