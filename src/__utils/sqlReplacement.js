@@ -1,11 +1,21 @@
 
 /** @name utils.sqlReplacement */
-const fn = (sql, data) => {
-	if (!data) return sql;
+const fn = (sql, data = {}) => {
 
 	// Fetch params from sql, instead of Object.keys(data)
 	sql = sql.replace(/:(\S*?(?=[\s,)$]))/g, (match, capture) => {
-		return data[capture] ? '"' + data[capture].replace('"', '\\"') + '"' : null;
+		let val = data[capture];
+
+		if (typeof val === 'undefined') {
+			val = null;
+		}
+		else {
+			if (typeof val === 'string') {
+				val = '"' + val.replace('"', '\\"') + '"';
+			}
+		}
+
+		return val;
 	});
 
 	return sql;
