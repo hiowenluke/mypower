@@ -13,6 +13,8 @@ Object.assign(nodber, nodber.base.system);
 Object.assign(nodber, nodber.base.table);
 Object.assign(nodber, nodber.base.tools);
 
+Object.assign(nodber, nodber.__utils);
+
 nodber.sequelizeOp = sequery.Sequelize.Op;
 
 global.nodber = nodber;
