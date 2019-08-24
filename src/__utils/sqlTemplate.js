@@ -1,4 +1,6 @@
 
+// For {xxx}
+
 /** @name utils.sqlTemplate */
 const fn = (sqlTemplate, data) => {
 	if (!data || typeof data !== 'object') {
