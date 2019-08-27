@@ -1,6 +1,7 @@
 
 const nodber = require('../..');
 
+/** @name nodber.batchInsert */
 const fn = async (tableName, dataArr) => {
 
 	if (!Array.isArray(dataArr)) {

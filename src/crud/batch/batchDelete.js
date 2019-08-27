@@ -1,6 +1,7 @@
 
 const nodber = require('../..');
 
+/** @name nodber.batchDelete */
 const fn = async (tableName, whereArr) => {
 
 	if (!Array.isArray(whereArr)) {

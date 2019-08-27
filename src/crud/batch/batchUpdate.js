@@ -1,6 +1,7 @@
 
 const nodber = require('../..');
 
+/** @name nodber.batchUpdate */
 const fn = async (tableName, dataArr, whereArr) => {
 
 	if (!Array.isArray(dataArr)) {
