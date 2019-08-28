@@ -3,10 +3,6 @@ const nodber = require('../../');
 
 /** @name nodber.dropDatabase */
 const fn = async (databaseName) => {
-	if (!(await nodber.isDatabaseExists(databaseName))) {
-		return false;
-	}
-
 	const result = await nodber.proxy(databaseName);
 	return result.warningStatus === 0;
 };
