@@ -5,7 +5,6 @@ const config = require('../__config/default');
 const tools = require('../__tools');
 
 const createTable = async (tableName) => {
-	await nodber.dropTable(tableName);
 
 	const fields = [
 		{name: 'id', type: 'autoId'},
@@ -47,6 +46,8 @@ describe('MySQL - base/table', () => {
 	tools.breakLine();
 
 	it(`.createTable()`, async () => {
+		await nodber.dropTable(tableName);
+
 		const result = await createTable(tableName);
 		expect(result === true).to.be.true;
 	});
@@ -57,7 +58,7 @@ describe('MySQL - base/table', () => {
 	});
 
 	it(`.createTable() // false, 'cause it is exists`, async () => {
-		const result = await nodber.createTable(tableName);
+		const result = await createTable(tableName);
 		expect(result === false).to.be.true;
 	});
 
