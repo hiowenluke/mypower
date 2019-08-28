@@ -53,10 +53,9 @@ const fn = async (tableName, fields) => {
 	}
 
 	const fieldsStr = getFieldDefinitions(fields).join(', ');
-	const sql = await nodber.sqls('createTable', tableName, {fields: fieldsStr});
+	const sql = nodber.sqls('createTable', tableName, {fields: fieldsStr});
 	const result = await nodber.exec(sql);
-
-	return result.warningStatus === 1;
+	return result.warningStatus === 0;
 };
 
 module.exports = fn;
