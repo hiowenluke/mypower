@@ -14,7 +14,7 @@ const getRawSql = (purpose) => {
 	return sqls[purpose];
 };
 
-const getNamesFromArgs = async (purpose, sql, args) => {
+const getNamesFromArgs = (purpose, sql, args) => {
 	let databaseName;
 	let tableName;
 
@@ -39,10 +39,9 @@ const getNamesFromArgs = async (purpose, sql, args) => {
 				// For table or field, e.g.:
 				//		nodber.isTableExists(tableName)
 
-				// Use the selected database name
-				const sql = sqls['getSelectedDatabase'];
-				const result = await nodber.exec(sql);
-				databaseName = result[0].databaseName;
+				// Use the current database name
+				databaseName = config.database;
+				if (!databaseName) debugger;
 			}
 		}
 
@@ -64,14 +63,14 @@ const getNamesFromArgs = async (purpose, sql, args) => {
 // 		nodber.sqls('createTable', {table: 'users', xxx: 'xxx'})
 
 /** @name nodber.sqls */
-const fn = async (purpose, ...args) => {
+const fn = (purpose, ...args) => {
 	dialect = config.dialect;
 
 	let sql = getRawSql(purpose);
 	if (!sql) return '';
 
 	// Fetch the database name and table name
-	const {databaseName, tableName} = await getNamesFromArgs(purpose, sql, args);
+	const {databaseName, tableName} = getNamesFromArgs(purpose, sql, args);
 	if (databaseName) {
 		sql = sql.replace(/{databaseName}/ig, databaseName);
 	}

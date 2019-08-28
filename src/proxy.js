@@ -18,7 +18,7 @@ const fn = async (...args) => {
 	}
 
 	const purpose = getPurposeFromCaller(pathToCaller || caller());
-	const sql = await nodber.sqls(purpose, ...args);
+	const sql = nodber.sqls(purpose, ...args);
 	const result = await nodber.exec(sql);
 
 	return result;
