@@ -18,8 +18,8 @@ const reInitSequery = (databaseName) => {
 /** @name nodber.useDatabase */
 const fn = async (databaseName) => {
 
-	reInitNodber();
-	reInitSequery();
+	reInitNodber(databaseName);
+	reInitSequery(databaseName);
 
 	const result = await nodber.proxy(databaseName);
 	return result.warningStatus === 0;
