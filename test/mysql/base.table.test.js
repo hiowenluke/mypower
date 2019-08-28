@@ -4,13 +4,52 @@ const expect = require('chai').expect;
 const config = require('../__config/default');
 const tools = require('../__tools');
 
+const createTable = async (tableName) => {
+	await nodber.dropTable(tableName);
+
+	const fields = [
+		{name: 'id', type: 'autoId'},
+		{name: 'username', type: 'varchar', notNull: false, isPrimaryKey: true},
+		{name: 'password', type: 'varchar', length: 100},
+		{name: 'isaverangers', type: 'boolean'},
+		{name: 'memo', type: 'text'},
+	];
+
+	const result = await nodber.createTable(tableName, fields);
+	return result;
+};
+
+const addUsers = async () => {
+	await nodber.exec(`
+				insert into users (id, username, isaverangers, memo)
+				select 1 as id, 'owenLuke' as username, 1 as isaverangers, '' as memo
+				union
+				select 2, 'steveRogers', 1, ''
+				union
+				select 3, 'anthonyStark', 1, ''
+				union
+				select 4, 'thor', 1, ''
+				union
+				select 5, 'hulk', 1, ''
+				union
+				select 6, 'natasha', 1, ''
+				union
+				select 7, 'thanos', 0, ''
+			`);
+};
+
 describe('MySQL - base/table', () => {
 	const databaseName = config.testOptions.database;
 	const tableName = 'users';
 
+	tools.initNodber();
 	tools.initDatabase();
-	tools.createTableUsers();
 	tools.breakLine();
+
+	it(`.createTable()`, async () => {
+		const result = await createTable(tableName);
+		expect(result === true).to.be.true;
+	});
 
 	it(`.isTableExists()`, async () => {
 		const result = await nodber.isTableExists(tableName);
@@ -83,6 +122,34 @@ describe('MySQL - base/table', () => {
 	it(`.getTableNameFromSql() // for delete `, async () => {
 		const result = nodber.getTableNameFromSql(`delete from users where 1 = 0`);
 		expect(result === 'users').to.be.true;
+	});
+
+	it(`.cloneTableStructure()`, async () => {
+		await createTable(tableName);
+		await addUsers();
+
+		const newTableName = tableName + '_new';
+		await nodber.dropTable(newTableName);
+		await nodber.cloneTableStructure(newTableName, tableName);
+
+		const result = await nodber.getFieldNames(newTableName);
+		await nodber.dropTable(tableName);
+
+		expect(result.length > 0).to.be.true;
+	});
+
+	it(`.cloneTableStructureAndData()`, async () => {
+		await createTable(tableName);
+		await addUsers();
+
+		const newTableName = tableName + '_new';
+		await nodber.dropTable(newTableName);
+		await nodber.cloneTableStructureAndData(newTableName, tableName);
+
+		const result = await nodber.select(newTableName);
+		await nodber.dropTable(tableName);
+
+		expect(result.length > 0).to.be.true;
 	});
 
 });
