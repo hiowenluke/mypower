@@ -5,10 +5,7 @@ const nodber = require('../../');
 const fn = async (tableName) => {
 	if (!tableName) return [];
 
-	const databaseName = await nodber.getSelectedDatabase();
-	const sql = nodber.sqls('getPrimaryKeys', databaseName, tableName);
-
-	const result = await nodber.exec(sql);
+	const result = await nodber.proxy(tableName);
 	return !result ? [] : result.map(o => o.primarykey);
 };
 

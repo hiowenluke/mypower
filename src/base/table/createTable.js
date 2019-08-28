@@ -53,9 +53,7 @@ const fn = async (tableName, fields) => {
 	}
 
 	const fieldsStr = getFieldDefinitions(fields).join(', ');
-	const options = 'engine=innodb default charset=utf8';
-
-	const sql = nodber.sqls('createTable', tableName, {fields: fieldsStr, options});
+	const sql = await nodber.sqls('createTable', tableName, {fields: fieldsStr});
 	const result = await nodber.exec(sql);
 
 	return result.warningStatus === 1;
