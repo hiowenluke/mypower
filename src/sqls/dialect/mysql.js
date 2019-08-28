@@ -9,8 +9,8 @@ const me = {
 	// -------------------------------------------
 
 	isDatabaseExists: 'select schema_name as databaseName from information_schema.schemata where schema_name = "{databaseName}"',
-	createDatabase: 'create database if not exists `{databaseName}` character set utf8mb4 collate utf8mb4_unicode_ci',
-	dropDatabase: 'drop database if exists `{databaseName}`',
+	createDatabase: 'create database `{databaseName}` character set utf8mb4 collate utf8mb4_unicode_ci',
+	dropDatabase: 'drop database `{databaseName}`',
 	useDatabase: 'use `{databaseName}`',
 	showDatabases: 'show databases',
 	getSelectedDatabase: 'select database() as databaseName',
