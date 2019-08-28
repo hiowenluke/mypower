@@ -29,6 +29,11 @@ describe('MySQL - base/fields', () => {
 		expect(!result.find(item => item === 'id')).to.be.true;
 	});
 
+	it(`.getFieldsInfo(table)`, async () => {
+		const result = await nodber.getFieldsInfo(table);
+		expect(result.length > 1 && result[0].column_name === 'id').to.be.true;
+	});
+
 	it(`.getFieldsWhereConditions(primaryKeys)`, async () => {
 		const primaryKeys = 'billid, itemno';
 		const result = await nodber.getFieldsWhereConditions(primaryKeys);
