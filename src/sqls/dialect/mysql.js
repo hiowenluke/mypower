@@ -9,12 +9,13 @@ const me = {
 	// -------------------------------------------
 
 	isDatabaseExists: 'select schema_name as databaseName from information_schema.schemata where schema_name = "{databaseName}"',
-	createDatabase: 'create database `{databaseName}` character set gbk',
-	dropDatabase: 'drop database `{databaseName}`',
+	createDatabase: 'create database if not exists `{databaseName}` character set utf8mb4 collate utf8mb4_unicode_ci',
+	dropDatabase: 'drop database if exists `{databaseName}`',
 	useDatabase: 'use `{databaseName}`',
 	showDatabases: 'show databases',
 	getSelectedDatabase: 'select database() as databaseName',
 	renameDatabase: 'rename database `{old_databaseName}` to `{new_databaseName}`',
+	setDatabaseCharacter: 'alter database {databaseName} character set {character}',
 
 
 	// -------------------------------------------
@@ -22,7 +23,7 @@ const me = {
 	// -------------------------------------------
 
 	isTableExists: 'select table_name as tablename from information_schema.tables where table_name = "{tableName}" and table_schema = "{databaseName}"',
-	createTable: 'create table `{tableName}` ({fields}) {options}',
+	createTable: 'create table `{tableName}` ({fields}) engine=innodb default charset=utf8mb4 collate utf8mb4_unicode_ci',
 	dropTable: 'drop table `{tableName}`',
 	truncateTable: 'truncate table `{tableName}`', // clear table quickly, faster than delete from table
 	descTable: 'desc `{tableName}`',
