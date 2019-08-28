@@ -29,7 +29,7 @@ const me = {
 	showTables: 'show tables',
 	isEmptyTable: 'select * from `{tableName}` limit 0, 1',
 	renameTable: 'rename table {old_tableName} to {new_tableName}',
-	moveTable: 'rename table {from_databaseName}.`{tableName}` to {to_databaseName}.`{tableName}`',
+	moveTable: 'rename table {from_databaseName}.`{from_tableName}` to {to_databaseName}.`{to_tableName}`',
 
 
 	// -------------------------------------------
