@@ -34,26 +34,6 @@ describe('MySQL - base/fields', () => {
 		expect(result.length > 1 && result[0].column_name === 'id').to.be.true;
 	});
 
-	it(`.getFieldsWhereConditions(primaryKeys)`, async () => {
-		const primaryKeys = 'billid, itemno';
-		const result = await nodber.getFieldsWhereConditions(primaryKeys);
-		expect(result === 'billid = :billid and itemno = :itemno').to.be.true;
-	});
-
-	it(`.getFieldsWhereConditions(primaryKeys, {namePrefix})`, async () => {
-		const primaryKeys = 'billid, itemno';
-		const namePrefix = 'xxx_';
-		const result = await nodber.getFieldsWhereConditions(primaryKeys, {namePrefix});
-		expect(result === 'xxx_billid = :billid and xxx_itemno = :itemno').to.be.true;
-	});
-
-	it(`.getFieldsWhereConditions(primaryKeys, {valuePrefix})`, async () => {
-		const primaryKeys = 'billid, itemno';
-		const valuePrefix = 'old_';
-		const result = await nodber.getFieldsWhereConditions(primaryKeys, {valuePrefix});
-		expect(result === 'billid = :old_billid and itemno = :old_itemno').to.be.true;
-	});
-
 	it(`.getPrimaryKey()`, async () => {
 		const result = await nodber.getPrimaryKey(table);
 		expect(result === 'id').to.be.true;

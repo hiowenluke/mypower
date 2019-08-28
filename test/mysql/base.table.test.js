@@ -91,7 +91,7 @@ describe('MySQL - base/table', () => {
 		expect(result === true).to.be.true;
 	});
 
-	it(`.moveTable()`, async () => {
+	it(`.moveTable() // keep table name`, async () => {
 		const from = databaseName;
 		const to = 'sys';
 		await nodber.moveTable(from, to, tableName);
@@ -99,29 +99,19 @@ describe('MySQL - base/table', () => {
 		expect(result === true).to.be.true;
 	});
 
-	it(`.dropTable()`, async () => {
-		const result = await nodber.dropTable(tableName);
+	it(`.moveTable() // rename table`, async () => {
+		const fromDatabase = databaseName;
+		const fromTable = tableName;
+		const toDatabase = 'sys';
+		const toTable = fromTable + '_123';
+		await nodber.moveTable(fromDatabase, toDatabase, fromTable, toTable);
+		const result = await nodber.moveTable(toDatabase, fromDatabase, toTable, fromTable);
 		expect(result === true).to.be.true;
 	});
 
-	it(`.getTableNameFromSql() // for select `, async () => {
-		const result = nodber.getTableNameFromSql(`select * from users`);
-		expect(result === 'users').to.be.true;
-	});
-
-	it(`.getTableNameFromSql() // for insert `, async () => {
-		const result = nodber.getTableNameFromSql(`insert into users (id, username) values(1, 'haha')`);
-		expect(result === 'users').to.be.true;
-	});
-
-	it(`.getTableNameFromSql() // for update `, async () => {
-		const result = nodber.getTableNameFromSql(`update users set username = 'owen' where id = 1`);
-		expect(result === 'users').to.be.true;
-	});
-
-	it(`.getTableNameFromSql() // for delete `, async () => {
-		const result = nodber.getTableNameFromSql(`delete from users where 1 = 0`);
-		expect(result === 'users').to.be.true;
+	it(`.dropTable()`, async () => {
+		const result = await nodber.dropTable(tableName);
+		expect(result === true).to.be.true;
 	});
 
 	it(`.cloneTableStructure()`, async () => {
