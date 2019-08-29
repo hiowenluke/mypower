@@ -163,6 +163,13 @@ describe('MySQL - crud/select', () => {
 		expect(result.length === 3 && result[0].username === 'anthonyStark').to.be.true;
 	});
 
+	it(`.select({table, fields, limit}) // fields = 'username', limit = 3`, async () => {
+		const fields = 'username';
+		const limit = 3;
+		const result = await nodber.select({table, fields, limit});
+		expect(result.length === 3 && result[0].username === 'anthonyStark').to.be.true;
+	});
+
 	it(`.select({table, order, limit, offset}) // order = 'username', limit = 3, offset = 2`, async () => {
 		const order = 'username';
 		const limit = 3;
