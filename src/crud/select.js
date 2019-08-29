@@ -69,7 +69,7 @@ const getOrderClause = ({order, limit, offset}) => {
 	return orderClause;
 };
 
-const getLimitClause = ({order, limit, offset}) => {
+const getLimitClause = ({order, limit, offset, fieldNames}) => {
 	let limitClause;
 
 	// ({table})
@@ -79,7 +79,12 @@ const getLimitClause = ({order, limit, offset}) => {
 
 	// ({table, limit})
 	if (!order) {
-		throw new Error('Require order argument for limit.');
+		if (fieldNames) {
+			order = fieldNames;
+		}
+		else {
+			throw new Error('Require order argument for limit.');
+		}
 	}
 
 	// ({table, order, offset})
@@ -101,7 +106,7 @@ const fn = async (...args) => {
 	let groupClause, orderClause, limitClause;
 	groupClause = getGroupClause({tableName, fieldNames, isGroup, group});
 	orderClause = getOrderClause({order, limit, offset});
-	limitClause = getLimitClause({order, limit, offset});
+	limitClause = getLimitClause({order, limit, offset, fieldNames});
 
 	let sqlClauses = '';
 	groupClause && (sqlClauses += groupClause);
