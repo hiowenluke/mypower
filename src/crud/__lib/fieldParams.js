@@ -1,4 +1,6 @@
 
+const nodber = require('../..');
+
 /** @name lib.fieldParams */
 const me = {
 	genAll(fieldNames) {
