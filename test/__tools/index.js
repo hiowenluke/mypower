@@ -42,9 +42,9 @@ const me = {
 		it('// add users', async () => {
 			await nodber.exec(`
 				insert into users (id, username, isaverangers, memo)
-				select 1 as id, 'owenLuke' as username, 1 as isaverangers, '' as memo
+				select 1 as id, 'owenLuke' as username, 1 as isaverangers, 'newbie' as memo
 				union
-				select 2, 'steveRogers', 1, ''
+				select 2, 'steveRogers', 1, 'leader'
 				union
 				select 3, 'anthonyStark', 1, ''
 				union
