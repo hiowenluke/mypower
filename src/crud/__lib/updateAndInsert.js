@@ -5,7 +5,7 @@ const lib = require('./');
 /** @name lib.updateAndInsert */
 const fn = async (sqlTemplate, table, data) => {
 	const tableName = table;
-	const {nameParams, valueParams, setParams} = await lib.fieldParams.genAllByTableName(tableName);
+	const {nameParams, valueParams, setParams} = await lib.fieldParams.genAllByTableName(tableName, data);
 
 	let sql = utils.sqlTemplate(sqlTemplate, {tableName, nameParams, valueParams, setParams});
 

@@ -3,11 +3,19 @@ const nodber = require('../..');
 
 /** @name lib.fieldParams */
 const me = {
-	genAll(fieldNames) {
+	genAll(fieldNames, data) {
 		let arr = fieldNames;
 
 		if (typeof arr === 'string') {
-			arr = arr.replace(/ /g, '').split(',')
+			arr = arr.replace(/ /g, '').split(',');
+		}
+
+		// Exclude the field names which are not in data.
+		// For the update operation, it means that only the fields with values
+		// in data are set, and no other fields are set, which is expected.
+		if (data) {
+			const onlyFields = Object.keys(data);
+			arr = arr.filter(fieldName => onlyFields.indexOf(fieldName) >= 0);
 		}
 
 		const nameParams = this.genNameParams(arr);
@@ -17,9 +25,9 @@ const me = {
 		return {nameParams, valueParams, setParams};
 	},
 
-	async genAllByTableName(tableName) {
-		const fieldNames = await nodber.getFieldNamesWithoutAutoId(tableName);
-		return this.genAll(fieldNames);
+	async genAllByTableName(tableName, data) {
+		let fieldNames = await nodber.getFieldNamesWithoutAutoId(tableName);
+		return this.genAll(fieldNames, data);
 	},
 
 	genNameParams(fieldNames) {
