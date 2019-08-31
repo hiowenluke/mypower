@@ -1,7 +1,7 @@
 
 const nodber = require('../../');
 
-/** @name nodber.cloneTableStructure */
+/** @name nodber.cloneTableData */
 const fn = async (newTableName, oldTableName, newDatabaseName, oldDatabaseName) => {
 	if (!newDatabaseName) {
 		newDatabaseName = await nodber.getSelectedDatabase();

@@ -57,6 +57,26 @@ const getNamesFromArgs = (purpose, sql, args) => {
 	return {databaseName, tableName};
 };
 
+const parseParamNamesFromSql = (sql) => {
+
+	// ["{new_tableName}", "{old_tableName}"]
+	const params = sql.match(/{[a-zA-Z0-9_]*?}/g);
+
+	// ["new_tableName", "old_tableName"]
+	return params.map(item => item.replace(/[{}]/g, ''));
+};
+
+const getAvailableValue = (options, key) => {
+	let value = options[key];
+	if (typeof value !== 'undefined') return value;
+
+	// "new_tableName" => "newTableName"
+	const newKey = key.replace(/_([a-z])/g, (match, capture) => {
+		return capture.toUpperCase();
+	});
+
+	return options[newKey];
+};
 
 // Two forms:
 // 		nodber.sqls('createTable', table, {fields: {...}})
@@ -83,11 +103,17 @@ const fn = (purpose, ...args) => {
 	//		nodber.sqls('createTable', table, {fields: {...}})
 	const options = args[0];
 	if (_.isPlainObject(options)) {
-		Object.keys(options).forEach(key => {
-			const reg = new RegExp('{' + key + '}', 'ig');
+
+		// ["new_tableName", "old_tableName"]
+		const paramNames = parseParamNamesFromSql(sql);
+		paramNames.forEach(paramName => {
+
+			// "new_tableName" => "newTableName"
+			const value = getAvailableValue(options, paramName);
 
 			// {fields} => some string
-			sql = sql.replace(reg, options[key]);
+			const reg = new RegExp('{' + paramName + '}', 'ig');
+			sql = sql.replace(reg, value);
 		});
 	}
 
