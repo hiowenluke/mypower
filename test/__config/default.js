@@ -22,9 +22,6 @@ const def = {
 
 const me = {
 
-	// Disable sequelize log in test
-	logging: false,
-
 	testOptions: {
 		database: 'test_db_123',
 	},
