@@ -42,9 +42,17 @@ describe('MySQL - base/database', () => {
 		expect(result === databaseName).to.be.true;
 	});
 
+	it(`.renameDatabase()`, async () => {
+		const oldName = databaseName;
+		const newName = oldName + '_xxx';
+		await nodber.renameDatabase(oldName, newName);
+
+		const result = await nodber.isDatabaseExists(newName);
+		expect(result === true).to.be.true;
+	});
+
 	it(`.dropDatabase()`, async () => {
 		const result = await nodber.dropDatabase(databaseName);
 		expect(result === true).to.be.true;
 	});
-
 });
