@@ -2,17 +2,13 @@
 const nodber = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
+const {itInit, it___________________________} = tools;
 
 describe('MySQL - page/page', () => {
 	const table = 'users';
 
-	tools.initNodber();
-	tools.initDatabase();
-	tools.createTableUsers();
-	tools.addUsers();
-
-	// ----------------------------------------------
-	tools.breakLine();
+	itInit();
+	it___________________________();
 
 	it(`.page({table, pageNumber, pageSize})`, async () => {
 		const pageNumber = 2;
@@ -50,11 +46,11 @@ describe('MySQL - page/page', () => {
 
 	it(`.page({table, fields, where, order, pageNumber, pageSize, data})`, async () => {
 		const fields = 'id, username';
-		const where = 'isaverangers = :isaverangers';
+		const where = 'isAvengers = :isAvengers';
 		const order = 'id';
 		const pageNumber = 2;
 		const pageSize = 3;
-		const data = {isaverangers: 1};
+		const data = {isAvengers: 1};
 		const result = await nodber.page({table, fields, where, order, pageNumber, pageSize, data});
 		expect(result.pageSize === 3 && result.count === 6 && Object.keys(result.rows[0]).length === 2).to.be.true;
 	});

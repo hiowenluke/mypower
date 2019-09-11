@@ -2,17 +2,13 @@
 const nodber = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
+const {itInit, it___________________________} = tools;
 
 describe('MySQL - page/pageBySql', () => {
 	const table = 'users';
 
-	tools.initNodber();
-	tools.initDatabase();
-	tools.createTableUsers();
-	tools.addUsers();
-
-	// ----------------------------------------------
-	tools.breakLine();
+	itInit();
+	it___________________________();
 
 	it(`.pageBySql({sql, order, pageNumber, pageSize})`, async () => {
 		const sql = 'select * from users';
@@ -24,11 +20,11 @@ describe('MySQL - page/pageBySql', () => {
 	});
 
 	it(`.pageBySql({sql, order, pageNumber, pageSize, data})`, async () => {
-		const sql = 'select * from users where isaverangers = :isaverangers';
+		const sql = 'select * from users where isAvengers = :isAvengers';
 		const order = 'id';
 		const pageNumber = 2;
 		const pageSize = 3;
-		const data = {isaverangers: 1};
+		const data = {isAvengers: 1};
 		const result = await nodber.pageBySql({sql, order, pageNumber, pageSize, data});
 		expect(result.pageSize === 3 && result.count === 6).to.be.true;
 	});

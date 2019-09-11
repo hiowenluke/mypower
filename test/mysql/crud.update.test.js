@@ -3,17 +3,13 @@ const nodber = require('../../src');
 const expect = require('chai').expect;
 const config = require('../__config/default');
 const tools = require('../__tools');
+const {itInit, it___________________________} = tools;
 
 describe('MySQL - crud/update', () => {
 	const table = 'users';
 
-	tools.initNodber();
-	tools.initDatabase();
-	tools.createTableUsers();
-	tools.addUsers();
-
-	// ----------------------------------------------
-	tools.breakLine();
+	itInit();
+	it___________________________();
 
 	it(`.update(table, data, where) // data = {username: 'haha'}, where = 'id = 1'`, async () => {
 		const newValues = {username: 'haha'};

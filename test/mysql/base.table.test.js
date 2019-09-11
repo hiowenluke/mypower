@@ -3,6 +3,7 @@ const nodber = require('../../src');
 const expect = require('chai').expect;
 const config = require('../__config/default');
 const tools = require('../__tools');
+const {itInit, it___________________________} = tools;
 
 const createTable = async (tableName) => {
 
@@ -10,7 +11,7 @@ const createTable = async (tableName) => {
 		{name: 'id', type: 'autoId'},
 		{name: 'username', type: 'varchar', notNull: false, isPrimaryKey: true},
 		{name: 'password', type: 'varchar', length: 100},
-		{name: 'isaverangers', type: 'boolean'},
+		{name: 'isAvengers', type: 'boolean'},
 		{name: 'memo', type: 'text'},
 	];
 
@@ -18,32 +19,12 @@ const createTable = async (tableName) => {
 	return result;
 };
 
-const addUsers = async () => {
-	await nodber.exec(`
-				insert into users (id, username, isaverangers, memo)
-				select 1 as id, 'owenLuke' as username, 1 as isaverangers, '' as memo
-				union
-				select 2, 'steveRogers', 1, ''
-				union
-				select 3, 'anthonyStark', 1, ''
-				union
-				select 4, 'thor', 1, ''
-				union
-				select 5, 'hulk', 1, ''
-				union
-				select 6, 'natasha', 1, ''
-				union
-				select 7, 'thanos', 0, ''
-			`);
-};
-
 describe('MySQL - base/table', () => {
 	const databaseName = config.testOptions.database;
-	const tableName = 'users';
+	const tableName = 'users_xxx';
 
-	tools.initNodber();
-	tools.initDatabase();
-	tools.breakLine();
+	itInit();
+	it___________________________();
 
 	it(`.createTable()`, async () => {
 		await nodber.dropTable(tableName);
@@ -73,7 +54,7 @@ describe('MySQL - base/table', () => {
 	});
 
 	it(`.isEmptyTable() // false`, async () => {
-		await nodber.exec(`insert into users (id, username) values(1, 'haha')`);
+		await nodber.exec(`insert into ${tableName} (id, username) values(1, 'haha')`);
 		const result = await nodber.isEmptyTable(tableName);
 		expect(result === false).to.be.true;
 	});
@@ -117,7 +98,7 @@ describe('MySQL - base/table', () => {
 
 	it(`.cloneTableStructure()`, async () => {
 		await createTable(tableName);
-		await addUsers();
+		await tools.addUsers(tableName);
 
 		const newTableName = tableName + '_new';
 		await nodber.dropTable(newTableName);
@@ -131,7 +112,7 @@ describe('MySQL - base/table', () => {
 
 	it(`.cloneTableStructureAndData()`, async () => {
 		await createTable(tableName);
-		await addUsers();
+		await tools.addUsers(tableName);
 
 		const newTableName = tableName + '_new';
 		await nodber.dropTable(newTableName);

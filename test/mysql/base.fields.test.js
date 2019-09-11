@@ -4,15 +4,13 @@ const expect = require('chai').expect;
 
 const nodber = require('../../src');
 const tools = require('../__tools');
+const {itInit, it___________________________} = tools;
 
 describe('MySQL - base/fields', () => {
 	const table = 'users';
 
-	tools.initNodber();
-	tools.initDatabase();
-	tools.createTableUsers();
-	tools.addUsers();
-	tools.breakLine();
+	itInit();
+	it___________________________();
 
 	it(`.getAutoIdName(table)`, async () => {
 		const result = await nodber.getAutoIdName(table);
@@ -46,7 +44,7 @@ describe('MySQL - base/fields', () => {
 	});
 
 	it(`.isFieldExists()`, async () => {
-		const field = 'isaverangers';
+		const field = 'isAvengers';
 		const result = await nodber.isFieldExists(table, field);
 		expect(result === true).to.be.true;
 	});

@@ -4,14 +4,12 @@ const expect = require('chai').expect;
 
 const nodber = require('../../src');
 const tools = require('../__tools');
+const {itInit, it___________________________} = tools;
 
 describe('MySQL - base/fields', () => {
 
-	tools.initNodber();
-	tools.initDatabase();
-	tools.createTableUsers();
-	tools.addUsers();
-	tools.breakLine();
+	itInit();
+	it___________________________();
 
 	it(`.getFieldsWhereConditions(primaryKeys)`, async () => {
 		const primaryKeys = 'billid, itemno';

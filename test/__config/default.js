@@ -23,7 +23,8 @@ const def = {
 const me = {
 
 	testOptions: {
-		database: 'test_db_123',
+		database: 'nodber_test',
+		userTableName: 'users',
 	},
 
 	use(type) {

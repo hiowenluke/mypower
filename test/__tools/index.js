@@ -1,67 +1,74 @@
 
 const nodber = require('../../src');
-const expect = require('chai').expect;
 const config = require('../__config/default');
 
+const userTableName = config.testOptions.userTableName;
+
 const me = {
-	initNodber() {
+	itInit() {
 		it(`// init nodber`, async () => {
 			nodber.init(config.use('mysql'));
 		});
-	},
-
-	initDatabase() {
-		const databaseName = config.testOptions.database;
 
 		it(`// init database`, async () => {
-			await nodber.createDatabase(databaseName);
-			await nodber.useDatabase(databaseName);
+			await me.initDatabase();
 		});
-	},
 
-	createTableUsers() {
-		const tableName = 'users';
-
-		it(`// create table users`, async () => {
-			await nodber.dropTable(tableName);
-
-			const fields = [
-				{name: 'id', type: 'autoId'},
-				{name: 'username', type: 'varchar', notNull: false, isPrimaryKey: true},
-				{name: 'password', type: 'varchar', length: 100},
-				{name: 'isaverangers', type: 'boolean'},
-				{name: 'memo', type: 'text'},
-			];
-
-			const result = await nodber.createTable(tableName, fields);
-			expect(result === true).to.be.true;
+		it(`// create table ${userTableName}`, async () => {
+			await me.createTableUsers();
 		});
-	},
 
-	addUsers() {
 		it('// add users', async () => {
-			await nodber.exec(`
-				insert into users (id, username, isaverangers, memo)
-				select 1 as id, 'owenLuke' as username, 1 as isaverangers, 'newbie' as memo
-				union
-				select 2, 'steveRogers', 1, 'leader'
-				union
-				select 3, 'anthonyStark', 1, ''
-				union
-				select 4, 'thor', 1, ''
-				union
-				select 5, 'hulk', 1, ''
-				union
-				select 6, 'natasha', 1, ''
-				union
-				select 7, 'thanos', 0, ''
-			`);
+			await me.addUsers();
 		});
 	},
 
-	breakLine() {
-		it(`----------------------------`, async () => {});
-	}
+	it___________________________() {
+		it(`----------------------------`, () => {});
+	},
+
+	async initDatabase() {
+		const databaseName = config.testOptions.database;
+		await nodber.dropDatabase(databaseName);
+		await nodber.createDatabase(databaseName);
+		await nodber.useDatabase(databaseName);
+	},
+
+	async createTableUsers(tableName) {
+		tableName = tableName || userTableName;
+		await nodber.dropTable(tableName);
+
+		const fields = [
+			{name: 'id', type: 'autoId'},
+			{name: 'username', type: 'varchar', notNull: false, isPrimaryKey: true},
+			{name: 'password', type: 'varchar', length: 100},
+			{name: 'isAvengers', type: 'boolean'},
+			{name: 'memo', type: 'text'},
+		];
+
+		await nodber.createTable(tableName, fields);
+	},
+
+	async addUsers(tableName) {
+		tableName = tableName || userTableName;
+
+		await nodber.exec(`
+			insert into ${tableName} (id, username, isAvengers, memo)
+			select 1 as id, 'owenLuke' as username, 1 as isAvengers, 'newbie' as memo
+			union
+			select 2, 'steveRogers', 1, 'leader'
+			union
+			select 3, 'anthonyStark', 1, ''
+			union
+			select 4, 'thor', 1, ''
+			union
+			select 5, 'hulk', 1, ''
+			union
+			select 6, 'natasha', 1, ''
+			union
+			select 7, 'thanos', 0, ''
+		`);
+	},
 };
 
 module.exports = me;

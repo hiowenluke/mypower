@@ -2,11 +2,12 @@
 const nodber = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
+const {itInit, it___________________________} = tools;
 
 describe('MySQL - base/system', () => {
 
-	tools.initNodber();
-	tools.breakLine();
+	itInit();
+	it___________________________();
 
 	it(`.getSystemVariable()`, async () => {
 		const result = await nodber.getSystemVariable('version');

@@ -2,15 +2,13 @@
 const nodber = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
+const {itInit, it___________________________} = tools;
 
 describe('MySQL - base/records', () => {
 	const table = 'users';
 
-	tools.initNodber();
-	tools.initDatabase();
-	tools.createTableUsers();
-	tools.addUsers();
-	tools.breakLine();
+	itInit();
+	it___________________________();
 
 	it(`.getMaxFieldValue(table, field)`, async () => {
 		const field = 'id';
