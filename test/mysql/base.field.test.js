@@ -40,8 +40,8 @@ describe('MySQL - base/field', () => {
 
 	it(`.addField()`, async () => {
 		const field = 'xxx';
-		const type = 'int';
-		await nodber.addField(table, field, type);
+		const typeStr = 'varchar(100)';
+		await nodber.addField(table, field, typeStr);
 
 		const result = await nodber.isFieldExists(table, field);
 
@@ -51,26 +51,56 @@ describe('MySQL - base/field', () => {
 
 	it(`.deleteField()`, async () => {
 		const field = 'xxx';
-		const type = 'int';
-		await nodber.addField(table, field, type);
+		const typeStr = 'varchar(100)';
+		await nodber.addField(table, field, typeStr);
 		await nodber.deleteField(table, field);
 
 		const result = await nodber.isFieldExists(table, field);
 		expect(result === false).to.be.true;
 	});
 
-	it(`.changeField()`, async () => {
+	it(`.changeFieldName()`, async () => {
 		const field = 'xxx';
-		const type = 'int';
-		await nodber.addField(table, field, type);
+		const typeStr = 'varchar(100)';
+		await nodber.addField(table, field, typeStr);
 
 		const oldFieldName = field;
 		const newFieldName = field + '_123';
-		await nodber.changeField(table, oldFieldName, newFieldName);
+		await nodber.changeFieldName(table, oldFieldName, newFieldName);
 
 		const result = await nodber.isFieldExists(table, newFieldName);
 
 		await nodber.deleteField(table, newFieldName);
 		expect(result === true).to.be.true;
+	});
+
+	it(`.changeFieldType()`, async () => {
+		const field = 'xxx';
+		const typeStr = 'varchar(100)';
+		await nodber.addField(table, field, typeStr);
+
+		const newFieldTypeStr = 'text';
+		await nodber.changeFieldType(table, field, newFieldTypeStr);
+
+		const result = await nodber.getFieldTypeStr(table, field);
+
+		await nodber.deleteField(table, field);
+		expect(result === 'text(65535)').to.be.true;
+	});
+
+	it(`.changeField()`, async () => {
+		const field = 'xxx';
+		const typeStr = 'varchar(100)';
+		await nodber.addField(table, field, typeStr);
+
+		const oldFieldName = field;
+		const newFieldName = field + '_123';
+		const newFieldTypeStr = 'text';
+		await nodber.changeField(table, oldFieldName, newFieldName, newFieldTypeStr);
+
+		const result = await nodber.getFieldTypeStr(table, newFieldName);
+
+		await nodber.deleteField(table, newFieldName);
+		expect(result === 'text(65535)').to.be.true;
 	});
 });
