@@ -5,7 +5,7 @@ const nodber = require('../../');
 const fn = async (tableName, oldFieldName, newFieldName, newFieldTypeStr) => {
 	newFieldTypeStr = newFieldTypeStr || await nodber.getFieldTypeStr(tableName, oldFieldName);
 
-	const result = await nodber.proxy(tableName, {oldFieldName, newFieldName, newFieldType: newFieldTypeStr});
+	const result = await nodber.proxy(tableName, {oldFieldName, newFieldName, newFieldTypeStr});
 	return result;
 };
 

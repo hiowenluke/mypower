@@ -2,8 +2,8 @@
 const nodber = require('../../');
 
 /** @name nodber.addField */
-const fn = async (tableName, fieldName, fieldType) => {
-	const result = await nodber.proxy(tableName, {fieldName, fieldType});
+const fn = async (tableName, fieldName, fieldTypeStr) => {
+	const result = await nodber.proxy(tableName, {fieldName, fieldTypeStr});
 	return result;
 };
 
