@@ -8,8 +8,9 @@ Object.assign(nodber, nodber.page);
 Object.assign(nodber, nodber.goto);
 
 Object.assign(nodber, nodber.base.database);
-Object.assign(nodber, nodber.base.fields);
-Object.assign(nodber, nodber.base.records);
+Object.assign(nodber, nodber.base.field);
+Object.assign(nodber, nodber.base.primaryKey);
+Object.assign(nodber, nodber.base.record);
 Object.assign(nodber, nodber.base.system);
 Object.assign(nodber, nodber.base.table);
 Object.assign(nodber, nodber.base.tools);
