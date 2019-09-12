@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const tools = require('../__tools');
 const {itInit, it___________________________} = tools;
 
-describe('MySQL - base/records', () => {
+describe('MySQL - base/record', () => {
 	const table = 'users';
 
 	itInit();
