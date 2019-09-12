@@ -40,11 +40,22 @@ const me = {
 	// Fields
 	// -------------------------------------------
 
-	// Because there may be multiple primary keys, sort by ordinal_position
-	getPrimaryKeys: 'select column_name as primarykey from information_schema.key_column_usage where table_name= "{tableName}" and constraint_schema= "{databaseName}" and constraint_name = "primary" order by ordinal_position',
 	getFieldNames: 'select column_name as fieldname from information_schema.columns where table_name = "{tableName}" and table_schema = "{databaseName}"',
 	getAutoIdName: 'select column_name as autoIdName from information_schema.columns where table_schema="{databaseName}" and table_name="{tableName}" and extra = "auto_increment"',
 	getFieldsInfo: 'select * from information_schema.columns where table_name = "{tableName}" and table_schema = "{databaseName}"',
+	getFieldType: 'select data_type as fieldType, character_maximum_length as length, numeric_precision as m, numeric_scale as d from information_schema.columns where table_schema="{databaseName}" and table_name="{tableName}" and column_name="{fieldName}"',
+	addField: 'alter table {tableName} add {fieldName} {fieldType}',
+	deleteField: 'alter table {tableName} drop {fieldName}',
+	changeField: 'alter table {tableName} change {old_fieldName} {new_fieldName} {new_fieldType}',
+
+
+	// -------------------------------------------
+	// Primary Key
+	// -------------------------------------------
+
+	// Because there may be multiple primary keys, sort by ordinal_position
+	getPrimaryKeys: 'select column_name as primarykey from information_schema.key_column_usage where table_name= "{tableName}" and constraint_schema= "{databaseName}" and constraint_name = "primary" order by ordinal_position',
+	addPrimaryKeys: 'alter table {tableName} add primary key({primaryKeys})',
 
 
 	// -------------------------------------------
