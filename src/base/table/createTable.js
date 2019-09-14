@@ -6,9 +6,8 @@ const getFieldDefinitions = (fields) => {
 	const primaryKeys = [];
 
 	fields.forEach(item => {
-		let {name, type, length, notNull = false, isPrimaryKey = false} = item;
-
-		notNull = notNull ? 'not null' : '';
+		let {name, type, length, m, d, isNullable = true, isPrimaryKey = false} = item;
+		let isNullableStr = isNullable ? '' : 'not null';
 
 		if (type === 'autoId') {
 			def.push(`\`${name}\` int unsigned auto_increment`);
@@ -18,23 +17,12 @@ const getFieldDefinitions = (fields) => {
 		else
 
 		if (type === 'id') {
-			def.push(`\`${name}\` int ${notNull}`);
-		}
-
-		else
-
-		if (type === 'char' || type === 'fixedText' ||  type === 'varchar' || type === 'shortText' || type === 'text') {
-			if (!length) {
-				length = type === 'text' ? 65535 : 255;
-			}
-			if (type === 'fixedText') type = 'char';
-			if (type === 'shortText') type = 'varchar';
-			def.push(`\`${name}\` ${type}(${length}) ${notNull}`);
+			def.push(`\`${name}\` int ${isNullableStr}`);
 		}
 
 		else {
-			const lengthStr = length ? `(${length})` : '';
-			def.push(`\`${name}\` ${type}${lengthStr} ${notNull}`);
+			const typeStr = nodber.convertFieldTypeDefToStr({type, length, m, d});
+			def.push(`\`${name}\` ${typeStr} ${isNullableStr}`);
 		}
 
 		if (isPrimaryKey) {

@@ -1,6 +1,5 @@
 
 const nodber = require('../../');
-const types = require('./__fieldTypes');
 
 /** @name nodber.getFieldType */
 const fn = async (tableName, fieldName) => {
