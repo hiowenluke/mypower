@@ -46,11 +46,11 @@ describe('MySQL - page/page', () => {
 
 	it(`.page({table, fields, where, order, pageNumber, pageSize, data})`, async () => {
 		const fields = 'id, username';
-		const where = 'isAvengers = :isAvengers';
+		const where = 'isAvenger = :isAvenger';
 		const order = 'id';
 		const pageNumber = 2;
 		const pageSize = 3;
-		const data = {isAvengers: 1};
+		const data = {isAvenger: 1};
 		const result = await nodber.page({table, fields, where, order, pageNumber, pageSize, data});
 		expect(result.pageSize === 3 && result.count === 6 && Object.keys(result.rows[0]).length === 2).to.be.true;
 	});

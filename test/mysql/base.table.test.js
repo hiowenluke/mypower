@@ -5,20 +5,6 @@ const config = require('../__config/default');
 const tools = require('../__tools');
 const {itInit, it___________________________} = tools;
 
-const createTable = async (tableName) => {
-
-	const fields = [
-		{name: 'id', type: 'autoId'},
-		{name: 'username', type: 'varchar', notNull: false, isPrimaryKey: true},
-		{name: 'password', type: 'varchar', length: 100},
-		{name: 'isAvengers', type: 'boolean'},
-		{name: 'memo', type: 'text'},
-	];
-
-	const result = await nodber.createTable(tableName, fields);
-	return result;
-};
-
 describe('MySQL - base/table', () => {
 	const databaseName = config.testOptions.database;
 	const tableName = 'users_xxx';
@@ -28,19 +14,13 @@ describe('MySQL - base/table', () => {
 
 	it(`.createTable()`, async () => {
 		await nodber.dropTable(tableName);
-
-		const result = await createTable(tableName);
+		const result = await tools.createTableUsers(tableName);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.isTableExists()`, async () => {
 		const result = await nodber.isTableExists(tableName);
 		expect(result === true).to.be.true;
-	});
-
-	it(`.createTable() // false, 'cause it is exists`, async () => {
-		const result = await createTable(tableName);
-		expect(result === false).to.be.true;
 	});
 
 	it(`.showTables() // find the tableName in result array`, async () => {
@@ -97,7 +77,7 @@ describe('MySQL - base/table', () => {
 	});
 
 	it(`.cloneTableStructure()`, async () => {
-		await createTable(tableName);
+		await tools.createTableUsers(tableName);
 		await tools.addUsers(tableName);
 
 		const newTableName = tableName + '_new';
@@ -111,7 +91,7 @@ describe('MySQL - base/table', () => {
 	});
 
 	it(`.cloneTableStructureAndData()`, async () => {
-		await createTable(tableName);
+		await tools.createTableUsers(tableName);
 		await tools.addUsers(tableName);
 
 		const newTableName = tableName + '_new';

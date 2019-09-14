@@ -10,10 +10,10 @@ describe('MySQL - base/record', () => {
 	itInit();
 	it___________________________();
 
-	it(`.getMaxFieldValue(table, field)`, async () => {
+	it(`.getMaxFieldValue(table, field) // field = 'id'`, async () => {
 		const field = 'id';
 		const result = await nodber.getMaxFieldValue(table, field);
-		expect(result === 7).to.be.true;
+		expect(result === 10).to.be.true;
 	});
 
 	it(`.getMaxFieldValue(table, field, where)`, async () => {
@@ -25,26 +25,26 @@ describe('MySQL - base/record', () => {
 
 	it(`.getMaxId(table)`, async () => {
 		const result = await nodber.getMaxId(table);
-		expect(result === 7).to.be.true;
+		expect(result === 10).to.be.true;
 	});
 
-	it(`.getMaxId(table, idName)`, async () => {
+	it(`.getMaxId(table, idName) // idName = 'id'`, async () => {
 		const idName = 'id';
 		const result = await nodber.getMaxId(table, idName);
-		expect(result === 7).to.be.true;
+		expect(result === 10).to.be.true;
 	});
 
 	it(`.getMaxPrimaryKeyValue(table)`, async () => {
 		const result = await nodber.getMaxPrimaryKeyValue(table);
-		expect(result === 7).to.be.true;
+		expect(result === 10).to.be.true;
 	});
 
 	it(`.getMaxRecord(table)`, async () => {
 		const result = await nodber.getMaxRecord(table);
-		expect(result.id === 7).to.be.true;
+		expect(result.id === 10).to.be.true;
 	});
 
-	it(`.getMaxRecord(table, field)`, async () => {
+	it(`.getMaxRecord(table, field) // field = 'username'`, async () => {
 		const field = 'username';
 		const result = await nodber.getMaxRecord(table, field);
 		expect(result.id === 4).to.be.true;

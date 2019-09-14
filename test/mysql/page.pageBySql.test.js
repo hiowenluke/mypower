@@ -20,11 +20,11 @@ describe('MySQL - page/pageBySql', () => {
 	});
 
 	it(`.pageBySql({sql, order, pageNumber, pageSize, data})`, async () => {
-		const sql = 'select * from users where isAvengers = :isAvengers';
+		const sql = 'select * from users where isAvenger = :isAvenger';
 		const order = 'id';
 		const pageNumber = 2;
 		const pageSize = 3;
-		const data = {isAvengers: 1};
+		const data = {isAvenger: 1};
 		const result = await nodber.pageBySql({sql, order, pageNumber, pageSize, data});
 		expect(result.pageSize === 3 && result.count === 6).to.be.true;
 	});

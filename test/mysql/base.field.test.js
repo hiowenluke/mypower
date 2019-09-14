@@ -19,7 +19,7 @@ describe('MySQL - base/field', () => {
 
 	it(`.getFieldNames(table)`, async () => {
 		const result = await nodber.getFieldNames(table);
-		expect(result.length > 1 && result[0] === 'id').to.be.true;
+		expect(result.length > 1 && result.indexOf('id') >= 0).to.be.true;
 	});
 
 	it(`.getFieldNamesWithoutAutoId(table)`, async () => {
@@ -29,11 +29,11 @@ describe('MySQL - base/field', () => {
 
 	it(`.getFieldsInfo(table)`, async () => {
 		const result = await nodber.getFieldsInfo(table);
-		expect(result.length > 1 && result[0].column_name === 'id').to.be.true;
+		expect(result.length > 1 && !!result.find(item => item.column_name === 'areaId')).to.be.true;
 	});
 
 	it(`.isFieldExists()`, async () => {
-		const field = 'isAvengers';
+		const field = 'isAvenger';
 		const result = await nodber.isFieldExists(table, field);
 		expect(result === true).to.be.true;
 	});
