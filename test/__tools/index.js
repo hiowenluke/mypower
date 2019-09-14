@@ -40,34 +40,55 @@ const me = {
 
 		const fields = [
 			{name: 'id', type: 'autoId'},
-			{name: 'username', type: 'varchar', notNull: false, isPrimaryKey: true},
+			{name: 'username', type: 'varchar', isNullable: false, isPrimaryKey: true},
 			{name: 'password', type: 'varchar', length: 100},
-			{name: 'isAvengers', type: 'boolean'},
-			{name: 'memo', type: 'text'},
+			{name: 'isAvenger', type: 'boolean'},
+			{name: 'brief', type: 'text'},
+			{name: 'power', type: 'decimal', m: 12, d: 2},
+			{name: 'areaId', type: 'id'},
+			{name: 'type_tinytext', type: 'tinytext'},
+			{name: 'type_text', type: 'text'},
+			{name: 'type_mediumtext', type: 'mediumtext'},
+			{name: 'type_longtext', type: 'longtext'},
+			{name: 'type_tinyint', type: 'tinyint'},
+			{name: 'type_smallint', type: 'smallint'},
+			{name: 'type_int', type: 'int'},
+			{name: 'type_bigint', type: 'bigint'},
+			{name: 'type_float', type: 'float', m: 8, d: 4},
+			{name: 'type_double', type: 'float'},
+			{name: 'type_real', type: 'real'},
+			{name: 'type_decimal', type: 'decimal'},
+			{name: 'type_date', type: 'date'},
+			{name: 'type_time', type: 'time'},
+			{name: 'type_datetime', type: 'datetime'},
+			{name: 'type_timestamp', type: 'timestamp'},
+			{name: 'type_year', type: 'year'},
 		];
 
-		await nodber.createTable(tableName, fields);
+		return await nodber.createTable(tableName, fields);
 	},
 
 	async addUsers(tableName) {
 		tableName = tableName || userTableName;
 
-		await nodber.exec(`
-			insert into ${tableName} (id, username, isAvengers, memo)
-			select 1 as id, 'owenLuke' as username, 1 as isAvengers, 'newbie' as memo
+		const sql = `
+			insert into ${tableName} (id, username, isAvenger, brief, power, areaId)
+			select 1 as id, 'owenLuke' as username, 1 as isAvenger, 'newbie' as brief, 1000000000.01 as power, 1 as areaId
 			union
-			select 2, 'steveRogers', 1, 'leader'
+			select 2, 'steveRogers', 1, 'leader', null, null
 			union
-			select 3, 'anthonyStark', 1, ''
+			select 3, 'anthonyStark', 1, null, null, null
 			union
-			select 4, 'thor', 1, ''
+			select 4, 'thor', 1, null, null, null
 			union
-			select 5, 'hulk', 1, ''
+			select 5, 'hulk', 1, null, null, null
 			union
-			select 6, 'natasha', 1, ''
+			select 7, 'natasha', 1, null, null, null
 			union
-			select 7, 'thanos', 0, ''
-		`);
+			select 10, 'thanos', 0, null, null, null
+		`;
+
+		return await nodber.exec(sql);
 	},
 };
 
