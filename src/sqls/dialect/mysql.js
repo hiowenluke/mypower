@@ -43,7 +43,7 @@ const me = {
 	getFieldNames: 'select column_name as fieldname from information_schema.columns where table_name = "{tableName}" and table_schema = "{databaseName}"',
 	getAutoIdName: 'select column_name as autoIdName from information_schema.columns where table_schema="{databaseName}" and table_name="{tableName}" and extra = "auto_increment"',
 	getFieldsInfo: 'select * from information_schema.columns where table_name = "{tableName}" and table_schema = "{databaseName}"',
-	getFieldType: 'select data_type as fieldType, character_maximum_length as length, numeric_precision as m, numeric_scale as d from information_schema.columns where table_schema="{databaseName}" and table_name="{tableName}" and column_name="{fieldName}"',
+	getFieldType: 'select data_type as type, character_maximum_length as length, numeric_precision as m, numeric_scale as d from information_schema.columns where table_schema="{databaseName}" and table_name="{tableName}" and column_name="{fieldName}"',
 	addField: 'alter table {tableName} add {fieldName} {fieldTypeStr}',
 	deleteField: 'alter table {tableName} drop {fieldName}',
 	changeField: 'alter table {tableName} change {old_fieldName} {new_fieldName} {new_fieldTypeStr}',
