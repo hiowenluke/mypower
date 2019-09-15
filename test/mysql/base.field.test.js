@@ -60,10 +60,32 @@ describe('MySQL - base/field', () => {
 		expect(result === true).to.be.true;
 	});
 
+	it(`.addField() // typeStr = 'int'`, async () => {
+		const field = 'xxx';
+		const typeStr = 'int';
+		await nodber.addField(table, field, typeStr);
+
+		const result = await nodber.isFieldExists(table, field);
+
+		await nodber.deleteField(table, field);
+		expect(result === true).to.be.true;
+	});
+
 	it(`.addField() // typeDef = {type: 'int'}`, async () => {
 		const field = 'xxx';
 		const typeDef = {type: 'int'};
 		await nodber.addField(table, field, typeDef);
+
+		const result = await nodber.isFieldExists(table, field);
+
+		await nodber.deleteField(table, field);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.addField() // typeStr = 'float(10, 2)'`, async () => {
+		const field = 'xxx';
+		const typeStr = 'float(10, 2)';
+		await nodber.addField(table, field, typeStr);
 
 		const result = await nodber.isFieldExists(table, field);
 
