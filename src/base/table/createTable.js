@@ -1,11 +1,11 @@
 
 const nodber = require('../..');
 
-const getFieldDefinitions = (fields) => {
+const convertFieldDefinitionsToStr = (definitions) => {
 	const def = [];
 	const primaryKeys = [];
 
-	fields.forEach(item => {
+	definitions.forEach(item => {
 		let {name, type, length, m, d, isNullable = true, isPrimaryKey = false} = item;
 		let isNullableStr = isNullable ? '' : 'not null';
 
@@ -35,13 +35,13 @@ const getFieldDefinitions = (fields) => {
 };
 
 /** @name nodber.createTable */
-const fn = async (tableName, fields) => {
+const fn = async (tableName, fieldDefinitions) => {
 	if (await nodber.isTableExists(tableName)) {
 		return false;
 	}
 
-	const fieldsStr = getFieldDefinitions(fields).join(', ');
-	const sql = nodber.sqls('createTable', tableName, {fields: fieldsStr});
+	const fieldsDefStr = convertFieldDefinitionsToStr(fieldDefinitions).join(', ');
+	const sql = nodber.sqls('createTable', tableName, {fields: fieldsDefStr});
 	const result = await nodber.exec(sql);
 	return result.warningStatus === 0;
 };
