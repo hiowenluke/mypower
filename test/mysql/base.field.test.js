@@ -38,7 +38,7 @@ describe('MySQL - base/field', () => {
 		expect(result === true).to.be.true;
 	});
 
-	it(`.addField()`, async () => {
+	it(`.addField() // typeStr = 'varchar(100)'`, async () => {
 		const field = 'xxx';
 		const typeStr = 'varchar(100)';
 		await nodber.addField(table, field, typeStr);
@@ -49,10 +49,43 @@ describe('MySQL - base/field', () => {
 		expect(result === true).to.be.true;
 	});
 
+	it(`.addField() // typeDef = {type: 'varchar', length: 100}`, async () => {
+		const field = 'xxx';
+		const typeDef = {type: 'varchar', length: 100};
+		await nodber.addField(table, field, typeDef);
+
+		const result = await nodber.isFieldExists(table, field);
+
+		await nodber.deleteField(table, field);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.addField() // typeDef = {type: 'int'}`, async () => {
+		const field = 'xxx';
+		const typeDef = {type: 'int'};
+		await nodber.addField(table, field, typeDef);
+
+		const result = await nodber.isFieldExists(table, field);
+
+		await nodber.deleteField(table, field);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.addField() // typeDef = {type: 'float', m: 10, d: 2}`, async () => {
+		const field = 'xxx';
+		const typeDef = {type: 'float', m: 10, d: 2};
+		await nodber.addField(table, field, typeDef);
+
+		const result = await nodber.isFieldExists(table, field);
+
+		await nodber.deleteField(table, field);
+		expect(result === true).to.be.true;
+	});
+
 	it(`.deleteField()`, async () => {
 		const field = 'xxx';
-		const typeStr = 'varchar(100)';
-		await nodber.addField(table, field, typeStr);
+		const typeDef = 'varchar(100)';
+		await nodber.addField(table, field, typeDef);
 		await nodber.deleteField(table, field);
 
 		const result = await nodber.isFieldExists(table, field);
@@ -61,8 +94,8 @@ describe('MySQL - base/field', () => {
 
 	it(`.changeFieldName()`, async () => {
 		const field = 'xxx';
-		const typeStr = 'varchar(100)';
-		await nodber.addField(table, field, typeStr);
+		const typeDef = 'varchar(100)';
+		await nodber.addField(table, field, typeDef);
 
 		const oldFieldName = field;
 		const newFieldName = field + '_123';
@@ -76,11 +109,11 @@ describe('MySQL - base/field', () => {
 
 	it(`.changeFieldType()`, async () => {
 		const field = 'xxx';
-		const typeStr = 'varchar(100)';
-		await nodber.addField(table, field, typeStr);
+		const typeDef = 'varchar(100)';
+		await nodber.addField(table, field, typeDef);
 
-		const newFieldTypeStr = 'text';
-		await nodber.changeFieldType(table, field, newFieldTypeStr);
+		const newFieldTypeDef = 'text';
+		await nodber.changeFieldType(table, field, newFieldTypeDef);
 
 		const result = await nodber.getFieldTypeStr(table, field);
 
@@ -90,13 +123,13 @@ describe('MySQL - base/field', () => {
 
 	it(`.changeField()`, async () => {
 		const field = 'xxx';
-		const typeStr = 'varchar(100)';
-		await nodber.addField(table, field, typeStr);
+		const typeDef = 'varchar(100)';
+		await nodber.addField(table, field, typeDef);
 
 		const oldFieldName = field;
 		const newFieldName = field + '_123';
-		const newFieldTypeStr = 'text';
-		await nodber.changeField(table, oldFieldName, newFieldName, newFieldTypeStr);
+		const newFieldTypeDef = 'text';
+		await nodber.changeField(table, oldFieldName, newFieldName, newFieldTypeDef);
 
 		const result = await nodber.getFieldTypeStr(table, newFieldName);
 
