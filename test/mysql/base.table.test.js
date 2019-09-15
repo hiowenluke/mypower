@@ -90,13 +90,13 @@ describe('MySQL - base/table', () => {
 		expect(result.length > 0).to.be.true;
 	});
 
-	it(`.cloneTableStructureAndData()`, async () => {
+	it(`.cloneTable()`, async () => {
 		await tools.createTableUsers(tableName);
 		await tools.addUsers(tableName);
 
 		const newTableName = tableName + '_new';
 		await nodber.dropTable(newTableName);
-		await nodber.cloneTableStructureAndData(newTableName, tableName);
+		await nodber.cloneTable(newTableName, tableName);
 
 		const result = await nodber.select(newTableName);
 		await nodber.dropTable(tableName);
