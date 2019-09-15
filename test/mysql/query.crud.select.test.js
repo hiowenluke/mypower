@@ -5,7 +5,7 @@ const config = require('../__config/default');
 const tools = require('../__tools');
 const {itInit, it___________________________} = tools;
 
-describe('MySQL - crud/select', () => {
+describe('MySQL - query/crud/select', () => {
 	const table = 'users';
 
 	itInit();

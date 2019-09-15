@@ -6,7 +6,7 @@ const nodber = require('../../src');
 const tools = require('../__tools');
 const {itInit, it___________________________} = tools;
 
-describe('MySQL - base/fields', () => {
+describe('MySQL - tools', () => {
 
 	itInit();
 	it___________________________();
