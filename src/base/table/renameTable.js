@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.renameTable */
 const fn = async (oldTableName, newTableName) => {

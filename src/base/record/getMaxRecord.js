@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.getMaxRecord */
 const fn = async (tableName, fieldName, whereStr) => {

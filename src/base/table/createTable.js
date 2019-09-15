@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 const getFieldDefinitions = (fields) => {
 	const def = [];

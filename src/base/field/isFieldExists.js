@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.isFieldExists */
 const fn = async (tableName, fieldName) => {

@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.deleteField */
 const fn = async (tableName, fieldName) => {

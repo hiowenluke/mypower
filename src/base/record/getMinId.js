@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.getMinId */
 const fn = async (tableName, idName = 'id') => {

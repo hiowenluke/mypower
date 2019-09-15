@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.getFieldTypeStr */
 const fn = async (tableName, fieldName) => {

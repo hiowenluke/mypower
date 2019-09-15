@@ -1,6 +1,6 @@
 
 const nodber = require('../../..');
-const lib = require('./');
+const lib = require('.');
 
 /** @name lib.updateAndInsert */
 const fn = async (sqlTemplate, table, data) => {

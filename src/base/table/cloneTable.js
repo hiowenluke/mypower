@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.cloneTable */
 const fn = async (newTableName, oldTableName, newDatabaseName, oldDatabaseName) => {

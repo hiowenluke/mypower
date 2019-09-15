@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.changeFieldName */
 const fn = async (tableName, oldFieldName, newFieldName) => {

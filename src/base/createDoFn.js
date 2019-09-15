@@ -1,5 +1,5 @@
 
-const nodber = require('../');
+const nodber = require('..');
 const caller = require('caller');
 
 /** @name nodber.lib.createDoFn */

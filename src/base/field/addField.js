@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 // Six forms of fieldTypeDef:
 //		'varchar(100)' 	or {type: 'varchar', length: 100}

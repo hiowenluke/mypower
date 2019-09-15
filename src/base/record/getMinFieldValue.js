@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.getMinFieldValue */
 const fn = async (tableName, fieldName, whereStr = '1=1') => {

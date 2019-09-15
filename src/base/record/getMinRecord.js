@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.getMinRecord */
 const fn = async (tableName, fieldName, whereStr) => {

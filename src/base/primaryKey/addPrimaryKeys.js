@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.addPrimaryKeys */
 const fn = async (tableName, primaryKeys) => {

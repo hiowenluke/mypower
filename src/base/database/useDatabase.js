@@ -1,6 +1,6 @@
 
 const sequery = require('sequelize-raw-query');
-const nodber = require('../../');
+const nodber = require('../..');
 const config = require('../../__config');
 
 const reInitNodber = (databaseName) => {

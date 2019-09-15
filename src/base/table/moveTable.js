@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.moveTable */
 const fn = async (fromDatabaseName, toDatabaseName, fromTableName, toTableName) => {

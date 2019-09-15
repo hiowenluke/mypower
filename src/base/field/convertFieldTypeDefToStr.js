@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.convertFieldTypeDefToStr */
 const fn = (definition) => {

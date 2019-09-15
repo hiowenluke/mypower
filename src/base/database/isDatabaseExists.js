@@ -1,5 +1,5 @@
 
-const nodber = require('../../');
+const nodber = require('../..');
 
 /** @name nodber.isDatabaseExists */
 const fn = async (databaseName) => {
