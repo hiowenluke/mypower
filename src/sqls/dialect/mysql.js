@@ -32,7 +32,6 @@ const me = {
 	renameTable: 'rename table {old_tableName} to {new_tableName}',
 	moveTable: 'rename table {from_databaseName}.`{from_tableName}` to {to_databaseName}.`{to_tableName}`',
 	cloneTableStructure: 'create table {new_databaseName}.{new_tableName} like {old_databaseName}.{old_tableName}',
-	cloneTableData: 'insert into {new_databaseName}.{new_tableName} select * from {old_databaseName}.{old_tableName}',
 	copyTableData: 'insert into {to_databaseName}.{to_tableName} select * from {from_databaseName}.{from_tableName}',
 
 
