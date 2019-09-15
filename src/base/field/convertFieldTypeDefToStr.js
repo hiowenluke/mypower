@@ -2,9 +2,10 @@
 const nodber = require('../../');
 
 /** @name nodber.convertFieldTypeDefToStr */
-const fn = ({type, length, m, d} = {}) => {
-	if (!type) return '';
+const fn = (definition) => {
+	if (!definition || typeof definition !== 'object') return definition;
 
+	let {type, length, m, d} = definition;
 	let str;
 
 	// *char, *char(100)

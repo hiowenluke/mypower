@@ -2,8 +2,11 @@
 const nodber = require('../../');
 
 /** @name nodber.changeField */
-const fn = async (tableName, oldFieldName, newFieldName, newFieldTypeStr) => {
-	newFieldTypeStr = newFieldTypeStr || await nodber.getFieldTypeStr(tableName, oldFieldName);
+const fn = async (tableName, oldFieldName, newFieldName, newFieldTypeDef) => {
+	const newFieldTypeStr = !newFieldTypeDef ?
+			await nodber.getFieldTypeStr(tableName, oldFieldName) :
+			nodber.convertFieldTypeDefToStr(newFieldTypeDef)
+	;
 
 	const result = await nodber.proxy(tableName, {oldFieldName, newFieldName, newFieldTypeStr});
 	return result;
