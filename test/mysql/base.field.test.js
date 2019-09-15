@@ -114,6 +114,36 @@ describe('MySQL - base/field', () => {
 		expect(result === false).to.be.true;
 	});
 
+	it(`.addFields()`, async () => {
+		const fieldDefs = [
+			{name: 'f1', type: 'varchar', length: 100},
+			{name: 'f2', type: 'int'},
+			{name: 'f3', type: 'float', m: 10, d: 2},
+		];
+		await nodber.addFields(table, fieldDefs);
+
+		const field = fieldDefs[0].name;
+		const result = await nodber.isFieldExists(table, field);
+
+		await nodber.deleteFields(table, fieldDefs);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.deleteFields()`, async () => {
+		const fieldDefs = [
+			{name: 'f1', type: 'varchar', length: 100},
+			{name: 'f2', type: 'int'},
+			{name: 'f3', type: 'float', m: 10, d: 2},
+		];
+		await nodber.addFields(table, fieldDefs);
+		await nodber.deleteFields(table, fieldDefs);
+
+		const field = fieldDefs[0].name;
+		const result = await nodber.isFieldExists(table, field);
+
+		expect(result === false).to.be.true;
+	});
+
 	it(`.changeFieldName()`, async () => {
 		const field = 'xxx';
 		const typeDef = 'varchar(100)';
