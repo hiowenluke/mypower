@@ -1,6 +1,11 @@
 
 const nodber = require('../..');
 
+// Three forms of definition:
+//		{type: 'varchar', length: 100}
+//		{type: 'float', m: 10, d: 2}
+//		{type: 'int'}
+
 /** @name nodber.convertFieldTypeDefToStr */
 const fn = (definition) => {
 	if (!definition || typeof definition !== 'object') return definition;
