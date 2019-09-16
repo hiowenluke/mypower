@@ -198,7 +198,7 @@ describe('MySQL - base/field', () => {
 		const updateFieldDefs = [
 			{name: 'f1', newDef: {name: 'xxx', type: 'text'}},
 			{name: 'f2', newDef: {type: 'tinyint'}},
-			{name: 'f3', newDef: {type: 'double', m: 4, d: 6}},
+			{name: 'f3', newDef: {type: 'double', m: 8, d: 6}},
 		];
 		await nodber.changeFields(table, updateFieldDefs);
 		// await nodber.updateFields(table, updateFieldDefs);
@@ -206,7 +206,7 @@ describe('MySQL - base/field', () => {
 		const result = await nodber.isFieldExists(table, 'xxx');
 
 		await nodber.deleteFields(table, 'xxx,f2,f3'.split(','));
-		expect(result === false).to.be.true;
+		expect(result === true).to.be.true;
 	});
 
 });
