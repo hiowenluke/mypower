@@ -43,6 +43,7 @@ describe('MySQL - base/database', () => {
 
 	it(`.dropDatabase() or .deleteDatabase()`, async () => {
 		const result = await nodber.dropDatabase(testDatabaseName);
+		// const result = await nodber.deleteDatabase(testDatabaseName);
 		expect(result === true).to.be.true;
 	});
 

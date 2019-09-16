@@ -152,6 +152,7 @@ describe('MySQL - base/field', () => {
 		const newFieldName = field + '_123';
 		const newFieldTypeDef = 'text';
 		await nodber.changeField(table, oldFieldName, newFieldName, newFieldTypeDef);
+		// await nodber.updateField(table, oldFieldName, newFieldName, newFieldTypeDef);
 
 		const result = await nodber.getFieldTypeStr(table, newFieldName);
 
@@ -200,6 +201,7 @@ describe('MySQL - base/field', () => {
 			{name: 'f3', newDef: {type: 'double', m: 4, d: 6}},
 		];
 		await nodber.changeFields(table, updateFieldDefs);
+		// await nodber.updateFields(table, updateFieldDefs);
 
 		const result = await nodber.isFieldExists(table, 'xxx');
 
