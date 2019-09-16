@@ -28,6 +28,11 @@ const fn = (definition) => {
 
 	if (m) {
 		if (d) {
+			if (m < d) {
+				// Error message copied from mysql
+				throw new Error('For float(M,D), double(M,D) or decimal(M,D), M must be >= D');
+			}
+
 			// float(8, 2), double(10, 2), decimal(12, 2)
 			str = `${type}(${m}, ${d})`;
 		}
