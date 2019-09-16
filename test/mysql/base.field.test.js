@@ -129,7 +129,7 @@ describe('MySQL - base/field', () => {
 		expect(result === true).to.be.true;
 	});
 
-	it(`.changeFieldType()`, async () => {
+	it(`.changeFieldType() // varchar(100) => text`, async () => {
 		const field = 'xxx';
 		const typeDef = 'varchar(100)';
 		await nodber.addField(table, field, typeDef);
@@ -141,6 +141,34 @@ describe('MySQL - base/field', () => {
 
 		await nodber.deleteField(table, field);
 		expect(result === 'text(65535)').to.be.true;
+	});
+
+	it(`.changeFieldType() // varchar(100) => int`, async () => {
+		const field = 'xxx';
+		const typeDef = 'varchar(100)';
+		await nodber.addField(table, field, typeDef);
+
+		const newFieldTypeDef = 'int';
+		await nodber.changeFieldType(table, field, newFieldTypeDef);
+
+		const result = await nodber.getFieldTypeStr(table, field);
+
+		await nodber.deleteField(table, field);
+		expect(result === 'int(10)').to.be.true;
+	});
+
+	it(`.changeFieldType() // varchar(100) => float(10, 2)`, async () => {
+		const field = 'xxx';
+		const typeDef = 'varchar(100)';
+		await nodber.addField(table, field, typeDef);
+
+		const newFieldTypeDef = 'float(10, 2)';
+		await nodber.changeFieldType(table, field, newFieldTypeDef);
+
+		const result = await nodber.getFieldTypeStr(table, field);
+
+		await nodber.deleteField(table, field);
+		expect(result === 'float(10, 2)').to.be.true;
 	});
 
 	it(`.changeField() or .updateField()`, async () => {
