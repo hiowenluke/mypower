@@ -61,7 +61,7 @@ const me = {
 	// Records
 	// -------------------------------------------
 
-	count: 'select count(*) as count from `{tableName}` where {whereStr}',
+	count: 'select count(*) as cnt from `{tableName}` where {whereStr}',
 	getMaxFieldValue: 'select max({fieldName}) as maxval from `{tableName}` where {whereStr}',
 	getMinFieldValue: 'select min({fieldName}) as minval from `{tableName}` where {whereStr}',
 	getMaxRecord: 'select * from `{tableName}` where {whereStr} and {fieldName} = (select max({fieldName}) from `{tableName}` where {whereStr})',
