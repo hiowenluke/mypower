@@ -13,14 +13,14 @@ describe('MySQL - server', () => {
 	itInit();
 	it___________________________();
 
-	it(`.changeServer(config)`, async () => {
+	it(`.switchToServer(config)`, async () => {
 		const cfg = config.use('mysql');
-		const result = await nodber.changeServer(cfg);
+		const result = await nodber.switchToServer(cfg);
 		expect(result === true).to.be.true;
 	});
 
-	it(`.changeServer()`, async () => {
-		const result = await nodber.changeServer();
+	it(`.switchToServer()`, async () => {
+		const result = await nodber.switchToServer();
 		expect(result === true).to.be.true;
 	});
 
