@@ -2,7 +2,7 @@
 const nodber = require('../..');
 const config = require('../__config');
 
-/** @name nodber.changeServer */
+/** @name nodber.switchToServer */
 const fn = async (newConfig) => {
 
 	if (!newConfig) {
