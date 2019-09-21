@@ -17,6 +17,17 @@ const fn = async (newConfig) => {
 	else {
 		// Backup the original config
 		config.backedupConfig = config;
+
+		// The newConfig is host name, not config
+		if (typeof newConfig === 'string') {
+			const host = newConfig;
+
+			// Use current config
+			newConfig = Object.create(config);
+
+			// Replace the host with new value
+			newConfig.host = host;
+		}
 	}
 
 	return await nodber.connectServer(newConfig);
