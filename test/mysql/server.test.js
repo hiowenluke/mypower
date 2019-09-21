@@ -19,6 +19,13 @@ describe('MySQL - server', () => {
 		expect(result === true).to.be.true;
 	});
 
+	it(`.switchToServer(host)`, async () => {
+		const cfg = config.use('mysql');
+		const host = cfg.host;
+		const result = await nodber.switchToServer(host);
+		expect(result === true).to.be.true;
+	});
+
 	it(`.switchToServer()`, async () => {
 		const result = await nodber.switchToServer();
 		expect(result === true).to.be.true;
