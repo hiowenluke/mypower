@@ -1,7 +1,5 @@
 
 const me = {
-
-	dialect: 'mysql',
 	database: 'sys',
 	username: 'root',
 	password: 'playboy',
