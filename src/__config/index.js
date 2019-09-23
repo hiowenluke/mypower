@@ -18,8 +18,8 @@ const me = {
 		this.set(...args);
 	},
 
-	set(cfg) {
-		Object.assign(this, cfg);
+	set(config) {
+		Object.assign(this, config);
 	},
 
 	get() {
