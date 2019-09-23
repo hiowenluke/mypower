@@ -3,7 +3,7 @@ const sequery = require('sequelize-raw-query');
 const my = require('../..');
 const config = require('../../__config');
 
-const reInitmy = (databaseName) => {
+const reInitMyPower = (databaseName) => {
 	const data = config.get();
 	data.database = databaseName;
 	config.init(data);
@@ -18,7 +18,7 @@ const reInitSequery = (databaseName) => {
 /** @name my.useDatabase */
 const fn = async (databaseName) => {
 
-	reInitmy(databaseName);
+	reInitMyPower(databaseName);
 	reInitSequery(databaseName);
 
 	const result = await my.proxy(databaseName);
