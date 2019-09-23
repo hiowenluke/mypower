@@ -4,29 +4,31 @@ const config = require('../__config');
 const nodber = require('..');
 
 /** @name nodber.restoreDatabase */
-const fn = async (databaseName, infile, {host, unzip = false} = {}) => {
+const fn = async (databaseName, infile, {host, toHost, unzip = false} = {}) => {
 
 	const {username, password} = config;
-	const optionHost = host ? '-h ' + host : '';
+	const optionToHost = host || toHost ? '-h ' + (host || toHost) : '';
 	const gunzip = unzip || /\.gz$/.test(infile) ? `gunzip < ${infile} | ` : '';
+
+	const sqlCreateDatabase = nodber.sqls('createDatabase', {databaseName});
 
 	const cmd = {
 		one: `
 			${gunzip} 
-			mysql ${optionHost} -u${username} -p${password} -e "create database if not exists ${databaseName} character set utf8mb4 collate utf8mb4_unicode_ci" && 
-			mysql ${optionHost} -u${username} -p${password} --database=${databaseName} < ${infile.replace(/\\.gz$/, '')}
+			mysql ${optionToHost} -u${username} -p${password} -e "${sqlCreateDatabase}" && 
+			mysql ${optionToHost} -u${username} -p${password} --database=${databaseName} < ${infile.replace(/\\.gz$/, '')}
 		`,
 
 		all: `
 			${gunzip} 
-			mysql ${optionHost} -u${username} -p${password} < ${infile.replace(/\\.gz$/, '')}
+			mysql ${optionToHost} -u${username} -p${password} < ${infile.replace(/\\.gz$/, '')}
 		`
 	};
 
 	const type = databaseName === 'all' ? 'all' : 'one';
-	shell.exec(cmd[type], {silent: true});
 
-	return true;
+	const result = shell.exec(cmd[type], {silent: true});
+	return result.code !== 0 ? console.log(result.stderr.replace(/\\n/g, '\n')) : true;
 };
 
 module.exports = fn;

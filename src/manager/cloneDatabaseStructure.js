@@ -2,8 +2,8 @@
 const nodber = require('..');
 
 /** @name nodber.cloneDatabaseStructure */
-const fn = async (sourceDatabaseName, targetDatabaseName) => {
-	return await nodber.cloneDatabase(sourceDatabaseName, targetDatabaseName, {isStructureOnly: true});
+const fn = async (fromDatabaseName, toDatabaseName) => {
+	return await nodber.cloneDatabase(fromDatabaseName, toDatabaseName, {isStructureOnly: true});
 };
 
 module.exports = fn;

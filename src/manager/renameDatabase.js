@@ -11,15 +11,18 @@ const fn = async (oldDatabaseName, newDatabaseName) => {
 	}
 
 	const {username, password} = config;
+	const sqlCreateDatabase = nodber.sqls('createDatabase', newDatabaseName);
+	const sqlDropDatabase = nodber.sqls('dropDatabase', oldDatabaseName);
+
 	const cmd = `
-		mysql -u${username} -p${password} -e "create database if not exists ${newDatabaseName} character set utf8mb4 collate utf8mb4_unicode_ci" && 
+		mysql -u${username} -p${password} -e "${sqlCreateDatabase}" && 
 		list_table=$(mysql -u${username} -p${password} -Nse "select table_name from information_schema.TABLES where TABLE_SCHEMA='${oldDatabaseName}'") && 
 		for table in $list_table; do mysql -u${username} -p${password} -e "rename table ${oldDatabaseName}.$table to ${newDatabaseName}.$table"; done &&
-		mysql -u${username} -p${password} -e "drop database ${oldDatabaseName}"		
+		mysql -u${username} -p${password} -e "${sqlDropDatabase}"		
 	`;
-	shell.exec(cmd, {silent: true});
 
-	return true;
+	const result = shell.exec(cmd, {silent: true});
+	return result.code !== 0 ? console.log(result.stderr.replace(/\\n/g, '\n')) : true;
 };
 
 module.exports = fn;

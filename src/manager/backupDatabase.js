@@ -23,9 +23,9 @@ const fn = async (databaseName, outfile, {host, zip = false} = {}) => {
 	const cmd = `
 		mysqldump ${optionHost} -u${username} -p${password} ${databaseName} ${gzip} > ${outfile}
 	`;
-	shell.exec(cmd, {silent: true});
 
-	return true;
+	const result = shell.exec(cmd, {silent: true});
+	return result.code !== 0 ? console.log(result.stderr.replace(/\\n/g, '\n')) : true;
 };
 
 module.exports = fn;

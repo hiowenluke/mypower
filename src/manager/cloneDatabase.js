@@ -4,13 +4,16 @@ const config = require('../__config');
 const nodber = require('..');
 
 /** @name nodber.cloneDatabase */
-const fn = async (sourceDatabaseName, targetDatabaseName, {isStructureOnly, host, fromHost, toHost} = {}) => {
+const fn = async (fromDatabaseName, toDatabaseName, {isForce, isStructureOnly, host, fromHost, toHost} = {}) => {
 
-	if (await nodber.isDatabaseExists(targetDatabaseName)) {
-		return false;
+	if (await nodber.isDatabaseExists(toDatabaseName, toHost)) {
+		if (!isForce) {
+			return false;
+		}
+		else {
+			await nodber.dropDatabase(toDatabaseName, toHost);
+		}
 	}
-
-	await nodber.createDatabase(targetDatabaseName);
 
 	const {username, password} = config;
 	const option_d = isStructureOnly ? '-d' : '';
@@ -18,13 +21,16 @@ const fn = async (sourceDatabaseName, targetDatabaseName, {isStructureOnly, host
 	const optionFromHost = fromHost ? '-h ' + fromHost : '';
 	const optionToHost = toHost || host ? '-h ' + (toHost || host) : '';
 
-	const cmd = `
-		mysqldump ${optionFromHost} -u${username} -p${password} ${option_d} ${sourceDatabaseName} | 
-		mysql ${optionToHost} -u${username} -p${password} ${option_D} ${targetDatabaseName}
-	`;
-	shell.exec(cmd, {silent: true});
+	const sqlCreateDatabase = nodber.sqls('createDatabase', toDatabaseName);
 
-	return true;
+	const cmd = `
+		mysql ${optionToHost} -u${username} -p${password} -e "${sqlCreateDatabase}" &&
+		mysqldump ${optionFromHost} -u${username} -p${password} ${option_d} ${fromDatabaseName} | 
+		mysql ${optionToHost} -u${username} -p${password} ${option_D} ${toDatabaseName}
+	`;
+
+	const result = shell.exec(cmd, {silent: true});
+	return result.code !== 0 ? console.log(result.stderr.replace(/\\n/g, '\n')) : true;
 };
 
 module.exports = fn;
