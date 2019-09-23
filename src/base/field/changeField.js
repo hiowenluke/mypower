@@ -1,14 +1,14 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.changeField */
+/** @name my.changeField */
 const fn = async (tableName, oldFieldName, newFieldName, newFieldTypeDef) => {
 	const newFieldTypeStr = !newFieldTypeDef ?
-			await nodber.getFieldTypeStr(tableName, oldFieldName) :
-			nodber.convertFieldTypeDefToStr(newFieldTypeDef)
+			await my.getFieldTypeStr(tableName, oldFieldName) :
+			my.convertFieldTypeDefToStr(newFieldTypeDef)
 	;
 
-	const result = await nodber.proxy(tableName, {oldFieldName, newFieldName, newFieldTypeStr});
+	const result = await my.proxy(tableName, {oldFieldName, newFieldName, newFieldTypeStr});
 	return result;
 };
 

@@ -1,7 +1,7 @@
 
-const nodber = require('../../..');
+const my = require('../../..');
 
-/** @name nodber.batchInsert */
+/** @name my.batchInsert */
 const fn = async (tableName, dataArr) => {
 
 	if (!Array.isArray(dataArr)) {
@@ -11,7 +11,7 @@ const fn = async (tableName, dataArr) => {
 	let result;
 	for (let i = 0; i < dataArr.length; i ++) {
 		const data = dataArr[i];
-		result = await nodber.insert(tableName, data);
+		result = await my.insert(tableName, data);
 	}
 
 	return result;

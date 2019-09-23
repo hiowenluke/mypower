@@ -22,7 +22,7 @@ const pickup = {
 	}
 };
 
-/** @name nodber.getTableNameFromSql */
+/** @name my.getTableNameFromSql */
 const fn = (sql) => {
 	return pickup.fromSelect(sql) || pickup.fromDelete(sql) || pickup.fromInsert(sql) || pickup.fromUpdate(sql) || null;
 };

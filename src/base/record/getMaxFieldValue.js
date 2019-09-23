@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getMaxFieldValue */
+/** @name my.getMaxFieldValue */
 const fn = async (tableName, fieldName, whereStr = '1=1') => {
-	const result = await nodber.proxy(tableName, {fieldName, whereStr});
+	const result = await my.proxy(tableName, {fieldName, whereStr});
 	return result[0].maxval;
 };
 

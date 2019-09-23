@@ -1,7 +1,7 @@
 
 // For {xxx}
 
-/** @name nodber.sqlTemplate */
+/** @name my.sqlTemplate */
 const fn = (sqlTemplate, data) => {
 	if (!data || typeof data !== 'object') {
 		throw new Error('Require data arguments, and it is must be an object');

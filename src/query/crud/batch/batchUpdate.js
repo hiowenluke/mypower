@@ -1,7 +1,7 @@
 
-const nodber = require('../../..');
+const my = require('../../..');
 
-/** @name nodber.batchUpdate */
+/** @name my.batchUpdate */
 const fn = async (tableName, dataArr, whereArr) => {
 
 	if (!Array.isArray(dataArr)) {
@@ -13,7 +13,7 @@ const fn = async (tableName, dataArr, whereArr) => {
 	for (let i = 0; i < dataArr.length; i ++) {
 		const data = dataArr[i];
 		const where = whereArr[i];
-		result = await nodber.update(tableName, data, where);
+		result = await my.update(tableName, data, where);
 	}
 
 	return result;

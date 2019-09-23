@@ -1,3 +1,3 @@
 
-/** @name nodber.truncateTable */
+/** @name my.truncateTable */
 module.exports = require('../createDoFn')();

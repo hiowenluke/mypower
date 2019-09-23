@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getMinId */
+/** @name my.getMinId */
 const fn = async (tableName, idName = 'id') => {
-	return await nodber.getMinFieldValue(tableName, idName);
+	return await my.getMinFieldValue(tableName, idName);
 };
 
 module.exports = fn;

@@ -1,5 +1,5 @@
 
-const nodber = require('../../src');
+const my = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
 const {itInit, it___________________________} = tools;
@@ -10,27 +10,27 @@ describe('MySQL - base/system', () => {
 	it___________________________();
 
 	it(`.getSystemVariable()`, async () => {
-		const result = await nodber.getSystemVariable('version');
+		const result = await my.getSystemVariable('version');
 		expect(typeof result === 'string').to.be.true;
 	});
 
 	it(`.getSystemVariables()`, async () => {
-		const result = await nodber.getSystemVariables();
+		const result = await my.getSystemVariables();
 		expect(Array.isArray(result)).to.be.true;
 	});
 
 	it(`.getVersion()`, async () => {
-		const result = await nodber.getVersion();
+		const result = await my.getVersion();
 		expect(typeof result === 'string').to.be.true;
 	});
 
 	it(`.getWarningCount()`, async () => {
-		const result = await nodber.getWarningCount();
+		const result = await my.getWarningCount();
 		expect(typeof result === 'number').to.be.true;
 	});
 
 	it(`.isSuccessful()`, async () => {
-		const result = await nodber.isSuccessful();
+		const result = await my.isSuccessful();
 		expect(typeof result === 'boolean').to.be.true;
 	});
 

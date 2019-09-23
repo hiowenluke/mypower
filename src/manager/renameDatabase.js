@@ -1,18 +1,18 @@
 
 const shell = require('shelljs');
 const config = require('../__config');
-const nodber = require('..');
+const my = require('..');
 
-/** @name nodber.renameDatabase */
+/** @name my.renameDatabase */
 const fn = async (oldDatabaseName, newDatabaseName) => {
 
-	if (await nodber.isDatabaseExists(newDatabaseName)) {
+	if (await my.isDatabaseExists(newDatabaseName)) {
 		return false;
 	}
 
 	const {username, password} = config;
-	const sqlCreateDatabase = nodber.sqls('createDatabase', newDatabaseName);
-	const sqlDropDatabase = nodber.sqls('dropDatabase', oldDatabaseName);
+	const sqlCreateDatabase = my.sqls('createDatabase', newDatabaseName);
+	const sqlDropDatabase = my.sqls('dropDatabase', oldDatabaseName);
 
 	const cmd = `
 		mysql -u${username} -p${password} -e "${sqlCreateDatabase}" && 

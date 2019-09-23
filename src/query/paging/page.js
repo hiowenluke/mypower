@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 const lib = require('./__lib');
 
 // args = {table, fields, where, isGroup, group, order, pageNumber, pageSize, tableAs, data}
-/** @name nodber.page */
+/** @name my.page */
 const fn = async (args) => {
 	let {pageNumber, pageSize} = args;
 
@@ -18,12 +18,12 @@ const fn = async (args) => {
 		args.order = await lib.getDefaultOrderFiled(args.table);
 	}
 
-	const {sqlMain, sqlClauses} = await nodber.select(args);
+	const {sqlMain, sqlClauses} = await my.select(args);
 
 	args.sqlMain = sqlMain;
 	args.sqlClauses = sqlClauses;
 
-	const result = await nodber.pageBySql(args);
+	const result = await my.pageBySql(args);
 	return result;
 };
 

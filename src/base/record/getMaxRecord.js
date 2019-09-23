@@ -1,14 +1,14 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getMaxRecord */
+/** @name my.getMaxRecord */
 const fn = async (tableName, fieldName, whereStr) => {
-	fieldName = fieldName || await nodber.getPrimaryKey(tableName);
+	fieldName = fieldName || await my.getPrimaryKey(tableName);
 	whereStr = whereStr || '1=1';
 
 	// If there is no primary key, try using id as the primary key
 	if (!fieldName) {
-		if (await nodber.isFieldExists(tableName, 'id')) {
+		if (await my.isFieldExists(tableName, 'id')) {
 			fieldName = 'id';
 		}
 		else {
@@ -16,8 +16,8 @@ const fn = async (tableName, fieldName, whereStr) => {
 		}
 	}
 
-	const result = await nodber.proxy(tableName, {fieldName, whereStr});
-	return !result ? null : nodber.lowerCaseFieldNames(result[0]);
+	const result = await my.proxy(tableName, {fieldName, whereStr});
+	return !result ? null : my.lowerCaseFieldNames(result[0]);
 };
 
 module.exports = fn;

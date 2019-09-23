@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.isFieldExists */
+/** @name my.isFieldExists */
 const fn = async (tableName, fieldName) => {
-	let fieldNames = await nodber.getFieldNames(tableName);
+	let fieldNames = await my.getFieldNames(tableName);
 	if (!fieldNames) return;
 
 	return fieldNames.indexOf(fieldName) >= 0;

@@ -1,14 +1,14 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.copyTableData */
+/** @name my.copyTableData */
 const fn = async (fromTableName, toTableName, fromDatabaseName, toDatabaseName) => {
 	if (!fromDatabaseName) {
-		fromDatabaseName = await nodber.getSelectedDatabase();
+		fromDatabaseName = await my.getSelectedDatabase();
 		toDatabaseName = fromDatabaseName;
 	}
 
-	const result = await nodber.proxy({fromTableName, toTableName, fromDatabaseName, toDatabaseName});
+	const result = await my.proxy({fromTableName, toTableName, fromDatabaseName, toDatabaseName});
 	return result;
 };
 

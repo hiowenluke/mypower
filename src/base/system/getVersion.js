@@ -1,16 +1,16 @@
 
-const nodber = require('../..');
+const my = require('../..');
 const myCli = require('mysql-cli-exec');
 
-/** @name nodber.getVersion */
+/** @name my.getVersion */
 const fn = async (serverConfig) => {
 	let result;
 
-	const sql = nodber.sqls('getVersion');
+	const sql = my.sqls('getVersion');
 
 	// Do it on current server
 	if (!serverConfig) {
-		result = await nodber.exec(sql);
+		result = await my.exec(sql);
 	}
 	else {
 		// Do it on another server

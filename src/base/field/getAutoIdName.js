@@ -1,3 +1,3 @@
 
-/** @name nodber.getAutoIdName */
+/** @name my.getAutoIdName */
 module.exports = require('../createDoFn')('autoIdName');

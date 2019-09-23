@@ -1,10 +1,10 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getFieldNamesWithoutAutoId */
+/** @name my.getFieldNamesWithoutAutoId */
 const fn = async (tableName) => {
-	const fieldNames = await nodber.getFieldNames(tableName);
-	const autoIdName = await nodber.getAutoIdName(tableName);
+	const fieldNames = await my.getFieldNames(tableName);
+	const autoIdName = await my.getAutoIdName(tableName);
 	return autoIdName ? fieldNames.filter(item => item !== autoIdName) : fieldNames;
 };
 

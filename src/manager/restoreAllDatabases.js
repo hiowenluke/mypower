@@ -1,9 +1,9 @@
 
-const nodber = require('..');
+const my = require('..');
 
-/** @name nodber.restoreAllDatabases */
+/** @name my.restoreAllDatabases */
 const fn = async (...args) => {
-	return nodber.restoreDatabase('all', ...args);
+	return my.restoreDatabase('all', ...args);
 };
 
 module.exports = fn;

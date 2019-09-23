@@ -16,7 +16,7 @@ const handleRecord = (record) => {
 	return record;
 };
 
-/** @name nodber.lowerCaseFieldNames */
+/** @name my.lowerCaseFieldNames */
 const fn = (records) => {
 	if (!records || typeof records !== 'object') return records;
 

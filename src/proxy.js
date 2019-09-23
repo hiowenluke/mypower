@@ -1,5 +1,5 @@
 
-const nodber = require('.');
+const my = require('.');
 const caller = require('caller');
 
 const getPurposeFromCaller = (caller) => {
@@ -7,7 +7,7 @@ const getPurposeFromCaller = (caller) => {
 	return caller.match(/\/([^/]+)?\.js$/i)[1];
 };
 
-/** @name nodber.proxy */
+/** @name my.proxy */
 const fn = async (...args) => {
 	let pathToCaller;
 
@@ -18,8 +18,8 @@ const fn = async (...args) => {
 	}
 
 	const purpose = getPurposeFromCaller(pathToCaller || caller());
-	const sql = nodber.sqls(purpose, ...args);
-	const result = await nodber.exec(sql);
+	const sql = my.sqls(purpose, ...args);
+	const result = await my.exec(sql);
 
 	return result;
 };

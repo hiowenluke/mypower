@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getFieldNames */
+/** @name my.getFieldNames */
 const fn = async (tableName) => {
-	const result = await nodber.proxy(tableName);
+	const result = await my.proxy(tableName);
 	return result.map(obj => obj.fieldname);
 };
 

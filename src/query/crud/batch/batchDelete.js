@@ -1,7 +1,7 @@
 
-const nodber = require('../../..');
+const my = require('../../..');
 
-/** @name nodber.batchDelete */
+/** @name my.batchDelete */
 const fn = async (tableName, whereArr) => {
 
 	if (!Array.isArray(whereArr)) {
@@ -11,7 +11,7 @@ const fn = async (tableName, whereArr) => {
 	let result;
 	for (let i = 0; i < whereArr.length; i ++) {
 		const where = whereArr[i];
-		result = await nodber.delete(tableName, where);
+		result = await my.delete(tableName, where);
 	}
 
 	return result;

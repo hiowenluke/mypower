@@ -1,11 +1,11 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.moveTable */
+/** @name my.moveTable */
 const fn = async (fromDatabaseName, toDatabaseName, fromTableName, toTableName) => {
 	toTableName = toTableName || fromTableName;
 
-	const result = await nodber.proxy({
+	const result = await my.proxy({
 		from_databaseName: fromDatabaseName,
 		to_databaseName: toDatabaseName,
 		from_tableName: fromTableName,

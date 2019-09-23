@@ -1,7 +1,7 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.changeFields */
+/** @name my.changeFields */
 const fn = async (tableName, newFieldDefs) => {
 	let result;
 
@@ -11,7 +11,7 @@ const fn = async (tableName, newFieldDefs) => {
 
 		const newFieldName = newDef.name || oldFieldName;
 		const newFieldTypeDef = newDef;
-		result = await nodber.updateField(tableName, oldFieldName, newFieldName, newFieldTypeDef);
+		result = await my.updateField(tableName, oldFieldName, newFieldName, newFieldTypeDef);
 	}
 
 	return result;

@@ -1,7 +1,7 @@
 
 // For :xxx
 
-/** @name nodber.sqlReplacement */
+/** @name my.sqlReplacement */
 const fn = (sql, data = {}) => {
 
 	// Fetch params from sql, instead of Object.keys(data)

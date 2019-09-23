@@ -1,10 +1,16 @@
 
-const nodber = require('../../src');
+const my = require('../../src');
 const expect = require('chai').expect;
 
 const config = require('../__config/default');
 const tools = require('../__tools');
 const {itInit, it___________________________} = tools;
+
+const simulateServerConfig = () => {
+	const serverConfig = config.use('mysql');
+	serverConfig.host = 'localhost';
+	return serverConfig;
+};
 
 describe('MySQL - base/database', () => {
 	const databaseName = config.testOptions.database;
@@ -13,37 +19,60 @@ describe('MySQL - base/database', () => {
 	itInit();
 	it___________________________();
 
-	it(`.createDatabase()`, async () => {
-		await nodber.dropDatabase(testDatabaseName);
-		const result = await nodber.createDatabase(testDatabaseName);
+	it(`.createDatabase(databaseName)`, async () => {
+		await my.dropDatabase(testDatabaseName);
+		const result = await my.createDatabase(testDatabaseName);
 		expect(result === true).to.be.true;
 	});
 
-	it(`.isDatabaseExists()`, async () => {
-		const result = await nodber.isDatabaseExists(testDatabaseName);
+	it(`.createDatabase(databaseName, host)`, async () => {
+		const host = 'localhost';
+		await my.dropDatabase(testDatabaseName, host);
+
+		const result = await my.createDatabase(testDatabaseName, host);
 		expect(result === true).to.be.true;
 	});
 
-	it(`.createDatabase() // false, 'cause it is exists`, async () => {
-		const result = await nodber.createDatabase(testDatabaseName);
-		expect(result === false).to.be.true;
+	it(`.createDatabase(databaseName, serverConfig)`, async () => {
+		const serverConfig = simulateServerConfig();
+		await my.dropDatabase(testDatabaseName, serverConfig);
+
+		const result = await my.createDatabase(testDatabaseName, serverConfig);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.isDatabaseExists(databaseName)`, async () => {
+		const result = await my.isDatabaseExists(testDatabaseName);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.isDatabaseExists(databaseName, host)`, async () => {
+		const host = 'localhost';
+		const result = await my.isDatabaseExists('sys', host);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.isDatabaseExists(databaseName, serverConfig)`, async () => {
+		const serverConfig = simulateServerConfig();
+		const result = await my.isDatabaseExists(testDatabaseName, serverConfig);
+		expect(result === true).to.be.true;
 	});
 
 	it(`.showDatabases() // find the testDatabaseName in result array`, async () => {
-		const result = await nodber.showDatabases(testDatabaseName);
+		const result = await my.showDatabases();
 		expect(!!result.find(item => item.Database === testDatabaseName)).to.be.true;
 	});
 
 	it(`.useDatabase() and .getSelectedDatabase()`, async () => {
-		await nodber.useDatabase('sys');
-		await nodber.useDatabase(testDatabaseName);
-		const result = await nodber.getSelectedDatabase();
+		await my.useDatabase('sys');
+		await my.useDatabase(testDatabaseName);
+		const result = await my.getSelectedDatabase();
 		expect(result === testDatabaseName).to.be.true;
 	});
 
 	it(`.dropDatabase() or .deleteDatabase()`, async () => {
-		const result = await nodber.dropDatabase(testDatabaseName);
-		// const result = await nodber.deleteDatabase(testDatabaseName);
+		const result = await my.dropDatabase(testDatabaseName);
+		// const result = await my.deleteDatabase(testDatabaseName);
 		expect(result === true).to.be.true;
 	});
 

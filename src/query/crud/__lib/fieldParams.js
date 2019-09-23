@@ -1,5 +1,5 @@
 
-const nodber = require('../../..');
+const my = require('../../..');
 
 /** @name lib.fieldParams */
 const me = {
@@ -26,7 +26,7 @@ const me = {
 	},
 
 	async genAllByTableName(tableName, data) {
-		let fieldNames = await nodber.getFieldNamesWithoutAutoId(tableName);
+		let fieldNames = await my.getFieldNamesWithoutAutoId(tableName);
 		return this.genAll(fieldNames, data);
 	},
 

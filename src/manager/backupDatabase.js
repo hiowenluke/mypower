@@ -1,9 +1,9 @@
 
 const shell = require('shelljs');
 const config = require('../__config');
-const nodber = require('..');
+const my = require('..');
 
-/** @name nodber.backupDatabase */
+/** @name my.backupDatabase */
 const fn = async (databaseName, outfile, {host, zip = false} = {}) => {
 
 	if (databaseName === 'all') {

@@ -1,13 +1,13 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.dropTable */
+/** @name my.dropTable */
 const fn = async (tableName) => {
-	if (!(await nodber.isTableExists(tableName))) {
+	if (!(await my.isTableExists(tableName))) {
 		return false;
 	}
 
-	const result = await nodber.proxy(tableName);
+	const result = await my.proxy(tableName);
 	return result.warningStatus === 0;
 };
 

@@ -1,13 +1,13 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.addPrimaryKeys */
+/** @name my.addPrimaryKeys */
 const fn = async (tableName, primaryKeys) => {
 	if (Array.isArray(primaryKeys)) {
 		primaryKeys = primaryKeys.join(',');
 	}
 
-	const result = await nodber.proxy(tableName, {primaryKeys});
+	const result = await my.proxy(tableName, {primaryKeys});
 	return result;
 };
 

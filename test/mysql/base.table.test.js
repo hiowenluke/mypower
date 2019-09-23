@@ -1,5 +1,5 @@
 
-const nodber = require('../../src');
+const my = require('../../src');
 const expect = require('chai').expect;
 const config = require('../__config/default');
 const tools = require('../__tools');
@@ -13,51 +13,51 @@ describe('MySQL - base/table', () => {
 	it___________________________();
 
 	it(`.createTable()`, async () => {
-		await nodber.dropTable(tableName);
+		await my.dropTable(tableName);
 		const result = await tools.createTableUsers(tableName);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.isTableExists()`, async () => {
-		const result = await nodber.isTableExists(tableName);
+		const result = await my.isTableExists(tableName);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.showTables() // find the tableName in result array`, async () => {
-		const result = await nodber.showTables(tableName);
+		const result = await my.showTables(tableName);
 		expect(!!result.find(item => item['Tables_in_' + databaseName] === tableName)).to.be.true;
 	});
 
 	it(`.descTable()`, async () => {
-		const result = await nodber.descTable(tableName);
+		const result = await my.descTable(tableName);
 		expect(result[0].Field === 'id').to.be.true;
 	});
 
 	it(`.isEmptyTable() // false`, async () => {
-		await nodber.exec(`insert into ${tableName} (id, username) values(1, 'haha')`);
-		const result = await nodber.isEmptyTable(tableName);
+		await my.exec(`insert into ${tableName} (id, username) values(1, 'haha')`);
+		const result = await my.isEmptyTable(tableName);
 		expect(result === false).to.be.true;
 	});
 
 	it(`.truncateTable() and .isEmptyTable() // true`, async () => {
-		await nodber.truncateTable(tableName);
-		const result = await nodber.isEmptyTable(tableName);
+		await my.truncateTable(tableName);
+		const result = await my.isEmptyTable(tableName);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.renameTable()`, async () => {
 		const a = tableName;
 		const b = tableName + '_123';
-		await nodber.renameTable(a, b);
-		const result = await nodber.renameTable(b, a);
+		await my.renameTable(a, b);
+		const result = await my.renameTable(b, a);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.moveTable() // keep table name`, async () => {
 		const from = databaseName;
 		const to = 'sys';
-		await nodber.moveTable(from, to, tableName);
-		const result = await nodber.moveTable(to, from, tableName);
+		await my.moveTable(from, to, tableName);
+		const result = await my.moveTable(to, from, tableName);
 		expect(result === true).to.be.true;
 	});
 
@@ -66,13 +66,13 @@ describe('MySQL - base/table', () => {
 		const fromTable = tableName;
 		const toDatabase = 'sys';
 		const toTable = fromTable + '_123';
-		await nodber.moveTable(fromDatabase, toDatabase, fromTable, toTable);
-		const result = await nodber.moveTable(toDatabase, fromDatabase, toTable, fromTable);
+		await my.moveTable(fromDatabase, toDatabase, fromTable, toTable);
+		const result = await my.moveTable(toDatabase, fromDatabase, toTable, fromTable);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.dropTable()`, async () => {
-		const result = await nodber.dropTable(tableName);
+		const result = await my.dropTable(tableName);
 		expect(result === true).to.be.true;
 	});
 
@@ -81,11 +81,11 @@ describe('MySQL - base/table', () => {
 		await tools.addUsers(tableName);
 
 		const newTableName = tableName + '_new';
-		await nodber.dropTable(newTableName);
-		await nodber.cloneTableStructure(newTableName, tableName);
+		await my.dropTable(newTableName);
+		await my.cloneTableStructure(newTableName, tableName);
 
-		const result = await nodber.getFieldNames(newTableName);
-		await nodber.dropTable(tableName);
+		const result = await my.getFieldNames(newTableName);
+		await my.dropTable(tableName);
 
 		expect(result.length > 0).to.be.true;
 	});
@@ -95,11 +95,11 @@ describe('MySQL - base/table', () => {
 		await tools.addUsers(tableName);
 
 		const newTableName = tableName + '_new';
-		await nodber.dropTable(newTableName);
-		await nodber.cloneTable(newTableName, tableName);
+		await my.dropTable(newTableName);
+		await my.cloneTable(newTableName, tableName);
 
-		const result = await nodber.select(newTableName);
-		await nodber.dropTable(tableName);
+		const result = await my.select(newTableName);
+		await my.dropTable(tableName);
 
 		expect(result.length > 0).to.be.true;
 	});

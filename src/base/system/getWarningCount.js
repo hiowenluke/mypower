@@ -1,15 +1,15 @@
 
-const nodber = require('../..');
+const my = require('../..');
 const myCli = require('mysql-cli-exec');
 
-/** @name nodber.getWarningCount */
+/** @name my.getWarningCount */
 const fn = async (serverConfig) => {
-	const sql = nodber.sqls('getWarningCount');
+	const sql = my.sqls('getWarningCount');
 	let result;
 
 	// Do it on current server
 	if (!serverConfig) {
-		result = await nodber.exec(sql);
+		result = await my.exec(sql);
 	}
 	else {
 		// Do it on another server

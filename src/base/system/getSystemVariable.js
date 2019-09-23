@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getSystemVariable */
+/** @name my.getSystemVariable */
 const fn = async (variableName, serverConfig) => {
-	const result = await nodber.getSystemVariables(variableName, serverConfig);
+	const result = await my.getSystemVariables(variableName, serverConfig);
 	return result && result[0] ? result[0].Value : null;
 };
 

@@ -1,7 +1,7 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.deleteFields */
+/** @name my.deleteFields */
 const fn = async (tableName, fieldNamesArr) => {
 	let result;
 
@@ -13,7 +13,7 @@ const fn = async (tableName, fieldNamesArr) => {
 			fieldName = fieldName.name;
 		}
 
-		result = await nodber.deleteField(tableName, fieldName);
+		result = await my.deleteField(tableName, fieldName);
 	}
 
 	return result;

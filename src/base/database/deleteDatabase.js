@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.deleteDatabase */
+/** @name my.deleteDatabase */
 const fn = async (...args) => {
-	return await nodber.dropDatabase(...args);
+	return await my.dropDatabase(...args);
 };
 
 module.exports = fn;

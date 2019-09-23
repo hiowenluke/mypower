@@ -1,9 +1,9 @@
 
-const nodber = require('../../..');
+const my = require('../../..');
 
 /** @name lib.getDefaultOrderFiled */
 const fn = async (tableName) => {
-	const primaryKey = await nodber.getPrimaryKey(tableName);
+	const primaryKey = await my.getPrimaryKey(tableName);
 
 	if (!primaryKey) {
 		throw new Error('Require order argument for paging');

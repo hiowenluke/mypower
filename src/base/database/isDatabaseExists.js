@@ -1,24 +1,22 @@
 
-const nodber = require('../..');
-const config = require('../../__config');
-const shell = require('shelljs');
+const my = require('../..');
 const myCli = require('mysql-cli-exec');
 
-/** @name nodber.isDatabaseExists */
+/** @name my.isDatabaseExists */
 const fn = async (databaseName, serverConfig) => {
-	const sql = await nodber.sqls('isDatabaseExists', databaseName);
+	const sql = my.sqls('isDatabaseExists', databaseName);
 	let result;
 
 	// Do it on current server
 	if (!serverConfig) {
-		result = await nodber.exec(sql);
+		result = await my.exec(sql);
 	}
 	else {
 		// Do it on another server
 		result = myCli.exec(sql, serverConfig);
 	}
 
-	return result.length === 1;
+	return result && result.length === 1;
 };
 
 module.exports = fn;

@@ -24,7 +24,7 @@ const getKeys = (records, fieldNames) => {
 	return Object.keys(records[0]);
 };
 
-/** @name nodber.lowerCaseRecords */
+/** @name my.lowerCaseRecords */
 const fn = (records, fieldNames) => {
 	if (!records || !Array.isArray(records)) return;
 

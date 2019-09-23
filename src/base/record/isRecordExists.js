@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.isRecordExists */
+/** @name my.isRecordExists */
 const fn = async (tableName, whereStr = '1=1') => {
-	const result = await nodber.recordsCount(tableName, whereStr);
+	const result = await my.recordsCount(tableName, whereStr);
 	return !!result;
 };
 

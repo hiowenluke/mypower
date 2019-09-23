@@ -1,5 +1,5 @@
 
-const nodber = require('../../src');
+const my = require('../../src');
 const expect = require('chai').expect;
 
 const config = require('../__config/default');
@@ -15,25 +15,25 @@ describe('MySQL - server', () => {
 
 	it(`.switchToServer(config)`, async () => {
 		const cfg = config.use('mysql');
-		const result = await nodber.switchToServer(cfg);
+		const result = await my.switchToServer(cfg);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.switchToServer(host)`, async () => {
 		const cfg = config.use('mysql');
 		const host = cfg.host;
-		const result = await nodber.switchToServer(host);
+		const result = await my.switchToServer(host);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.switchToServer()`, async () => {
-		const result = await nodber.switchToServer();
+		const result = await my.switchToServer();
 		expect(result === true).to.be.true;
 	});
 
 	it(`.connectServer()`, async () => {
 		const cfg = config.use('mysql');
-		const result = await nodber.connectServer(cfg);
+		const result = await my.connectServer(cfg);
 		expect(result === true).to.be.true;
 	});
 });

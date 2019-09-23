@@ -1,5 +1,5 @@
 
-const nodber = require('../../src');
+const my = require('../../src');
 const expect = require('chai').expect;
 
 const config = require('../__config/default');
@@ -14,7 +14,7 @@ describe('MySQL - query/exec', async () => {
 
 	it(`.exec(sql)`, async () => {
 		const sql = `select * from ${userTableName}`;
-		const result = await nodber.exec(sql);
+		const result = await my.exec(sql);
 		expect(result[0].id === 1).to.be.true;
 	});
 

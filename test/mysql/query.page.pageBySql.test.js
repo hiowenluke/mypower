@@ -1,5 +1,5 @@
 
-const nodber = require('../../src');
+const my = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
 const {itInit, it___________________________} = tools;
@@ -15,7 +15,7 @@ describe('MySQL - query/page/pageBySql', () => {
 		const order = 'id';
 		const pageNumber = 2;
 		const pageSize = 3;
-		const result = await nodber.pageBySql({sql, order, pageNumber, pageSize});
+		const result = await my.pageBySql({sql, order, pageNumber, pageSize});
 		expect(result.pageSize === 3 && result.count === 7).to.be.true;
 	});
 
@@ -25,7 +25,7 @@ describe('MySQL - query/page/pageBySql', () => {
 		const pageNumber = 2;
 		const pageSize = 3;
 		const data = {isAvenger: 1};
-		const result = await nodber.pageBySql({sql, order, pageNumber, pageSize, data});
+		const result = await my.pageBySql({sql, order, pageNumber, pageSize, data});
 		expect(result.pageSize === 3 && result.count === 6).to.be.true;
 	});
 
@@ -33,7 +33,7 @@ describe('MySQL - query/page/pageBySql', () => {
 		const sql = 'select * from users';
 		const pageNumber = 2;
 		const pageSize = 3;
-		const result = await nodber.pageBySql({sql, pageNumber, pageSize});
+		const result = await my.pageBySql({sql, pageNumber, pageSize});
 		expect(result.pageSize === 3 && result.count === 7).to.be.true;
 	});
 

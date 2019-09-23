@@ -1,9 +1,9 @@
 
-const nodber = require('..');
+const my = require('..');
 
-/** @name nodber.backupAllDatabases */
+/** @name my.backupAllDatabases */
 const fn = async (...args) => {
-	return await nodber.backupDatabase('all', ...args);
+	return await my.backupDatabase('all', ...args);
 };
 
 module.exports = fn;

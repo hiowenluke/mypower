@@ -1,7 +1,7 @@
 
-const nodber = require('..');
+const my = require('..');
 
-/** @name nodber.connectServer */
+/** @name my.connectServer */
 const fn = async (newConfig) => {
 
 	// Backup the new database
@@ -9,11 +9,11 @@ const fn = async (newConfig) => {
 
 	// Use "sys" as default database at new server to avoid errors when the database is not exists
 	newConfig.database = 'sys';
-	await nodber.init(newConfig);
+	await my.init(newConfig);
 
 	// Change to new database
 	if (newDatabase !== 'sys') {
-		await nodber.useDatabase(newDatabase);
+		await my.useDatabase(newDatabase);
 	}
 
 	return true;

@@ -1,10 +1,10 @@
 
 const sequery = require('sequelize-raw-query');
-const nodber = require('../..');
+const my = require('../..');
 
 const sqlTemplate = `delete from {tableName} where {whereStr}`;
 
-/** @name nodber.delete */
+/** @name my.delete */
 const fn = async (table, where) => {
 	where = where || '1=1';
 
@@ -12,10 +12,10 @@ const fn = async (table, where) => {
 		where = sequery.getWhereConditions(where, table);
 	}
 
-	let sql = nodber.sqlTemplate(sqlTemplate, {tableName: table, whereStr: where});
+	let sql = my.sqlTemplate(sqlTemplate, {tableName: table, whereStr: where});
 	await sequery.exec(sql);
 
-	const result = await nodber.isSuccessful();
+	const result = await my.isSuccessful();
 	return result;
 };
 

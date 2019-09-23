@@ -1,5 +1,5 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
 const convertFieldDefinitionsToStr = (definitions) => {
 	const def = [];
@@ -21,7 +21,7 @@ const convertFieldDefinitionsToStr = (definitions) => {
 		}
 
 		else {
-			const typeStr = nodber.convertFieldTypeDefToStr({type, length, m, d});
+			const typeStr = my.convertFieldTypeDefToStr({type, length, m, d});
 			def.push(`\`${name}\` ${typeStr} ${isNullableStr}`);
 		}
 
@@ -34,15 +34,15 @@ const convertFieldDefinitionsToStr = (definitions) => {
 	return def;
 };
 
-/** @name nodber.createTable */
+/** @name my.createTable */
 const fn = async (tableName, fieldDefinitions) => {
-	if (await nodber.isTableExists(tableName)) {
+	if (await my.isTableExists(tableName)) {
 		return false;
 	}
 
 	const fieldsDefStr = convertFieldDefinitionsToStr(fieldDefinitions).join(', ');
-	const sql = nodber.sqls('createTable', tableName, {fields: fieldsDefStr});
-	const result = await nodber.exec(sql);
+	const sql = my.sqls('createTable', tableName, {fields: fieldsDefStr});
+	const result = await my.exec(sql);
 	return result.warningStatus === 0;
 };
 

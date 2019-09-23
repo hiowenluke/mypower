@@ -1,15 +1,15 @@
 
-const nodber = require('../..');
+const my = require('../..');
 const myCli = require('mysql-cli-exec');
 
-/** @name nodber.showDatabases */
+/** @name my.showDatabases */
 const fn = async (serverConfig) => {
-	const sql = await nodber.sqls('showDatabases');
+	const sql = my.sqls('showDatabases');
 	let result;
 
 	// Do it on current server
 	if (!serverConfig) {
-		result = await nodber.exec(sql);
+		result = await my.exec(sql);
 	}
 	else {
 		// Do it on another server

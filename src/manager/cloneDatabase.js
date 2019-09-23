@@ -1,17 +1,17 @@
 
 const shell = require('shelljs');
 const config = require('../__config');
-const nodber = require('..');
+const my = require('..');
 
-/** @name nodber.cloneDatabase */
+/** @name my.cloneDatabase */
 const fn = async (fromDatabaseName, toDatabaseName, {isForce, isStructureOnly, host, fromHost, toHost} = {}) => {
 
-	if (await nodber.isDatabaseExists(toDatabaseName, toHost)) {
+	if (await my.isDatabaseExists(toDatabaseName, toHost)) {
 		if (!isForce) {
 			return false;
 		}
 		else {
-			await nodber.dropDatabase(toDatabaseName, toHost);
+			await my.dropDatabase(toDatabaseName, toHost);
 		}
 	}
 
@@ -21,7 +21,7 @@ const fn = async (fromDatabaseName, toDatabaseName, {isForce, isStructureOnly, h
 	const optionFromHost = fromHost ? '-h ' + fromHost : '';
 	const optionToHost = toHost || host ? '-h ' + (toHost || host) : '';
 
-	const sqlCreateDatabase = nodber.sqls('createDatabase', toDatabaseName);
+	const sqlCreateDatabase = my.sqls('createDatabase', toDatabaseName);
 
 	const cmd = `
 		mysql ${optionToHost} -u${username} -p${password} -e "${sqlCreateDatabase}" &&

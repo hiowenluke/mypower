@@ -1,7 +1,7 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.dropTables */
+/** @name my.dropTables */
 const fn = async (tableNames) => {
 	if (!tableNames) return;
 
@@ -12,7 +12,7 @@ const fn = async (tableNames) => {
 	let result;
 	for (let i = 0; i < tableNames.length; i ++) {
 		const tableName = tableNames[i];
-		result = await nodber.dropTable(tableName);
+		result = await my.dropTable(tableName);
 	}
 
 	return result;

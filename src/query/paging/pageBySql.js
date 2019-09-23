@@ -2,7 +2,7 @@
 const kdo = require('kdo');
 const sequery = require('sequelize-raw-query');
 
-const nodber = require('../..');
+const my = require('../..');
 const lib = require('./__lib');
 
 const paging = {
@@ -33,7 +33,7 @@ const flow = {
 		// If no sort field is specified, the primary key name of the primary table
 		// (for example, billid, goodsid) is used as the sorting basis (default positive order)
 		if (!order) {
-			const tableName = nodber.getTableNameFromSql(sqlMain);
+			const tableName = my.getTableNameFromSql(sqlMain);
 			order = await lib.getDefaultOrderFiled(tableName);
 			this.setArgs({order});
 		}
@@ -49,7 +49,7 @@ const flow = {
 			limitStr = sqlClauses;
 		}
 
-		const rows = await nodber.exec(sqlMain + limitStr, data);
+		const rows = await my.exec(sqlMain + limitStr, data);
 		this.setArgs({rows});
 	},
 
@@ -60,7 +60,7 @@ const flow = {
 			return data[capture];
 		});
 
-		const result = await nodber.exec(sqlCount, data);
+		const result = await my.exec(sqlCount, data);
 		const count = result[0].count;
 
 		this.setArgs({count});
@@ -72,7 +72,7 @@ const flow = {
 	}
 };
 
-/** @name nodber.pageBySql */
+/** @name my.pageBySql */
 const fn = async ({sql, sqlMain, sqlClauses, order, limit, offset, pageNumber, pageSize, tableAs, data}) => {
 	if (!sqlMain) sqlMain = sql;
 

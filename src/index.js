@@ -1,26 +1,26 @@
 
-const nodber = require('kdo')();
+const my = require('kdo')();
 const sequery = require('sequelize-raw-query');
 
-Object.assign(nodber, nodber.query.crud);
-Object.assign(nodber, nodber.query.crud.batch);
-Object.assign(nodber, nodber.query.paging);
-Object.assign(nodber, nodber.query.goto);
-Object.assign(nodber, nodber.query);
+Object.assign(my, my.query.crud);
+Object.assign(my, my.query.crud.batch);
+Object.assign(my, my.query.paging);
+Object.assign(my, my.query.goto);
+Object.assign(my, my.query);
 
-Object.assign(nodber, nodber.base.database);
-Object.assign(nodber, nodber.base.field);
-Object.assign(nodber, nodber.base.primaryKey);
-Object.assign(nodber, nodber.base.record);
-Object.assign(nodber, nodber.base.system);
-Object.assign(nodber, nodber.base.table);
+Object.assign(my, my.base.database);
+Object.assign(my, my.base.field);
+Object.assign(my, my.base.primaryKey);
+Object.assign(my, my.base.record);
+Object.assign(my, my.base.system);
+Object.assign(my, my.base.table);
 
-Object.assign(nodber, nodber.manager);
-Object.assign(nodber, nodber.server);
-Object.assign(nodber, nodber.tools);
+Object.assign(my, my.manager);
+Object.assign(my, my.server);
+Object.assign(my, my.tools);
 
-nodber.sequelizeOp = sequery.Sequelize.Op;
+my.sequelizeOp = sequery.Sequelize.Op;
 
-global.nodber = nodber;
-module.exports.__proto__ = nodber;
+global.my = my;
+module.exports.__proto__ = my;
 

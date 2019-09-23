@@ -1,7 +1,7 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.addFields */
+/** @name my.addFields */
 const fn = async (tableName, fieldDefinitions) => {
 	let result;
 
@@ -9,7 +9,7 @@ const fn = async (tableName, fieldDefinitions) => {
 		const def = fieldDefinitions[i];
 		const fieldName = def.name;
 		const fieldTypeDef = def;
-		result = await nodber.addField(tableName, fieldName, fieldTypeDef);
+		result = await my.addField(tableName, fieldName, fieldTypeDef);
 	}
 
 	return result;

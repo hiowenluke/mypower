@@ -1,14 +1,14 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.cloneTableStructure */
+/** @name my.cloneTableStructure */
 const fn = async (newTableName, oldTableName, newDatabaseName, oldDatabaseName) => {
 	if (!newDatabaseName) {
-		newDatabaseName = await nodber.getSelectedDatabase();
+		newDatabaseName = await my.getSelectedDatabase();
 		oldDatabaseName = newDatabaseName;
 	}
 
-	const result = await nodber.proxy({newTableName, oldTableName, newDatabaseName, oldDatabaseName});
+	const result = await my.proxy({newTableName, oldTableName, newDatabaseName, oldDatabaseName});
 	return result;
 };
 

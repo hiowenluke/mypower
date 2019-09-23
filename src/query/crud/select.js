@@ -1,6 +1,6 @@
 
 const sequery = require('sequelize-raw-query');
-const nodber = require('../..');
+const my = require('../..');
 const lib = require('./__Lib');
 
 const sqlTemplate = `select {fieldNames} from {tableName} where {whereStr}`;
@@ -98,10 +98,10 @@ const getLimitClause = ({order, limit, offset, fieldNames}) => {
 };
 
 // args = {table, fields, where, isGroup, group, order, limit, offset, data}
-/** @name nodber.select */
+/** @name my.select */
 const fn = async (...args) => {
 	const {tableName, fieldNames, whereStr, isGroup, group, order, limit, offset, data, isGetSqlStrOnly} = parseArgs(args);
-	let sqlMain = nodber.sqlTemplate(sqlTemplate, {tableName, fieldNames, whereStr});
+	let sqlMain = my.sqlTemplate(sqlTemplate, {tableName, fieldNames, whereStr});
 
 	let groupClause, orderClause, limitClause;
 	groupClause = getGroupClause({tableName, fieldNames, isGroup, group});
@@ -121,7 +121,7 @@ const fn = async (...args) => {
 
 		// Replace ":xxx" with data.xxx for unicode xxx,
 		// otherwise, sequelize will occur an error if the xxx included unicode character.
-		sql = nodber.sqlReplacement(sql, data);
+		sql = my.sqlReplacement(sql, data);
 
 		const result = await sequery.exec(sql);
 		return result;

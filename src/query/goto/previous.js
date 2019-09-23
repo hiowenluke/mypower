@@ -1,7 +1,7 @@
 
 const doIt = require('./__doIt');
 
-/** @name nodber.previous */
+/** @name my.previous */
 const fn = async(...args) => {
 	return await doIt(...args, 'desc');
 };

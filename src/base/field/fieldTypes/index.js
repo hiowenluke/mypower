@@ -1,5 +1,5 @@
 
-/** @name nodber.fieldTypes */
+/** @name my.fieldTypes */
 const me = {
 
 	char: ['char', 'varchar'],

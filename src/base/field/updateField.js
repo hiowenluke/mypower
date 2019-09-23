@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.updateField */
+/** @name my.updateField */
 const fn = async (...args) => {
-	return await nodber.changeField(...args);
+	return await my.changeField(...args);
 };
 
 module.exports = fn;

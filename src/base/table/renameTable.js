@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.renameTable */
+/** @name my.renameTable */
 const fn = async (oldTableName, newTableName) => {
-	const result = await nodber.proxy({oldTableName, newTableName});
+	const result = await my.proxy({oldTableName, newTableName});
 	return result.warningStatus === 0;
 };
 

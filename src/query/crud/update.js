@@ -4,7 +4,7 @@ const sequery = require('sequelize-raw-query');
 
 const sqlTemplate = `update {tableName} set {setParams} where {whereStr}`;
 
-/** @name nodber.update */
+/** @name my.update */
 const fn = async (tableName, data, where) => {
 	let thisSqlTemplate = sqlTemplate;
 

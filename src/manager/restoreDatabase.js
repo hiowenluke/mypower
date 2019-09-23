@@ -1,16 +1,16 @@
 
 const shell = require('shelljs');
 const config = require('../__config');
-const nodber = require('..');
+const my = require('..');
 
-/** @name nodber.restoreDatabase */
+/** @name my.restoreDatabase */
 const fn = async (databaseName, infile, {host, toHost, unzip = false} = {}) => {
 
 	const {username, password} = config;
 	const optionToHost = host || toHost ? '-h ' + (host || toHost) : '';
 	const gunzip = unzip || /\.gz$/.test(infile) ? `gunzip < ${infile} | ` : '';
 
-	const sqlCreateDatabase = nodber.sqls('createDatabase', {databaseName});
+	const sqlCreateDatabase = my.sqls('createDatabase', {databaseName});
 
 	const cmd = {
 		one: `

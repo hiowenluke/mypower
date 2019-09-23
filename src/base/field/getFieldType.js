@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getFieldType */
+/** @name my.getFieldType */
 const fn = async (tableName, fieldName) => {
-	const result = await nodber.proxy(tableName, {fieldName});
+	const result = await my.proxy(tableName, {fieldName});
 
 	// {type, length, m, d}
 	return result ? result[0] : null;

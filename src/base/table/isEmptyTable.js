@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.isEmptyTable */
+/** @name my.isEmptyTable */
 const fn = async (tableName) => {
-	const result = await nodber.proxy(tableName);
+	const result = await my.proxy(tableName);
 	return !result || result.length === 0;
 };
 

@@ -1,5 +1,5 @@
 
-/** @name nodber.getFieldsWhereConditions */
+/** @name my.getFieldsWhereConditions */
 const fn = (fieldNames, {namePrefix = '', valuePrefix = ''} = {}) => {
 
 	// Standard usage (no xxxPrefix):

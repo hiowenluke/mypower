@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.deleteTable */
+/** @name my.deleteTable */
 const fn = async (...args) => {
-	return await nodber.dropTable(...args);
+	return await my.dropTable(...args);
 };
 
 module.exports = fn;

@@ -1,3 +1,3 @@
 
-/** @name nodber.descTable */
+/** @name my.descTable */
 module.exports = require('../createDoFn')();

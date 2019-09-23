@@ -1,17 +1,17 @@
 
-const nodber = require('../..');
+const my = require('../..');
 const myCli = require('mysql-cli-exec');
 
-/** @name nodber.getSystemVariables */
+/** @name my.getSystemVariables */
 const fn = async (variableName, serverConfig) => {
 	variableName = variableName ? `like "${variableName}"` : '';
 
-	const sql = nodber.sqls('getSystemVariables', {variableName});
+	const sql = my.sqls('getSystemVariables', {variableName});
 	let result;
 
 	// Do it on current server
 	if (!serverConfig) {
-		result = await nodber.exec(sql);
+		result = await my.exec(sql);
 	}
 	else {
 		// Do it on another server

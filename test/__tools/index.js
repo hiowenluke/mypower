@@ -1,13 +1,13 @@
 
-const nodber = require('../../src');
+const my = require('../../src');
 const config = require('../__config/default');
 
 const userTableName = config.testOptions.userTableName;
 
 const me = {
 	itInit() {
-		it(`// init nodber`, async () => {
-			nodber.init(config.use('mysql'));
+		it(`// init mysql power`, async () => {
+			my.init(config.use('mysql'));
 		});
 
 		it(`// init database`, async () => {
@@ -29,14 +29,14 @@ const me = {
 
 	async initDatabase() {
 		const databaseName = config.testOptions.database;
-		await nodber.dropDatabase(databaseName);
-		await nodber.createDatabase(databaseName);
-		await nodber.useDatabase(databaseName);
+		await my.dropDatabase(databaseName);
+		await my.createDatabase(databaseName);
+		await my.useDatabase(databaseName);
 	},
 
 	async createTableUsers(tableName) {
 		tableName = tableName || userTableName;
-		await nodber.dropTable(tableName);
+		await my.dropTable(tableName);
 
 		const fields = [
 			{name: 'id', type: 'autoId'},
@@ -65,7 +65,7 @@ const me = {
 			{name: 'type_year', type: 'year'},
 		];
 
-		return await nodber.createTable(tableName, fields);
+		return await my.createTable(tableName, fields);
 	},
 
 	async addUsers(tableName) {
@@ -88,7 +88,7 @@ const me = {
 			select 10, 'thanos', 0, null, null, null
 		`;
 
-		return await nodber.exec(sql);
+		return await my.exec(sql);
 	},
 };
 

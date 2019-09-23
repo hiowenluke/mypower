@@ -1,10 +1,10 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getFieldsInfo */
+/** @name my.getFieldsInfo */
 const fn = async (tableName) => {
-	const result = await nodber.proxy(tableName);
-	return nodber.lowerCaseFieldNames(result);
+	const result = await my.proxy(tableName);
+	return my.lowerCaseFieldNames(result);
 };
 
 module.exports = fn;

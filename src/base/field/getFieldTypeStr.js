@@ -1,10 +1,10 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getFieldTypeStr */
+/** @name my.getFieldTypeStr */
 const fn = async (tableName, fieldName) => {
-	const fieldTypeDef = await nodber.getFieldType(tableName, fieldName);
-	const result = await nodber.convertFieldTypeDefToStr(fieldTypeDef);
+	const fieldTypeDef = await my.getFieldType(tableName, fieldName);
+	const result = await my.convertFieldTypeDefToStr(fieldTypeDef);
 
 	// 'varchar(100)', 'int', 'float(10, 2)'
 	return result;

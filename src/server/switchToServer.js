@@ -1,8 +1,8 @@
 
-const nodber = require('..');
+const my = require('..');
 const config = require('../__config');
 
-/** @name nodber.switchToServer */
+/** @name my.switchToServer */
 const fn = async (newConfig) => {
 
 	if (!newConfig) {
@@ -30,7 +30,7 @@ const fn = async (newConfig) => {
 		}
 	}
 
-	return await nodber.connectServer(newConfig);
+	return await my.connectServer(newConfig);
 };
 
 module.exports = fn;

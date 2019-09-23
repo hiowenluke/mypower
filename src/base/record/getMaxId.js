@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getMaxId */
+/** @name my.getMaxId */
 const fn = async (tableName, idName = 'id') => {
-	return await nodber.getMaxFieldValue(tableName, idName);
+	return await my.getMaxFieldValue(tableName, idName);
 };
 
 module.exports = fn;

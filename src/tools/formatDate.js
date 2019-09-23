@@ -8,7 +8,7 @@ const moment = require('moment');
 // 		(arr, ['begindate', 'enddate']) // Shorthand
 // 		(arr, {format: 'YYYY-MM-DD', date: ['begindate', 'enddate']})
 
-/** @name nodber.formatDate */
+/** @name my.formatDate */
 const fn = (arr, options) => {
 	if (!arr.length) return arr;
 

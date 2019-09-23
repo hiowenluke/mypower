@@ -1,10 +1,10 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.getMaxPrimaryKeyValue */
+/** @name my.getMaxPrimaryKeyValue */
 const fn = async (tableName) => {
-	const primaryKey = await nodber.getPrimaryKey(tableName);
-	return await nodber.getMaxFieldValue(tableName, primaryKey);
+	const primaryKey = await my.getPrimaryKey(tableName);
+	return await my.getMaxFieldValue(tableName, primaryKey);
 };
 
 module.exports = fn;

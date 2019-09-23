@@ -20,7 +20,7 @@ const isNoWhere = (sqlStr) => {
 	return countLeftBracket !== countRightBracket;
 };
 
-/** @name nodber.joinWhereStr */
+/** @name my.joinWhereStr */
 const fn = (sqlStr, whereStr) => {
 	if (!whereStr) return sqlStr;
 

@@ -1,12 +1,12 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
 // Three forms of definition:
 //		{type: 'varchar', length: 100}
 //		{type: 'float', m: 10, d: 2}
 //		{type: 'int'}
 
-/** @name nodber.convertFieldTypeDefToStr */
+/** @name my.convertFieldTypeDefToStr */
 const fn = (definition) => {
 	if (!definition || typeof definition !== 'object') return definition;
 
@@ -14,8 +14,8 @@ const fn = (definition) => {
 	let str;
 
 	// *char, *char(100)
-	if (nodber.fieldTypes.isChar(type)) {
-		length = length || nodber.fieldTypes.defaultLength[type];
+	if (my.fieldTypes.isChar(type)) {
+		length = length || my.fieldTypes.defaultLength[type];
 		str = `${type}(${length})`;
 	}
 	else

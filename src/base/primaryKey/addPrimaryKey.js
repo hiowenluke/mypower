@@ -1,9 +1,9 @@
 
-const nodber = require('../..');
+const my = require('../..');
 
-/** @name nodber.addPrimaryKey */
+/** @name my.addPrimaryKey */
 const fn = async (tableName, primaryKey) => {
-	const result = await nodber.addPrimaryKeys(tableName, primaryKey);
+	const result = await my.addPrimaryKeys(tableName, primaryKey);
 	return result;
 };
 

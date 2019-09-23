@@ -1,6 +1,6 @@
 
 const _ = require('lodash');
-const nodber = require('..');
+const my = require('..');
 const config = require('../__config');
 
 let sqls;
@@ -28,7 +28,7 @@ const getNamesFromArgs = (purpose, sql, args) => {
 		if (isRequireDatabaseName) {
 
 			// For database, e.g.:
-			//		nodber.createDatabase(databaseName)
+			//		my.createDatabase(databaseName)
 			const isForDatabase = /database/i.test(purpose);
 			if (isForDatabase) {
 
@@ -37,7 +37,7 @@ const getNamesFromArgs = (purpose, sql, args) => {
 			}
 			else {
 				// For table or field, e.g.:
-				//		nodber.isTableExists(tableName)
+				//		my.isTableExists(tableName)
 
 				// Use the current database name
 				databaseName = config.database;
@@ -79,10 +79,10 @@ const getAvailableValue = (options, key) => {
 };
 
 // Two forms:
-// 		nodber.sqls('createTable', table, {fields: {...}})
-// 		nodber.sqls('createTable', {table: 'users', xxx: 'xxx'})
+// 		my.sqls('createTable', table, {fields: {...}})
+// 		my.sqls('createTable', {table: 'users', xxx: 'xxx'})
 
-/** @name nodber.sqls */
+/** @name my.sqls */
 const fn = (purpose, ...args) => {
 	dialect = config.dialect;
 
@@ -100,7 +100,7 @@ const fn = (purpose, ...args) => {
 	}
 
 	// Fetch the other arguments from options, e.g.:
-	//		nodber.sqls('createTable', table, {fields: {...}})
+	//		my.sqls('createTable', table, {fields: {...}})
 	const options = args[0];
 	if (_.isPlainObject(options)) {
 
