@@ -1,5 +1,5 @@
 
-const nodber = require('../..');
+const nodber = require('..');
 
 /** @name nodber.connectServer */
 const fn = async (newConfig) => {

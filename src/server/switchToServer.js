@@ -1,5 +1,5 @@
 
-const nodber = require('../..');
+const nodber = require('..');
 const config = require('../__config');
 
 /** @name nodber.switchToServer */
