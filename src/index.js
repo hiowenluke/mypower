@@ -21,6 +21,5 @@ Object.assign(my, my.tools);
 
 my.sequelizeOp = sequery.Sequelize.Op;
 
-global.my = my;
 module.exports.__proto__ = my;
 
