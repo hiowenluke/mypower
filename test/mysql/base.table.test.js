@@ -39,8 +39,12 @@ describe('MySQL - base/table', () => {
 		expect(result === false).to.be.true;
 	});
 
-	it(`.truncateTable() and .isEmptyTable() // true`, async () => {
-		await my.truncateTable(tableName);
+	it(`.truncateTable()`, async () => {
+		const result = await my.truncateTable(tableName);
+		expect(result === true).to.be.true;
+	});
+
+	it(`.isEmptyTable()`, async () => {
 		const result = await my.isEmptyTable(tableName);
 		expect(result === true).to.be.true;
 	});
