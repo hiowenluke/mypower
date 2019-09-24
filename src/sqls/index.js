@@ -24,50 +24,48 @@ const getNamesFromArgs = (purpose, sql, args) => {
 		tableName = options.table;
 	}
 	else {
-		const isRequireDatabaseName = /{databaseName}/i.test(sql);
-		if (isRequireDatabaseName) {
+		// Five forms:
+		// 		my.proxy({fieldName, whereStr}) // count === 0
+		// 		my.proxy(databaseName) // count === 1
+		// 		my.proxy(tableName) // count === 1
+		// 		my.proxy(tableName, {fieldName, whereStr}) // count === 1
+		// 		my.proxy(databaseName, tableName, {fieldName, whereStr}) // count === 2
 
-			// For database, e.g.:
-			//		my.createDatabase(databaseName)
+		// The value of count:
+		//		0	no database name and table name
+		//		2	the first argument is database name
+		//		1	the first argument is database name if it is for database, otherwise it is table name
+		const count = typeof args[args.length - 1] === 'object' ? args.length - 1 : args.length;
+
+		if (count === 0) {
+			// do nothing
+		}
+
+		if (count === 1) {
 			const isForDatabase = /database/i.test(purpose);
-			if (isForDatabase) {
+			const arg = args.shift();
 
-				// Fetch database name from the first argument
-				databaseName = args.shift();
+			if (isForDatabase) {
+				databaseName = arg;
 			}
 			else {
-				// For table, field or record, e.g.:
-				// 		my.isTableExists 		=> my.proxy(databaseName, tableName);
-				// 		my.addField				=> my.proxy(tableName, {fieldName, fieldTypeStr});
-
-				// If the last argument is options, then the count is args.length - 1
-				const count = typeof args[args.length - 1] === 'object' ? args.length - 1 : args.length;
-
-				// There are at least two arguments, then the first is database name
-				if (count >= 2) {
-					databaseName = args.shift();
-				}
-				else {
-					// Only one argument, means there is no database name, then use the current database name
-					databaseName = config.database;
-				}
+				tableName = arg;
 			}
+		}
 
-			// The database name may be is undefined, e.g.:
-			// 		my.isTableExists 	=> my.proxy(databaseName, tableName);
-			if (!databaseName) {
-				databaseName = config.database;
-			}
+		if (count === 2) {
+			databaseName = args.shift();
+			tableName = args.shift();
+		}
+
+		const isRequireDatabaseName = /{databaseName}/i.test(sql);
+		if (isRequireDatabaseName && !databaseName) {
+			databaseName = config.database;
 		}
 
 		const isRequireTableName = /{tableName}/i.test(sql);
-		if (isRequireTableName) {
-
-			// The first argument always is table name
-			tableName = args.shift();
-		}
-		else {
-			// do nothing
+		if (isRequireTableName && !tableName) {
+			throw new Error('Require table name');
 		}
 	}
 
