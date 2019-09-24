@@ -2,8 +2,8 @@
 const my = require('../..');
 
 /** @name my.isTableExists */
-const fn = async (tableName) => {
-	const result = await my.proxy(tableName);
+const fn = async (tableName, databaseName) => {
+	const result = await my.proxy(databaseName, tableName);
 	return result.length === 1;
 };
 
