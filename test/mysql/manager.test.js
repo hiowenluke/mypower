@@ -59,82 +59,62 @@ describe('MySQL - manager', () => {
 	});
 
 	it(`.backupDatabase(databaseName, outfile)`, async () => {
-		const outfile = './' + testDatabaseName + '.sql';
+		const outfile = './' + databaseName + '.sql';
 		const result = await my.backupDatabase(databaseName, outfile);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.restoreDatabase(databaseName, infile)`, async () => {
-		const infile = './' + testDatabaseName + '.sql';
+
+		// Delete the test database before restore
+		await my.dropDatabase(testDatabaseName);
+
+		const infile = './' + databaseName + '.sql';
 		await my.restoreDatabase(testDatabaseName, infile);
 
-		const result = await my.isDatabaseExists(testDatabaseName);
+		const result = await my.isTableExists(userTableName, testDatabaseName);
 
-		fs.unlinkSync(infile);
-		await my.dropDatabase(testDatabaseName);
+		result && fs.unlinkSync(infile);
 		expect(result === true).to.be.true;
 	});
 
-	it(`.backupDatabase(databaseName, outfile) // for xxx.sql.gz`, async () => {
-		const outfile = './' + testDatabaseName + '.sql.gz';
+	it(`.backupDatabase(databaseName, outfile) // for .gz`, async () => {
+		const outfile = './' + databaseName + '.sql.gz';
 		const result = await my.backupDatabase(databaseName, outfile);
 		expect(result === true).to.be.true;
 	});
 
-	it(`.restoreDatabase(databaseName, infile) // for xxx.sql.gz`, async () => {
-		const infile = './' + testDatabaseName + '.sql.gz';
+	it(`.restoreDatabase(databaseName, infile) // for .gz`, async () => {
+
+		// Delete the test database before restore
+		await my.dropDatabase(testDatabaseName);
+
+		const infile = './' + databaseName + '.sql.gz';
 		await my.restoreDatabase(testDatabaseName, infile);
 
-		const result = await my.isDatabaseExists(testDatabaseName);
+		const result = await my.isTableExists(userTableName, testDatabaseName);
 
-		fs.unlinkSync(infile);
-		await my.dropDatabase(testDatabaseName);
-		expect(result === true).to.be.true;
-	});
-
-	it(`.backupDatabase(databaseName, outfile, options) // options = {zip: true}`, async () => {
-		const outfile = './' + testDatabaseName + '.xxx';
-		const options = {zip: true};
-		const result = await my.backupDatabase(databaseName, outfile, options);
-		expect(result === true).to.be.true;
-	});
-
-	it(`.restoreDatabase(databaseName, infile, options) // options = {unzip: true}`, async () => {
-		const infile = './' + testDatabaseName + '.xxx';
-		const options = {unzip: true};
-		await my.restoreDatabase(testDatabaseName, infile, options);
-
-		const result = await my.isDatabaseExists(testDatabaseName);
-
-		fs.unlinkSync(infile);
-		await my.dropDatabase(testDatabaseName);
+		result && fs.unlinkSync(infile);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.backupAllDatabases()`, async () => {
-
-		// Create the test database before backup
-		await my.createDatabase(testDatabaseName);
-
 		const outfile = './all.sql';
 		const result = await my.backupAllDatabases(outfile);
-
-		// Delete the test database after backed up
-		await my.dropDatabase(testDatabaseName);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.restoreAllDatabases()`, async () => {
+
+		// Delete the test database before restore
+		await my.dropDatabase(testDatabaseName);
+
 		const infile = './all.sql';
 		await my.restoreAllDatabases(infile);
 
-		// The test database should be exists after restored
-		const result = await my.isDatabaseExists(testDatabaseName);
+		const result = await my.isTableExists(userTableName, testDatabaseName);
 
-		// Delete it after tested
-		await my.dropDatabase(testDatabaseName);
-		fs.unlinkSync(infile);
-
+		result && fs.unlinkSync(infile);
 		expect(result === true).to.be.true;
 	});
 

@@ -14,13 +14,13 @@ describe('MySQL - server', () => {
 	it___________________________();
 
 	it(`.switchToServer(config)`, async () => {
-		const cfg = config.use('mysql');
+		const cfg = config;
 		const result = await my.switchToServer(cfg);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.switchToServer(host)`, async () => {
-		const cfg = config.use('mysql');
+		const cfg = config;
 		const host = cfg.host;
 		const result = await my.switchToServer(host);
 		expect(result === true).to.be.true;
@@ -32,7 +32,7 @@ describe('MySQL - server', () => {
 	});
 
 	it(`.connectServer()`, async () => {
-		const cfg = config.use('mysql');
+		const cfg = config;
 		const result = await my.connectServer(cfg);
 		expect(result === true).to.be.true;
 	});

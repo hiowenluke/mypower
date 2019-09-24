@@ -7,7 +7,7 @@ const tools = require('../__tools');
 const {itInit, it___________________________} = tools;
 
 const simulateServerConfig = () => {
-	const serverConfig = config.use('mysql');
+	const serverConfig = config;
 	serverConfig.host = 'localhost';
 	return serverConfig;
 };
