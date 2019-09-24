@@ -8,7 +8,7 @@ const me = {
 	port: 3306,
 
 	testOptions: {
-		database: 'mysql_power_test',
+		database: 'mypower_test',
 		userTableName: 'users',
 	}
 };

@@ -6,8 +6,8 @@ const userTableName = config.testOptions.userTableName;
 
 const me = {
 	itInit() {
-		it(`// init mysql power`, async () => {
-			my.init(config.use('mysql'));
+		it(`// init mypower`, async () => {
+			my.init(config);
 		});
 
 		it(`// init database`, async () => {
