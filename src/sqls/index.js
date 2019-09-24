@@ -36,18 +36,35 @@ const getNamesFromArgs = (purpose, sql, args) => {
 				databaseName = args.shift();
 			}
 			else {
-				// For table or field, e.g.:
-				//		my.isTableExists(tableName)
+				// For table, field or record, e.g.:
+				// 		my.isTableExists 		=> my.proxy(databaseName, tableName);
+				// 		my.addField				=> my.proxy(tableName, {fieldName, fieldTypeStr});
 
-				// Use the current database name
+				// If the last argument is options, then the count is args.length - 1
+				const count = typeof args[args.length - 1] === 'object' ? args.length - 1 : args.length;
+
+				// There are at least two arguments, then the first is database name
+				if (count >= 2) {
+					databaseName = args.shift();
+				}
+				else {
+					// Only one argument, means there is no database name, then use the current database name
+					databaseName = config.database;
+				}
+			}
+
+			// The database name may be is undefined, e.g.:
+			// 		my.isTableExists 	=> my.proxy(databaseName, tableName);
+			if (!databaseName) {
 				databaseName = config.database;
-				if (!databaseName) debugger;
 			}
 		}
 
 		const isRequireTableName = /{tableName}/i.test(sql);
 		if (isRequireTableName) {
-			tableName = args.shift(); // The first argument always is table name
+
+			// The first argument always is table name
+			tableName = args.shift();
 		}
 		else {
 			// do nothing
