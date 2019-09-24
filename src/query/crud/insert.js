@@ -1,5 +1,6 @@
 
 const lib = require('./__lib');
+const my = require('../..');
 
 const sqlTemplate = `insert into {tableName} ({nameParams}) values({valueParams})`;
 
