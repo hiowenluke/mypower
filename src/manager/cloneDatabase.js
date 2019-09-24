@@ -2,6 +2,7 @@
 const shell = require('shelljs');
 const config = require('../__config');
 const my = require('..');
+const myCli = require('mysql-cli-exec');
 
 /** @name my.cloneDatabase */
 const fn = async (fromDatabaseName, toDatabaseName, {isForce, isStructureOnly, host, fromHost, toHost} = {}) => {
@@ -15,16 +16,17 @@ const fn = async (fromDatabaseName, toDatabaseName, {isForce, isStructureOnly, h
 		}
 	}
 
+	const sql = my.sqls('createDatabase', toDatabaseName);
+	config.host = host || toHost || config.host;
+	myCli.exec(sql, config);
+
 	const {username, password} = config;
 	const option_d = isStructureOnly ? '-d' : '';
 	const option_D = isStructureOnly ? '-D' : '';
 	const optionFromHost = fromHost ? '-h ' + fromHost : '';
 	const optionToHost = toHost || host ? '-h ' + (toHost || host) : '';
 
-	const sqlCreateDatabase = my.sqls('createDatabase', toDatabaseName);
-
 	const cmd = `
-		mysql ${optionToHost} -u${username} -p${password} -e "${sqlCreateDatabase}" &&
 		mysqldump ${optionFromHost} -u${username} -p${password} ${option_d} ${fromDatabaseName} | 
 		mysql ${optionToHost} -u${username} -p${password} ${option_D} ${toDatabaseName}
 	`;
