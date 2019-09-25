@@ -4,15 +4,15 @@ const my = require('../..');
 const config = require('../../__config');
 
 const reInitMyPower = (databaseName) => {
-	const data = config.get();
-	data.database = databaseName;
-	config.init(data);
+	const data = config.get(); // Get the current config of mypower
+	data.database = databaseName; // Change the database name
+	config.init(data); // Re-initialize
 };
 
 const reInitSequery = (databaseName) => {
-	const config = sequery.config.get();
-	config.database = databaseName;
-	sequery.init(config);
+	const config = sequery.config.get(); // Get the current config of sequery
+	config.database = databaseName; // Change the database name
+	sequery.init(config); // Re-initialize
 };
 
 /** @name my.useDatabase */
