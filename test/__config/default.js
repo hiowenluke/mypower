@@ -1,6 +1,5 @@
 
 const me = {
-
 	database: 'sys',
 	username: 'root',
 	password: 'playboy',
