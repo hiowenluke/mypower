@@ -6,17 +6,17 @@ const config = require('../__config');
 const fn = async (newConfig) => {
 
 	if (!newConfig) {
-		if (!config.backedupConfig) {
+		if (!config.backup) {
 			throw new Error('Must specify the new server info');
 		}
 		else {
 			// Use the backed up config as new config
-			newConfig = config.backedupConfig;
+			newConfig = config.backup;
 		}
 	}
 	else {
 		// Backup the original config
-		config.backedupConfig = config;
+		config.backup = config;
 
 		// The newConfig is host name, not config
 		if (typeof newConfig === 'string') {
