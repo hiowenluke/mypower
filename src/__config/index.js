@@ -1,5 +1,9 @@
 
+const sequery = require('sequelize-raw-query');
+const myCli = require('mysql-cli-exec');
+
 const me = {
+	dialect: 'mysql',
 	database: 'sys',
 	username: 'root',
 	password: 'playboy',
@@ -12,16 +16,36 @@ const me = {
 	// 		and cannot share the same data, it will cause an error.
 	enableGlobal: false,
 
+	// If it is true, show the commands in cli. It is for mysql-cli-exec.
+	isShowCliCommands: false,
+
 	init(...args) {
 		this.set(...args);
 	},
 
 	set(config) {
 		Object.assign(this, config);
+
+		const data = this.get();
+		sequery.init(data);
+		myCli.init(data);
 	},
 
 	get() {
-		return this;
+		const data = {};
+		Object.keys(this).forEach(key => {
+			if (typeof this[key] === 'function') return;
+			data[key] = this[key];
+		});
+		return data;
+	},
+
+	setIsShowCliCommands(val = true) {
+		this.set({isShowCliCommands: val});
+	},
+
+	getIsShowCliCommands() {
+		return this.get().isShowCliCommands;
 	}
 };
 
