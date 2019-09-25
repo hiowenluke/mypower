@@ -1,6 +1,7 @@
 
 const my = require('kdo')();
 const sequery = require('sequelize-raw-query');
+const config = require('./__config');
 
 Object.assign(my, my.query.crud);
 Object.assign(my, my.query.crud.batch);
@@ -21,5 +22,8 @@ Object.assign(my, my.tools);
 
 my.sequelizeOp = sequery.Sequelize.Op;
 
-module.exports.__proto__ = my;
+my.init = (...args) => {
+	config.init(...args);
+};
 
+module.exports.__proto__ = my;
