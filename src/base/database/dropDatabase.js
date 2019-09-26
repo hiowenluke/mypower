@@ -16,8 +16,11 @@ const fn = async (databaseName, serverConfig) => {
 	else {
 		// Do it on another server
 		const sql = my.sqls('dropDatabase', databaseName);
+
+		// Note that here we do it via cli, there is no warningStatus returned.
 		myCli.exec(sql, serverConfig);
 
+		// So we should check it via isDatabaseExists.
 		const sql1 = my.sqls('isDatabaseExists', databaseName);
 		const result = myCli.exec(sql1, serverConfig);
 		return !result;
