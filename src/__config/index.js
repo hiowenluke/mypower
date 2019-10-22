@@ -10,13 +10,22 @@ const me = {
 	host: '127.0.0.1',
 	port: 3306,
 
-	// If it is true, save the data to global for sequelize-raw-query.
+	// [For sequelize-raw-query]
+	// If it is true, save the data to global.
 	// 		If the user project includes multiple subprojects, it is needed to enable global mode.
 	// 		Otherwise, since the sequelize in each subproject is a different instance
 	// 		and cannot share the same data, it will cause an error.
 	enableGlobal: false,
 
-	// If it is true, show the commands in cli. It is for mysql-cli-exec.
+	// [For sequelize-raw-query]
+	// If it is true, simplify the result:
+	//		If the result array has only one object element:
+	//			If the object element has only one property, return the value of the property.
+	//			Otherwise, return the whole object.
+	isSimplifyResult: false,
+
+	// [For mysql-cli-exec]
+	// If it is true, show the commands in cli.
 	isShowCliCommands: false,
 
 	init(...args) {
