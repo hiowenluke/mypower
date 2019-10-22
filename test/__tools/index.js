@@ -33,7 +33,12 @@ const me = {
 		await my.createDatabase(databaseName);
 		await my.useDatabase(databaseName);
 
-		// Clean up the legacy test databases, the name is starting with databaseName + "_".
+		await this.cleanup();
+	},
+
+	// Clean up the legacy test databases, the name is starting with databaseName + "_".
+	async cleanup() {
+		const databaseName = config.testOptions.database;
 		const databasesName = await my.getDatabasesName();
 		const reg = new RegExp("^" + databaseName + '_');
 		for (let i = 0; i < databasesName.length; i ++) {
