@@ -32,6 +32,16 @@ const me = {
 		await my.dropDatabase(databaseName);
 		await my.createDatabase(databaseName);
 		await my.useDatabase(databaseName);
+
+		// Clean up the legacy test databases, the name is starting with databaseName + "_".
+		const databasesName = await my.getDatabasesName();
+		const reg = new RegExp("^" + databaseName + '_');
+		for (let i = 0; i < databasesName.length; i ++) {
+			const databaseName = databasesName[i];
+			if (reg.test(databaseName)) {
+				await my.dropDatabase(databaseName);
+			}
+		}
 	},
 
 	async createTableUsers(tableName) {
