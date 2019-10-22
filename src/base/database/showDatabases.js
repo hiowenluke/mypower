@@ -16,7 +16,8 @@ const fn = async (serverConfig) => {
 		result = myCli.exec(sql, serverConfig);
 	}
 
-	return result;
+	// Only return the field "Database"
+	return result.map(item => item.Database);
 };
 
 module.exports = fn;
