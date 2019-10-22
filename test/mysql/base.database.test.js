@@ -60,7 +60,7 @@ describe('MySQL - base/database', () => {
 
 	it(`.showDatabases() // find the testDatabaseName in result array`, async () => {
 		const result = await my.showDatabases();
-		expect(!!result.find(item => item.Database === testDatabaseName)).to.be.true;
+		expect(result.indexOf(testDatabaseName) >= 0).to.be.true;
 	});
 
 	it(`.useDatabase() and .getSelectedDatabase()`, async () => {
