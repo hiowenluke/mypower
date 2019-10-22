@@ -32,7 +32,7 @@ const getGroupClause = ({tableName, fieldNames, isGroup, group}) => {
 
 	// ({table, fields, isGroup})
 	if (isGroup) {
-		if (!fieldNames) {
+		if (!fieldNames || fieldNames === '*') {
 			throw new Error('Require fields argument for isGroup.');
 		}
 		groupClause = sequery.getGroupClause(fieldNames, tableName);
@@ -41,7 +41,7 @@ const getGroupClause = ({tableName, fieldNames, isGroup, group}) => {
 
 		// ({table, fields, group})
 		if (group) {
-			if (!fieldNames) {
+			if (!fieldNames || fieldNames === '*') {
 				throw new Error('Require fields argument for group.');
 			}
 			groupClause = sequery.getGroupClause(fieldNames, tableName);
@@ -79,12 +79,10 @@ const getLimitClause = ({order, limit, offset, fieldNames}) => {
 
 	// ({table, limit})
 	if (!order) {
-		if (fieldNames) {
-			order = fieldNames;
-		}
-		else {
+		if (!fieldNames || fieldNames === '*') {
 			throw new Error('Require order argument for limit.');
 		}
+		order = fieldNames;
 	}
 
 	// ({table, order, offset})
