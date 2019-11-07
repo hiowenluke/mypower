@@ -18,6 +18,12 @@ const fixArgs = require('./fixArgs');
 const fn = (...args) => {
 	let table, fields, where;
 
+	// Remove undefined elements from args
+	// [tableName, undefined] => [tableName]
+	while (args[args.length - 1] === undefined) {
+		args.pop();
+	}
+
 	if (args.length === 0) {
 		return;
 	}
