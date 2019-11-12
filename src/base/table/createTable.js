@@ -30,7 +30,10 @@ const convertFieldDefinitionsToStr = (definitions) => {
 		}
 	});
 
-	def.push(`primary key ( \`${primaryKeys.join("\`, \`")}\` )`);
+	if (primaryKeys.length) {
+		def.push(`primary key ( \`${primaryKeys.join("\`, \`")}\` )`);
+	}
+
 	return def;
 };
 
