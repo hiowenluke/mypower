@@ -36,4 +36,10 @@ describe('MySQL - server', () => {
 		const result = await my.connectServer(cfg);
 		expect(result === true).to.be.true;
 	});
+
+	it(`.isServerOnline()`, async () => {
+		const cfg = config;
+		const result = await my.isServerOnline(cfg);
+		expect(result === true).to.be.true;
+	});
 });
