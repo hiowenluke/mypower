@@ -8,6 +8,7 @@ const {prepareForTesting, _________________} = tools;
 describe('MySQL - query/crud/insert', () => {
 	const table = 'users';
 
+	my.init(config);
 	prepareForTesting();
 	_________________();
 

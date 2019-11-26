@@ -9,6 +9,7 @@ const {prepareForTesting, _________________} = tools;
 describe('MySQL - query/exec', async () => {
 	const userTableName = config.testOptions.userTableName;
 
+	my.init(config);
 	prepareForTesting();
 	_________________();
 

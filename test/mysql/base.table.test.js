@@ -9,6 +9,7 @@ describe('MySQL - base/table', () => {
 	const databaseName = config.testOptions.database;
 	const tableName = 'users_xxx';
 
+	my.init(config);
 	prepareForTesting();
 	_________________();
 

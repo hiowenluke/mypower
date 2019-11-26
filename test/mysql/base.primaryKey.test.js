@@ -9,6 +9,7 @@ const {prepareForTesting, _________________} = tools;
 describe('MySQL - base/primary key', () => {
 	const table = 'users';
 
+	my.init(config);
 	prepareForTesting();
 	_________________();
 

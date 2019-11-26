@@ -14,6 +14,7 @@ describe('MySQL - manager', () => {
 
 	const testDatabaseName = databaseName + '_xxx';
 
+	my.init(config);
 	prepareForTesting();
 	_________________();
 

@@ -8,6 +8,7 @@ const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - tools', () => {
 
+	my.init(config);
 	prepareForTesting();
 	_________________();
 

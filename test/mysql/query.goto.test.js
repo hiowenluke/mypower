@@ -7,6 +7,7 @@ const {prepareForTesting, _________________} = tools;
 describe('MySQL - query/goto', () => {
 	const table = 'users';
 
+	my.init(config);
 	prepareForTesting();
 	_________________();
 

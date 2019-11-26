@@ -10,6 +10,7 @@ describe('MySQL - server', () => {
 	const databaseName = config.testOptions.database;
 	const testDatabaseName = databaseName + '_xxx';
 
+	my.init(config);
 	prepareForTesting();
 	_________________();
 

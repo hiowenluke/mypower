@@ -6,6 +6,7 @@ const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - base/system', () => {
 
+	my.init(config);
 	prepareForTesting();
 	_________________();
 
