@@ -11,7 +11,6 @@ describe('MySQL - base/field', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.getAutoIdName(table)`, async () => {
 		const result = await my.getAutoIdName(table);

@@ -10,7 +10,6 @@ describe('MySQL - query/crud/update', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.update(table, data, where) // data = {username: 'haha'}, where = 'id = 1'`, async () => {
 		const newValues = {username: 'haha'};

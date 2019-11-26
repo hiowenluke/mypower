@@ -11,7 +11,6 @@ describe('MySQL - base/table', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.createTable()`, async () => {
 		await my.dropTable(tableName);

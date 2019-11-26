@@ -8,7 +8,6 @@ describe('MySQL - base/system', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.getSystemVariable()`, async () => {
 		const result = await my.getSystemVariable('version');

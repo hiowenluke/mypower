@@ -11,7 +11,6 @@ describe('MySQL - query/exec', async () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.exec(sql)`, async () => {
 		const sql = `select * from ${userTableName}`;

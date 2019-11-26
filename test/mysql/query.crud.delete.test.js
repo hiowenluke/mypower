@@ -10,7 +10,6 @@ describe('MySQL - query/crud/delete', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.delete(table, where) // where = 'id=5'`, async () => {
 		const result = await my.delete(table);

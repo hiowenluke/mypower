@@ -18,7 +18,6 @@ describe('MySQL - base/database', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.createDatabase(databaseName)`, async () => {
 		await my.dropDatabase(testDatabaseName);

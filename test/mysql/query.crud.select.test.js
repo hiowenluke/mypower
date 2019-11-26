@@ -10,7 +10,6 @@ describe('MySQL - query/crud/select', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.select(table)`, async () => {
 		const result = await my.select(table);

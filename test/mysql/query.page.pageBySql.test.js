@@ -9,7 +9,6 @@ describe('MySQL - query/page/pageBySql', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.pageBySql({sql, order, pageNumber, pageSize})`, async () => {
 		const sql = 'select * from users';

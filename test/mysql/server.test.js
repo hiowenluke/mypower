@@ -12,7 +12,6 @@ describe('MySQL - server', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.switchToServer(config)`, async () => {
 		const cfg = config;

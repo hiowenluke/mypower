@@ -10,7 +10,6 @@ describe('MySQL - query/crud/insert', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.insert(table, data) // data = {username: 'haha'}`, async () => {
 		const data = {username: 'haha'};

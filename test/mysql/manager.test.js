@@ -16,7 +16,6 @@ describe('MySQL - manager', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.cloneDatabase()`, async () => {
 		const sourceDatabase = databaseName;

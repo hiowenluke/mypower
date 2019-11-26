@@ -10,7 +10,6 @@ describe('MySQL - tools', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.getFieldsWhereConditions(primaryKeys)`, async () => {
 		const primaryKeys = 'billid, itemno';

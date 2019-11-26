@@ -11,7 +11,6 @@ describe('MySQL - base/primary key', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.getPrimaryKey()`, async () => {
 		const result = await my.getPrimaryKey(table);

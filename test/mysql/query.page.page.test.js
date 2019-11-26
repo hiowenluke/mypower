@@ -9,7 +9,6 @@ describe('MySQL - query/page/page', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.page({table, pageNumber, pageSize})`, async () => {
 		const pageNumber = 2;

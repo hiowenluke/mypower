@@ -9,7 +9,6 @@ describe('MySQL - query/goto', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.previous(table, idValue)`, async () => {
 		const idValue = 3;

@@ -9,7 +9,6 @@ describe('MySQL - base/record', () => {
 
 	my.init(config);
 	prepareForTesting();
-	_________________();
 
 	it(`.getMaxFieldValue(table, field) // field = 'id'`, async () => {
 		const field = 'id';
