@@ -37,7 +37,8 @@ my.init(config);
 ```
 
 **Click below links to see usages (from test cases).**
-**The asterisk indicates that the database on the specified server can be operated.**
+
+**The * indicates that databases on other servers can be operated remotely.**
 
 
 ### [Server](./test/mysql/server.test.js)
