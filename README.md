@@ -42,9 +42,9 @@ my.init(config);
 
 ### [Server](./test/mysql/server.test.js)
 
-my.connectServer() *
-my.isServerOnline() *
-my.switchToServer() *
+* my.connectServer() *
+* my.isServerOnline() *
+* my.switchToServer() *
 
 
 ### [Manager](./test/mysql/manager.test.js)
