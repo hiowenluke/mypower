@@ -5,7 +5,7 @@ const config = require('../__config/default');
 const userTableName = config.testOptions.userTableName;
 
 const me = {
-	itInit() {
+	prepareForTesting() {
 		it(`// init mypower`, async () => {
 			my.init(config);
 		});

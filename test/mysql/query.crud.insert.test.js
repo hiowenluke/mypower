@@ -3,12 +3,12 @@ const my = require('../../src');
 const expect = require('chai').expect;
 const config = require('../__config/default');
 const tools = require('../__tools');
-const {itInit, it___________________________} = tools;
+const {prepareForTesting, it___________________________} = tools;
 
 describe('MySQL - query/crud/insert', () => {
 	const table = 'users';
 
-	itInit();
+	prepareForTesting();
 	it___________________________();
 
 	it(`.insert(table, data) // data = {username: 'haha'}`, async () => {

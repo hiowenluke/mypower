@@ -2,11 +2,11 @@
 const my = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
-const {itInit, it___________________________} = tools;
+const {prepareForTesting, it___________________________} = tools;
 
 describe('MySQL - base/system', () => {
 
-	itInit();
+	prepareForTesting();
 	it___________________________();
 
 	it(`.getSystemVariable()`, async () => {

@@ -4,12 +4,12 @@ const expect = require('chai').expect;
 
 const my = require('../../src');
 const tools = require('../__tools');
-const {itInit, it___________________________} = tools;
+const {prepareForTesting, it___________________________} = tools;
 
 describe('MySQL - base/primary key', () => {
 	const table = 'users';
 
-	itInit();
+	prepareForTesting();
 	it___________________________();
 
 	it(`.getPrimaryKey()`, async () => {
