@@ -1,7 +1,7 @@
 
 # MyPower
 
-A set of database common operations functions for MySQL.
+A set of database common operations functions for MySQL. In particular, you can operate the database on the specified server, the operations include create, delete, drop, use, backup, restore, clone.
 
 ## Installation
 
@@ -36,49 +36,41 @@ const my = require('mypower');
 my.init(config);
 ```
 
-### Some examples
-
-```js
-const demo = async () => {
-    await my.createDatabase('myTestDatabase');
-};
-
-```
+**Click below links to see usages (from test cases).**
+**The asterisk indicates that the database on the specified server can be operated.**
 
 
-## List of Functions
+### [Server](./test/mysql/server.test.js)
 
-### server
-
-my.connectServer()
-my.isServerOnline()
-my.switchToServer()
+my.connectServer() *
+my.isServerOnline() *
+my.switchToServer() *
 
 
-### Manager
+### [Manager](./test/mysql/manager.test.js)
 
-my.backupAllDatabases()
-my.backupDatabase()
-my.cloneDatabase()
-my.cloneDatabaseStructure()
+my.backupAllDatabases() *
+my.backupDatabase() *
+my.cloneDatabase() *
+my.cloneDatabaseStructure() *
 my.renameDatabase()
-my.restoreAllDatabases()
-my.restoreDatabase()
+my.restoreAllDatabases() *
+my.restoreDatabase() *
 
 
-### database
+### [Database](./test/mysql/base.database.test.js)
 
-my.createDatabase()
-my.deleteDatabase()
-my.dropDatabase()
-my.getDatabasesName()
-my.getSelectedDatabase()
-my.isDatabaseExists()
-my.showDatabases()
-my.useDatabase()
+my.createDatabase() *
+my.deleteDatabase() *
+my.dropDatabase() *
+my.getDatabasesName() *
+my.getSelectedDatabase() *
+my.isDatabaseExists() *
+my.showDatabases() *
+my.useDatabase() *
 
 
-### Field
+### [Field](./test/mysql/base.field.test.js)
 
 my.addField()
 my.addFields()
@@ -101,7 +93,7 @@ my.updateField()
 my.updateFields()
 
 
-### PrimaryKey
+### [PrimaryKey](./test/mysql/base.primaryKey.test.js)
 
 my.addPrimaryKey()
 my.addPrimaryKeys()
@@ -109,7 +101,7 @@ my.getPrimaryKey()
 my.getPrimaryKeys()
 
 
-### Record
+### [Record](./test/mysql/base.record.test.js)
 
 my.getMaxFieldValue()
 my.getMaxId()
@@ -122,7 +114,7 @@ my.isRecordExists()
 my.recordsCount()
 
 
-### System
+### [System](./test/mysql/base.system.test.js)
 
 my.getSystemVariable()
 my.getSystemVariables()
@@ -131,7 +123,7 @@ my.getWarningCount()
 my.isSuccessful()
 
 
-### Table
+### [Table](./test/mysql/base.table.test.js)
 
 my.cloneTable()
 my.cloneTableStructure()
@@ -150,29 +142,22 @@ my.showTables()
 my.truncateTable()
 
 
-### query
+### Query
 
-my.exec()
+[my.exec()](./test/mysql/query.exec.test.js)
 my.execSp()
 my.count()
 
 
 #### Crud
 
-my.delete()
-my.insert()
-my.select()
-my.update()
+[my.delete()](./test/mysql/query.crud.delete.test.js)
+[my.insert()](./test/mysql/query.crud.insert.test.js)
+[my.select()](./test/mysql/query.crud.select.test.js)
+[my.update()](./test/mysql/query.crud.update.test.js)
 
 
-#### Batch
-
-my.batchDelete()
-my.batchInsert()
-my.batchUpdate()
-
-
-#### Goto
+#### [Goto](./test/mysql/query.goto.test.js)
 
 my.next()
 my.previous()
@@ -180,6 +165,12 @@ my.previous()
 
 #### Paging
 
-my.page()
-my.pageBySql()
+[my.page()](./test/mysql/query.page.page.test.js)
+[my.pageBySql()](./test/mysql/query.page.pageBySql.test.js)
 
+
+## License
+
+[MIT](LICENSE)
+
+Copyright (c) 2019, Owen Luke
