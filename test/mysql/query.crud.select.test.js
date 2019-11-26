@@ -181,13 +181,13 @@ describe('MySQL - query/crud/select', () => {
 
 	_________________();
 
-	it(`.select(table, where) // where = {username: "美国队长"}`, async () => {
-		const data = {username: '美国队长'};
+	it(`.select(table, where) // where = {username: "captainamerica"}`, async () => {
+		const data = {username: 'captainamerica'};
 		await my.insert(table, data);
 
 		const where = data;
 		const result = await my.select(table, where);
-		expect(result[0].username === "美国队长").to.be.true;
+		expect(result[0].username === "captainamerica").to.be.true;
 	});
 
 });
