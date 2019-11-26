@@ -6,10 +6,6 @@ const userTableName = config.testOptions.userTableName;
 
 const me = {
 	prepareForTesting() {
-		it(`// init mypower`, async () => {
-			my.init(config);
-		});
-
 		it(`// init database`, async () => {
 			await me.initDatabase();
 		});
