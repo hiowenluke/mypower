@@ -2,13 +2,13 @@
 const my = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - query/page/page', () => {
 	const table = 'users';
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.page({table, pageNumber, pageSize})`, async () => {
 		const pageNumber = 2;

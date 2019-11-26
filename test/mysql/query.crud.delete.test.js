@@ -3,13 +3,13 @@ const my = require('../../src');
 const expect = require('chai').expect;
 const config = require('../__config/default');
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - query/crud/delete', () => {
 	const table = 'users';
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.delete(table, where) // where = 'id=5'`, async () => {
 		const result = await my.delete(table);

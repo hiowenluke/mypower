@@ -4,14 +4,14 @@ const expect = require('chai').expect;
 
 const config = require('../__config/default');
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - server', () => {
 	const databaseName = config.testOptions.database;
 	const testDatabaseName = databaseName + '_xxx';
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.switchToServer(config)`, async () => {
 		const cfg = config;

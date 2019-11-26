@@ -4,12 +4,12 @@ const expect = require('chai').expect;
 
 const my = require('../../src');
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - tools', () => {
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.getFieldsWhereConditions(primaryKeys)`, async () => {
 		const primaryKeys = 'billid, itemno';

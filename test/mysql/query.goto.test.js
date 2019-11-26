@@ -2,13 +2,13 @@
 const my = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - query/goto', () => {
 	const table = 'users';
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.previous(table, idValue)`, async () => {
 		const idValue = 3;

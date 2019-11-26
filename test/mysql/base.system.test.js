@@ -2,12 +2,12 @@
 const my = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - base/system', () => {
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.getSystemVariable()`, async () => {
 		const result = await my.getSystemVariable('version');

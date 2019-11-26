@@ -3,13 +3,13 @@ const my = require('../../src');
 const expect = require('chai').expect;
 const config = require('../__config/default');
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - query/crud/select', () => {
 	const table = 'users';
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.select(table)`, async () => {
 		const result = await my.select(table);
@@ -80,7 +80,7 @@ describe('MySQL - query/crud/select', () => {
 		expect(Object.keys(result[0]).length === 2 && result.length === 2).to.be.true;
 	});
 
-	it___________________________();
+	_________________();
 
 	it(`.select({table, where}) // where = "username like 'th%'"`, async () => {
 		const where = "username like 'th%'";
@@ -127,7 +127,7 @@ describe('MySQL - query/crud/select', () => {
 		expect(Object.keys(result[0]).length === 2 && result.length === 2).to.be.true;
 	});
 
-	it___________________________();
+	_________________();
 
 	it(`.select({table, fields, isGroup}) // fields = 'username', isGroup = true`, async () => {
 		const fields = 'username';
@@ -141,7 +141,7 @@ describe('MySQL - query/crud/select', () => {
 		expect(result.length === 7).to.be.true;
 	});
 
-	it___________________________();
+	_________________();
 
 	it(`.select({table, order}) // order = 'username'`, async () => {
 		const order = 'username';
@@ -178,7 +178,7 @@ describe('MySQL - query/crud/select', () => {
 		expect(result.length === 1 && result[0].username === 'natasha').to.be.true;
 	});
 
-	it___________________________();
+	_________________();
 
 	it(`.select(table, where) // where = {username: "美国队长"}`, async () => {
 		const data = {username: '美国队长'};

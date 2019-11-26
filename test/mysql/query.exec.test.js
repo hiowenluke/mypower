@@ -4,13 +4,13 @@ const expect = require('chai').expect;
 
 const config = require('../__config/default');
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - query/exec', async () => {
 	const userTableName = config.testOptions.userTableName;
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.exec(sql)`, async () => {
 		const sql = `select * from ${userTableName}`;

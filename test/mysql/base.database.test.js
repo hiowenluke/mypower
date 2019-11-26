@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 
 const config = require('../__config/default');
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 const simulateServerConfig = () => {
 	const serverConfig = config;
@@ -17,7 +17,7 @@ describe('MySQL - base/database', () => {
 	const testDatabaseName = databaseName + '_xxx';
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.createDatabase(databaseName)`, async () => {
 		await my.dropDatabase(testDatabaseName);

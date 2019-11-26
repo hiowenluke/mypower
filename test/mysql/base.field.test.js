@@ -4,13 +4,13 @@ const expect = require('chai').expect;
 
 const my = require('../../src');
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - base/field', () => {
 	const table = 'users';
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.getAutoIdName(table)`, async () => {
 		const result = await my.getAutoIdName(table);

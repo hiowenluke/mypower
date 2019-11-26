@@ -2,13 +2,13 @@
 const my = require('../../src');
 const expect = require('chai').expect;
 const tools = require('../__tools');
-const {prepareForTesting, it___________________________} = tools;
+const {prepareForTesting, _________________} = tools;
 
 describe('MySQL - base/record', () => {
 	const table = 'users';
 
 	prepareForTesting();
-	it___________________________();
+	_________________();
 
 	it(`.getMaxFieldValue(table, field) // field = 'id'`, async () => {
 		const field = 'id';
