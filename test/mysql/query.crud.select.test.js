@@ -1,6 +1,7 @@
 
-const my = require('../../src');
 const expect = require('chai').expect;
+
+const my = require('../../src');
 const config = require('../__config/default');
 const tools = require('../__tools');
 const {prepareForTesting, _________________} = tools;

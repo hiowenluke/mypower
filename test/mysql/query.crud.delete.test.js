@@ -1,6 +1,7 @@
 
-const my = require('../../src');
 const expect = require('chai').expect;
+
+const my = require('../../src');
 const config = require('../__config/default');
 const tools = require('../__tools');
 const {prepareForTesting, _________________} = tools;
@@ -20,6 +21,5 @@ describe('MySQL - query/crud/delete', () => {
 		const result = await my.delete(table);
 		expect(result === true).to.be.true;
 	});
-
 
 });

@@ -4,6 +4,10 @@ const config = require('../__config/default');
 
 const userTableName = config.testOptions.userTableName;
 
+const breakLine = () => {
+	it(`----------------------------`, () => {});
+};
+
 const me = {
 	prepareForTesting() {
 		it(`// init database`, async () => {
@@ -18,11 +22,11 @@ const me = {
 			await me.addUsers();
 		});
 
-		this._________________();
+		breakLine();
 	},
 
 	_________________() {
-		it(`----------------------------`, () => {});
+		breakLine();
 	},
 
 	async initDatabase() {
