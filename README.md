@@ -14,6 +14,7 @@ Test:
 ```sh
 git clone https://github.com/hiowenluke/mypower
 cd mypower
+npm install
 npm test
 ```
 
