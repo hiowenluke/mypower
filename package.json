@@ -25,5 +25,13 @@
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "superagent": "^4.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiowenluke/mypower.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hiowenluke/mypower/issues"
+  },
+  "homepage": "https://github.com/hiowenluke/mypower#readme"
 }
