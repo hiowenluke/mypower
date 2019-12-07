@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "caller": "^1.0.1",
-    "kdo": "^1.7.17",
+    "kdo": "^1.8.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "mysql-cli-exec": "^0.1.7",
