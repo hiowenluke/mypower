@@ -15,7 +15,12 @@ const parseArgs = (args) => {
 
 		tableName = arg.table;
 		fieldNames = arg.fields;
-		whereStr = arg.where;
+		whereStr = arg.where || '';
+
+		if (typeof whereStr === 'object') {
+			whereStr = sequery.getWhereConditions(whereStr, tableName);
+		}
+
 		({tableName, fieldNames, whereStr} = lib.fixArgs({tableName, fieldNames, whereStr}));
 
 		({isGroup, group, order, limit, offset, data, isGetSqlStrOnly} = arg);
