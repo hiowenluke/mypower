@@ -7,9 +7,10 @@ const sqlTemplate = `select {fieldNames} from {tableName} where {whereStr}`;
 
 const parseArgs = (args) => {
 	let tableName, fieldNames, whereStr, isGroup, group, order, limit, offset, data, isGetSqlStrOnly;
+	let a0 = args[0];
 
 	// ({table, fields, where, isGroup, group, order, limit, offset, data, isGetSqlStrOnly})
-	if (typeof args[0] === 'object') {
+	if (a0 && typeof a0 === 'object') {
 		const arg = args[0];
 
 		tableName = arg.table;
