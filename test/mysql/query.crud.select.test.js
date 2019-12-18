@@ -17,6 +17,18 @@ describe('MySQL - query/crud/select', () => {
 		expect(result.length === 7).to.be.true;
 	});
 
+	it(`.select(table, where) // where = {}`, async () => {
+		const where = {};
+		const result = await my.select(table, where);
+		expect(result.length > 0).to.be.true;
+	});
+
+	it(`.select(table, where) // where = ''`, async () => {
+		const where = {};
+		const result = await my.select(table, where);
+		expect(result.length > 0).to.be.true;
+	});
+
 	it(`.select(table, where) // where = "username like 'th%'"`, async () => {
 		const where = "username like 'th%'";
 		const result = await my.select(table, where);
@@ -177,17 +189,6 @@ describe('MySQL - query/crud/select', () => {
 		const offset = 2;
 		const result = await my.select({table, order, offset});
 		expect(result.length === 1 && result[0].username === 'natasha').to.be.true;
-	});
-
-	_________________();
-
-	it(`.select(table, where) // where = {username: "captainamerica"}`, async () => {
-		const data = {username: 'captainamerica'};
-		await my.insert(table, data);
-
-		const where = data;
-		const result = await my.select(table, where);
-		expect(result[0].username === "captainamerica").to.be.true;
 	});
 
 });
