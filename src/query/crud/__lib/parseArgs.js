@@ -25,7 +25,7 @@ const fn = (...args) => {
 	}
 
 	if (args.length === 0) {
-		return;
+		return {};
 	}
 
 	if (args.length === 1) {
