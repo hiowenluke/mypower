@@ -21,7 +21,7 @@ const fn = ({tableName, fieldNames, whereStr}) => {
 	}
 	else {
 		if (_.isPlainObject(whereStr)) {
-			whereStr = sequery.getWhereConditions(whereStr, tableName);
+			whereStr = sequery.getWhereConditions(whereStr, tableName) || '1=1';
 		}
 		else {
 			if (typeof whereStr === 'string') {
