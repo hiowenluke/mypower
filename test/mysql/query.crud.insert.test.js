@@ -18,6 +18,7 @@ describe('MySQL - query/crud/insert', () => {
 		expect(typeof result === "number").to.be.true;
 	});
 
+	// for Unicode
 	it(`.insert(table, data) // data = {username: '美国队长'}`, async () => {
 		const data = {username: '美国队长'};
 		const result = await my.insert(table, data);
