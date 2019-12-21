@@ -1,6 +1,6 @@
 {
   "name": "mypower",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A set of database common operations functions for MySQL. In particular, you can operate the database on the specific server, the operations include create, delete, drop, use, backup, restore, clone.",
   "main": "index.js",
   "scripts": {
