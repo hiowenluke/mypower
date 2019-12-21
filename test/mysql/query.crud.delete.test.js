@@ -15,19 +15,19 @@ describe('MySQL - query/crud/delete', () => {
 	it(`.delete(table, where) // where = 'id=100'`, async () => {
 		const where = 'id=100';
 		const result = await my.delete(table, where);
-		expect(result === false).to.be.true;
+		expect(result === 0).to.be.true;
 	});
 
 	it(`.delete(table, where) // where = 'id=5'`, async () => {
 		const where = 'id=5';
 		const result = await my.delete(table, where);
-		expect(result === true).to.be.true;
+		expect(result > 0).to.be.true;
 	});
 
 	it(`.delete(table, where) // where = {id: 4}`, async () => {
 		const where = {id: 4};
 		const result = await my.delete(table, where);
-		expect(result === true).to.be.true;
+		expect(result > 0).to.be.true;
 	});
 
 });
