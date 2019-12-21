@@ -15,7 +15,7 @@ const fn = async (table, where) => {
 	let sql = my.sqlTemplate(sqlTemplate, {tableName: table, whereStr: where});
 	const result = await sequery.exec(sql);
 
-	return result > 0;
+	return result;
 };
 
 module.exports = fn;
