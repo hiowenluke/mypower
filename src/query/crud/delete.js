@@ -13,10 +13,9 @@ const fn = async (table, where) => {
 	}
 
 	let sql = my.sqlTemplate(sqlTemplate, {tableName: table, whereStr: where});
-	await sequery.exec(sql);
+	const result = await sequery.exec(sql);
 
-	const result = await my.isSuccessful();
-	return result;
+	return result > 0;
 };
 
 module.exports = fn;
