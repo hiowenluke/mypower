@@ -1,28 +1,19 @@
 
 # MyPower
 
-A set of database common operations functions for MySQL. In particular, you can operate the database on the specified server, the operations include create, delete, drop, use, backup, restore, clone.
+A set of database common operations functions for MySQL. In particular, you can operate the database on the specific server, the operations include create, delete, drop, use, backup, restore, clone.
 
-## Installation
+## Install
 
-Install:
 ```sh
 npm i mypower --save
-```
-
-Test:
-```sh
-git clone https://github.com/hiowenluke/mypower
-cd mypower
-npm install
-npm test
 ```
 
 ## Usage
 
 ### Initialize
 
-Initialize mypower first:
+Initialize MyPower first:
 ```js
 // Your mysql configuration
 const config = {
@@ -41,13 +32,11 @@ my.init(config);
 
 **The * indicates that databases on other servers can be operated remotely.**
 
-
 ### [Server](./test/mysql/server.test.js)
 
 * my.connectServer() *
 * my.isServerOnline() *
 * my.switchToServer() *
-
 
 ### [Manager](./test/mysql/manager.test.js)
 
@@ -59,7 +48,6 @@ my.init(config);
 * my.restoreAllDatabases() *
 * my.restoreDatabase() *
 
-
 ### [Database](./test/mysql/base.database.test.js)
 
 * my.createDatabase() *
@@ -70,7 +58,6 @@ my.init(config);
 * my.isDatabaseExists() *
 * my.showDatabases() *
 * my.useDatabase() *
-
 
 ### [Field](./test/mysql/base.field.test.js)
 
@@ -94,14 +81,12 @@ my.init(config);
 * my.updateField()
 * my.updateFields()
 
-
 ### [PrimaryKey](./test/mysql/base.primaryKey.test.js)
 
 * my.addPrimaryKey()
 * my.addPrimaryKeys()
 * my.getPrimaryKey()
 * my.getPrimaryKeys()
-
 
 ### [Record](./test/mysql/base.record.test.js)
 
@@ -115,7 +100,6 @@ my.init(config);
 * my.isRecordExists()
 * my.recordsCount()
 
-
 ### [System](./test/mysql/base.system.test.js)
 
 * my.getSystemVariable()
@@ -123,7 +107,6 @@ my.init(config);
 * my.getVersion()
 * my.getWarningCount()
 * my.isSuccessful()
-
 
 ### [Table](./test/mysql/base.table.test.js)
 
@@ -143,13 +126,11 @@ my.init(config);
 * my.showTables()
 * my.truncateTable()
 
-
 ### Query
 
 * [my.exec()](./test/mysql/query.exec.test.js)
 * my.execSp()
 * my.count()
-
 
 #### Crud
 
@@ -158,18 +139,24 @@ my.init(config);
 * [my.select()](./test/mysql/query.crud.select.test.js)
 * [my.update()](./test/mysql/query.crud.update.test.js)
 
-
 #### [Goto](./test/mysql/query.goto.test.js)
 
 * my.next()
 * my.previous()
-
 
 #### Paging
 
 * [my.page()](./test/mysql/query.page.page.test.js)
 * [my.pageBySql()](./test/mysql/query.page.pageBySql.test.js)
 
+## Test
+
+```sh
+git clone https://github.com/hiowenluke/mypower
+cd mypower
+npm install
+npm test
+```
 
 ## License
 
