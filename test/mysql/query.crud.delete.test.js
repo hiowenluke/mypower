@@ -12,13 +12,21 @@ describe('MySQL - query/crud/delete', () => {
 	my.init(config);
 	prepareForTesting();
 
+	it(`.delete(table, where) // where = 'id=100'`, async () => {
+		const where = 'id=100';
+		const result = await my.delete(table, where);
+		expect(result === false).to.be.true;
+	});
+
 	it(`.delete(table, where) // where = 'id=5'`, async () => {
-		const result = await my.delete(table);
+		const where = 'id=5';
+		const result = await my.delete(table, where);
 		expect(result === true).to.be.true;
 	});
 
 	it(`.delete(table, where) // where = {id: 4}`, async () => {
-		const result = await my.delete(table);
+		const where = {id: 4};
+		const result = await my.delete(table, where);
 		expect(result === true).to.be.true;
 	});
 
