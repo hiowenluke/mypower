@@ -5,13 +5,14 @@ const my = require('../..');
 const sqlTemplate = `insert into {tableName} ({nameParams}) values({valueParams})`;
 
 /** @name my.insert */
-const fn = async (tableName, data) => {
+const fn = async (tableName, data, isReturnNewId) => {
 	await lib.updateAndInsert(sqlTemplate, tableName, data);
 
-	const idName = await my.getPrimaryKey(tableName);
-	const maxId = await my.getMaxId(tableName, idName);
-
-	return maxId;
+	if (isReturnNewId) {
+		const idName = await my.getPrimaryKey(tableName);
+		const newId = await my.getMaxId(tableName, idName);
+		return newId;
+	}
 };
 
 module.exports = fn;
